@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce_bike_store",
+  "version": "1.0.0",
+  "description": "111",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sapirdeu/eCommerce_Bike_Store.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sapirdeu/eCommerce_Bike_Store/issues"
+  },
+  "homepage": "https://github.com/sapirdeu/eCommerce_Bike_Store#readme"
+}
