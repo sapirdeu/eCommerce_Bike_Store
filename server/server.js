@@ -25,7 +25,7 @@ app.use(cookieParser());
 // Models
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
-//  const { Wood } = require('./models/wood');
+ const { Material } = require('./models/material');
 // const { Product } = require('./models/product');
 // const { Payment } = require('./models/payment');
 // const { Site } = require('./models/site');
@@ -34,6 +34,29 @@ const { Brand } = require('./models/brand');
 const {auth} = require('./middleware/auth')
 const {admin} = require('./middleware/admin');
 // const user = require('./models/user');
+
+//=================================
+//             MATERIALS
+//=================================
+
+app.post('/api/product/material', auth, admin, (req, res)=>{
+    const material = new Material(req.body);
+    material.save((err,doc)=>{
+        if(err){
+            return res.json({success: false, err})
+        }
+        res.status(200).json({success: true, material: doc})       
+    })   
+});
+
+app.get('/api/product/materials', (req, res)=>{
+    Material.find({}, (err, materials) => {
+            if(err) return res.status(400).send(err);
+            return res.status(200).send(materials)
+        }
+    )
+});
+
 
 //=================================
 //             BRAND
