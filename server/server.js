@@ -209,13 +209,13 @@ app.post('/api/users/login',(req,res)=>{
     // find the email
     User.findOne({'email':req.body.email},(err,user)=>{
         if(!user) {
-            return res.json({loginSuccess:false,message:'Auth failed, email not found'})
+            return res.json({loginSuccess:false,message:'The email or password is incorrect'})
         };
 
         // check password
         user.comparePassword(req.body.password,(err,isMatch)=>{
             if(!isMatch) {
-                return res.json({loginSuccess:false,message:'Wrong password'})
+                return res.json({loginSuccess:false,message:'The email or password is incorrect'})
             };
 
             // generate a token
