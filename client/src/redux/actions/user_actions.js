@@ -1,16 +1,16 @@
 import axios from 'axios'
-// import {
-//         LOGIN_USER, 
-//         REGISTER_USER, 
-//         AUTH_USER, 
-//         LOGOUT_USER,
-//         ADD_TO_CART_USER,
-//         GET_CART_ITEMS_USER,
-//         REMOVE_CART_ITEMS_USER,
-//         ON_SUCCESS_BUY_USER,
-//         UPDATE_DATA_USER,
-//         CLEAR_UPDATE_USER_DATA
-// } from './Types'
+import {
+        LOGIN_USER, 
+        // REGISTER_USER, 
+        // AUTH_USER, 
+        // LOGOUT_USER,
+        // ADD_TO_CART_USER,
+        // GET_CART_ITEMS_USER,
+        // REMOVE_CART_ITEMS_USER,
+        // ON_SUCCESS_BUY_USER,
+        // UPDATE_DATA_USER,
+        // CLEAR_UPDATE_USER_DATA
+} from './Types'
 import {USER_SERVER, PRODUCT_SERVER} from '../../components/utils/Misc'
 
 // function registerUser(dataToSubmit){
@@ -24,16 +24,16 @@ import {USER_SERVER, PRODUCT_SERVER} from '../../components/utils/Misc'
 //     }
 // }
 
-// function loginUser(dataToSubmit){
-//     const request = 
-//         axios.post(`${USER_SERVER}/login`, dataToSubmit)
-//         .then(response => response.data);
+function loginUser(dataToSubmit){
+    const request = 
+        axios.post(`${USER_SERVER}/login`, dataToSubmit)
+        .then(response => response.data);
     
-//     return {
-//         type: LOGIN_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: LOGIN_USER, 
+        payload: request
+    }
+}
 
 // function auth(){
 //     const request = 
@@ -137,16 +137,16 @@ import {USER_SERVER, PRODUCT_SERVER} from '../../components/utils/Misc'
 //     }
 // }
 
-// export {
-//     loginUser, 
-//     registerUser, 
-//     auth, 
-//     logoutUser, 
-//     addToCart, 
-//     getCartItems,
-//     removeCartItem,
-//     onSuccessBuy,
-//     updateUserData,
-//     clearUpdateUser
-// }
+export {
+    loginUser, 
+    // registerUser, 
+    // auth, 
+    // logoutUser, 
+    // addToCart, 
+    // getCartItems,
+    // removeCartItem,
+    // onSuccessBuy,
+    // updateUserData,
+    // clearUpdateUser
+}
 

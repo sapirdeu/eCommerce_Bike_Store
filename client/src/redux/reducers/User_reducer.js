@@ -1,22 +1,22 @@
-// import {
-//     LOGIN_USER, 
-//     REGISTER_USER, 
-//     AUTH_USER,
-//     LOGOUT_USER,
-//     ADD_TO_CART_USER,
-//     GET_CART_ITEMS_USER,
-//     REMOVE_CART_ITEMS_USER,
-//     ON_SUCCESS_BUY_USER,
-//     UPDATE_DATA_USER,
-//     CLEAR_UPDATE_USER_DATA
-// } from '../actions/Types'
+import {
+    LOGIN_USER, 
+    // REGISTER_USER, 
+    // AUTH_USER,
+    // LOGOUT_USER,
+    // ADD_TO_CART_USER,
+    // GET_CART_ITEMS_USER,
+    // REMOVE_CART_ITEMS_USER,
+    // ON_SUCCESS_BUY_USER,
+    // UPDATE_DATA_USER,
+    // CLEAR_UPDATE_USER_DATA
+} from '../actions/Types'
 
 const fun = (state = {}, action) => {
     switch (action.type) {
       // case REGISTER_USER:
       //   return {...state, registerSuccess: action.payload}
-      // case LOGIN_USER:
-      //   return {...state, loginSuccess: action.payload}
+      case LOGIN_USER:
+        return {...state, loginSuccess: action.payload}
       // case AUTH_USER:
       //   return {...state, userData: action.payload}
       // case ADD_TO_CART_USER:

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Router, Switch } from "react-router-dom";
 import Home from './components/Home/Home';
 // import Register from './components/Register_login/Register';
-// import RegisterLogin from './components/Register_login/RegisterLogin';
+import RegisterLogin from './components/Register_login/RegisterLogin';
 import Layout from './hoc/Layout';
 // import history from './history';
 // import UserDashboard from './components/User/UserDashboard';
@@ -31,6 +31,8 @@ function Routes() {
             <Route path="/register" exact component={Auth(Register,false)}/>
             <Route path="/register_login" exact component={Auth(RegisterLogin,false)}/>
             <Route path="/shop" exact component={Auth(Shop,null)}/> */}
+
+            <Route path="/register_login" exact component={RegisterLogin}/>
             <Route path="/" exact component={Home}/>
           </Switch>  
         </Layout>
