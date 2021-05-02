@@ -1,6 +1,6 @@
 import React from 'react'
-// import HomePromotion from './HomePromotion'
-// import HomeSlider from './HomeSlider'
+import HomePromotion from './HomePromotion'
+import HomeSlider from './HomeSlider'
 
 // import {withRouter} from 'react-router-dom'
 // import {useDispatch,connect} from 'react-redux'
@@ -18,17 +18,16 @@ function Home(props) {
 
     return (
         <div>
-            {/* <HomeSlider/>
-            <CardBlock 
+            <HomeSlider/>
+            {/* <CardBlock 
                 list={props.products.byArrival}
                 title="New Arrivals"
-            />
+            /> */}
             <HomePromotion/>
-            <CardBlock 
+            {/* <CardBlock 
                 list={props.products.bySell}
                 title="Best Selling Guitars"
             /> */}
-            home
         </div>
     )
 }
