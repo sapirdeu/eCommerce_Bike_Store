@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
         LOGIN_USER, 
-        // REGISTER_USER, 
+        REGISTER_USER, 
         // AUTH_USER, 
         // LOGOUT_USER,
         // ADD_TO_CART_USER,
@@ -13,16 +13,16 @@ import {
 } from './Types'
 import {USER_SERVER, PRODUCT_SERVER} from '../../components/utils/Misc'
 
-// function registerUser(dataToSubmit){
-//     const request = 
-//         axios.post(`${USER_SERVER}/registers`, dataToSubmit)
-//         .then(response => response.data);
+function registerUser(dataToSubmit){
+    const request = 
+        axios.post(`${USER_SERVER}/registers`, dataToSubmit)
+        .then(response => response.data);
     
-//     return {
-//         type: REGISTER_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: REGISTER_USER, 
+        payload: request
+    }
+}
 
 function loginUser(dataToSubmit){
     const request = 
@@ -139,7 +139,7 @@ function loginUser(dataToSubmit){
 
 export {
     loginUser, 
-    // registerUser, 
+    registerUser, 
     // auth, 
     // logoutUser, 
     // addToCart, 
