@@ -1,112 +1,112 @@
-import React from 'react'
-// import {Link} from 'react-router-dom'
-// import {useDispatch,connect} from 'react-redux'
-// import {withRouter} from 'react-router';
-// import {logoutUser} from '../../redux/actions/user_actions'
+import React, { useState} from 'react'
+import {Link} from 'react-router-dom'
+import {useDispatch,connect} from 'react-redux'
+import {withRouter} from 'react-router';
+import {logoutUser} from '../../redux/actions/user_actions'
 
 function Header(props) {
-    // const [page] = useState([
-    //     {
-    //         name: 'Home',
-    //         linkTo: '/',
-    //         public: true
-    //     },
-    //     {
-    //         name: 'Guitars',
-    //         linkTo: '/shop',
-    //         public: true
-    //     }
-    // ])
-    // const [user] = useState([
-    //     {
-    //         name: 'My Cart',
-    //         linkTo: '/user/cart',
-    //         public: false
-    //     },
-    //     {
-    //         name: 'My Account',
-    //         linkTo: '/user/dashboard',
-    //         public: false
-    //     },
-    //     {
-    //         name: 'Log in',
-    //         linkTo: '/register_login',
-    //         public: true
-    //     },
-    //     {
-    //         name: 'Log out',
-    //         linkTo: '/user/logout',
-    //         public: false
-    //     }
-    // ])
+    const [page] = useState([
+        {
+            name: 'Home',
+            linkTo: '/',
+            public: true
+        },
+        {
+            name: 'Bikes',
+            linkTo: '/shop',
+            public: true
+        }
+    ])
+    const [user] = useState([
+        {
+            name: 'My Cart',
+            linkTo: '/user/cart',
+            public: false
+        },
+        {
+            name: 'My Account',
+            linkTo: '/user/dashboard',
+            public: false
+        },
+        {
+            name: 'Log in',
+            linkTo: '/register_login',
+            public: true
+        },
+        {
+            name: 'Log out',
+            linkTo: '/user/logout',
+            public: false
+        }
+    ])
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const cartLink = (item,i) => {
-    //     const user = props.user.userData;
+    const cartLink = (item,i) => {
+        const user = props.user.userData;
 
-    //     return (
-    //         <div className="cart_link" key={i}>
-    //             <span>{user.cart ? user.cart.length : 0}</span>
-    //             <Link to={item.linkTo} key={i}>
-    //                 {item.name}
-    //             </Link>
-    //         </div>
-    //     )
-    // }
+        return (
+            <div className="cart_link" key={i}>
+                <span>{user.cart ? user.cart.length : 0}</span>
+                <Link to={item.linkTo} key={i}>
+                    {item.name}
+                </Link>
+            </div>
+        )
+    }
 
-    // const logOutHandler = () => {
-    //     dispatch(logoutUser())
-    //     .then(response=>{
-    //         if(response.payload.success){
-    //             props.history.push('/');
-    //         }
-    //     });
-    // }
+    const logOutHandler = () => {
+        dispatch(logoutUser())
+        .then(response=>{
+            if(response.payload.success){
+                props.history.push('/');
+            }
+        });
+    }
 
-    // const defaultLink = (item,i) => {
-    //     return (
-    //     item.name === 'Log out' ?
-    //         <div className="log_out_link"
-    //             key={i}
-    //             onClick={()=>logOutHandler()}
-    //         >
-    //             {item.name}
-    //         </div>
-    //     :
+    const defaultLink = (item,i) => {
+        return (
+        item.name === 'Log out' ?
+            <div className="log_out_link"
+                key={i}
+                onClick={()=>logOutHandler()}
+            >
+                {item.name}
+            </div>
+        :
         
-    //         <Link to={item.linkTo} key={i}>
-    //             {item.name}
-    //         </Link>
-    //     )
-    // }
+            <Link to={item.linkTo} key={i}>
+                {item.name}
+            </Link>
+        )
+    }
 
-    // const showLinks = (type) => {
-    //     let list = [];
+    const showLinks = (type) => {
+        let list = [];
 
-    //     if(props.user.userData){
-    //         type.forEach((item)=>{
-    //             if(!props.user.userData.isAuth){
-    //                 if(item.public === true){
-    //                     list.push(item);
-    //                 }
-    //             } else{
-    //                 if(item.name !== 'Log in'){
-    //                     list.push(item);
-    //                 }
-    //             }
-    //         });
-    //     }
+        if(props.user.userData){
+            type.forEach((item)=>{
+                if(!props.user.userData.isAuth){
+                    if(item.public === true){
+                        list.push(item);
+                    }
+                } else{
+                    if(item.name !== 'Log in'){
+                        list.push(item);
+                    }
+                }
+            });
+        }
 
-    //     return list.map((item,i)=>{
-    //         if(item.name !== 'My Cart'){
-    //             return defaultLink(item,i)
-    //         } else{
-    //             return cartLink(item,i)
-    //         }
+        return list.map((item,i)=>{
+            if(item.name !== 'My Cart'){
+                return defaultLink(item,i)
+            } else{
+                return cartLink(item,i)
+            }
             
-    //     })
-    // }
+        })
+    }
 
     return (
         <header className="bck_b_light">
@@ -119,12 +119,10 @@ function Header(props) {
 
                 <div className="right">
                     <div className="top">
-                        {/* {showLinks(user)} */}
-                        links 
+                        {showLinks(user)} 
                     </div>
                     <div className="bottom">
-                        {/* {showLinks(page)} */}
-                        links
+                        {showLinks(page)}
                     </div>
                 </div >
             </div>
@@ -132,12 +130,10 @@ function Header(props) {
     )
 }
 
-export default Header;
+function mapStateToProps(state){
+    return{
+        user: state.user
+    }
+}
 
-// function mapStateToProps(state){
-//     return{
-//         user: state.user
-//     }
-// }
-
-// export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps)(withRouter(Header));

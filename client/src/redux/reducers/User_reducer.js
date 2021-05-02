@@ -2,7 +2,7 @@ import {
     LOGIN_USER, 
     REGISTER_USER, 
     AUTH_USER,
-    // LOGOUT_USER,
+    LOGOUT_USER,
     // ADD_TO_CART_USER,
     // GET_CART_ITEMS_USER,
     // REMOVE_CART_ITEMS_USER,
@@ -24,8 +24,8 @@ const fun = (state = {}, action) => {
       //     ...state.userData,
       //     cart: action.payload
       //   }}
-      // case LOGOUT_USER:
-      //   return {...state}
+      case LOGOUT_USER:
+        return {...state}
       // case GET_CART_ITEMS_USER:
       //     return {...state, cartDetail: action.payload}
       // case REMOVE_CART_ITEMS_USER:

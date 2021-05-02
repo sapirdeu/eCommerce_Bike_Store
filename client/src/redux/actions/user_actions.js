@@ -3,7 +3,7 @@ import {
         LOGIN_USER, 
         REGISTER_USER, 
         AUTH_USER, 
-        // LOGOUT_USER,
+        LOGOUT_USER,
         // ADD_TO_CART_USER,
         // GET_CART_ITEMS_USER,
         // REMOVE_CART_ITEMS_USER,
@@ -46,16 +46,16 @@ function auth(){
     }
 }
 
-// function logoutUser(){
-//     const request = 
-//         axios.get(`${USER_SERVER}/logout`)
-//         .then(response => response.data);
+function logoutUser(){
+    const request = 
+        axios.get(`${USER_SERVER}/logout`)
+        .then(response => response.data);
     
-//     return {
-//         type: LOGOUT_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: LOGOUT_USER, 
+        payload: request
+    }
+}
 
 // function addToCart(id){
 //     const request = 
@@ -141,7 +141,7 @@ export {
     loginUser, 
     registerUser, 
     auth, 
-    // logoutUser, 
+    logoutUser, 
     // addToCart, 
     // getCartItems,
     // removeCartItem,
