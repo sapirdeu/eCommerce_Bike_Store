@@ -2,7 +2,7 @@ import axios from 'axios'
 import {
         LOGIN_USER, 
         REGISTER_USER, 
-        // AUTH_USER, 
+        AUTH_USER, 
         // LOGOUT_USER,
         // ADD_TO_CART_USER,
         // GET_CART_ITEMS_USER,
@@ -35,16 +35,16 @@ function loginUser(dataToSubmit){
     }
 }
 
-// function auth(){
-//     const request = 
-//         axios.get(`${USER_SERVER}/auth`)
-//         .then(response => response.data);
+function auth(){
+    const request = 
+        axios.get(`${USER_SERVER}/auth`)
+        .then(response => response.data);
     
-//     return {
-//         type: AUTH_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: AUTH_USER, 
+        payload: request
+    }
+}
 
 // function logoutUser(){
 //     const request = 
@@ -140,7 +140,7 @@ function loginUser(dataToSubmit){
 export {
     loginUser, 
     registerUser, 
-    // auth, 
+    auth, 
     // logoutUser, 
     // addToCart, 
     // getCartItems,
