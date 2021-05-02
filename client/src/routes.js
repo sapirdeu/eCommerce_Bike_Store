@@ -5,7 +5,7 @@ import Register from './components/Register_login/Register';
 import RegisterLogin from './components/Register_login/RegisterLogin';
 import Layout from './hoc/Layout';
 // import history from './history';
-// import UserDashboard from './components/User/UserDashboard';
+import UserDashboard from './components/User/UserDashboard';
 // import Auth from './hoc/Auth';
 // import Shop from './components/Shop/Shop';
 // import AddProduct from './components/User/Admin/AddProduct';
@@ -32,6 +32,7 @@ function Routes() {
             <Route path="/register_login" exact component={Auth(RegisterLogin,false)}/>
             <Route path="/shop" exact component={Auth(Shop,null)}/> */}
 
+            <Route path="/user/dashboard" exact component={UserDashboard}/>
             <Route path="/register" exact component={Register}/>
             <Route path="/register_login" exact component={RegisterLogin}/>
             <Route path="/" exact component={Home}/>
