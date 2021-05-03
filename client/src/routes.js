@@ -7,7 +7,7 @@ import Layout from './hoc/Layout';
 // import history from './history';
 import UserDashboard from './components/User/UserDashboard';
 import Auth from './hoc/Auth';
-// import Shop from './components/Shop/Shop';
+import Shop from './components/Shop/Shop';
 // import AddProduct from './components/User/Admin/AddProduct';
 // import ManageCategories from './components/User/Admin/ManageCategories';
 // import ProductPage from './components/Product/ProductPage';
@@ -36,6 +36,7 @@ function Routes() {
             
             <Route path="/register" exact component={Auth(Register,false)}/>
             <Route path="/register_login" exact component={Auth(RegisterLogin,false)}/>
+            <Route path="/shop" exact component={Auth(Shop,null)}/>
             <Route path="/" exact component={Auth(Home,null)}/>
           </Switch>  
         </Layout>

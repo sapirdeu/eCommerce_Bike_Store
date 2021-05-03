@@ -2,11 +2,11 @@ import axios from 'axios'
 import {
         GET_PRODUCTS_BY_ARRIVAL,
         GET_PRODUCTS_BY_SELL,
-        // GET_BRANDS,
+        GET_BRANDS,
         // ADD_BRAND,
-        // GET_WOODS,
+        GET_MATERIALS,
         // ADD_WOOD,
-        // GET_PRODUCTS_TO_SHOP,
+        GET_PRODUCTS_TO_SHOP,
         // ADD_PRODUCT,
         // CLEAR_PRODUCT,
         // GET_PRODUCT_DETAIL,
@@ -38,38 +38,38 @@ function getProductsBySell(){
     }
 }
 
-// function getProductsToShop(skip, limit, filters=[], previousState=[]){
-//     const data = {skip, limit, filters}
-//     const request = 
-//         axios.post(`${PRODUCT_SERVER}/shop`, data)
-//         .then(response => {
-//             let newState = [
-//                 ...previousState,
-//                 ...response.data.articles
-//             ]
+function getProductsToShop(skip, limit, filters=[], previousState=[]){
+    const data = {skip, limit, filters}
+    const request = 
+        axios.post(`${PRODUCT_SERVER}/shop`, data)
+        .then(response => {
+            let newState = [
+                ...previousState,
+                ...response.data.articles
+            ]
 
-//             return{
-//                 size: response.data.size,
-//                 articles: newState
-//             }
-//     });
+            return{
+                size: response.data.size,
+                articles: newState
+            }
+    });
     
-//     return {
-//         type: GET_PRODUCTS_TO_SHOP, 
-//         payload: request
-//     }
-// }
+    return {
+        type: GET_PRODUCTS_TO_SHOP, 
+        payload: request
+    }
+}
 
-// function getBrands(){
-//     const request = 
-//         axios.get(`${PRODUCT_SERVER}/brands`)
-//         .then(response => response.data);
+function getBrands(){
+    const request = 
+        axios.get(`${PRODUCT_SERVER}/brands`)
+        .then(response => response.data);
     
-//     return {
-//         type: GET_BRANDS, 
-//         payload: request
-//     }
-// }
+    return {
+        type: GET_BRANDS, 
+        payload: request
+    }
+}
 
 // function addBrand(dataToSubmit, existingBrands){
 //     const request = 
@@ -85,16 +85,16 @@ function getProductsBySell(){
 //     }
 // }
 
-// function getWoods(){
-//     const request = 
-//         axios.get(`${PRODUCT_SERVER}/woods`)
-//         .then(response => response.data);
+function getMaterials(){
+    const request = 
+        axios.get(`${PRODUCT_SERVER}/materials`)
+        .then(response => response.data);
     
-//     return {
-//         type: GET_WOODS, 
-//         payload: request
-//     }
-// }
+    return {
+        type: GET_MATERIALS, 
+        payload: request
+    }
+}
 
 // function addWood(dataToSubmit, existingWoods){
 //     const request = 
@@ -149,8 +149,8 @@ function getProductsBySell(){
 export {
     getProductsByArrival, 
     getProductsBySell, 
-    // getBrands, getWoods, 
-    // getProductsToShop, 
+    getBrands, getMaterials, 
+    getProductsToShop, 
     // addProduct, 
     // clearProduct, 
     // addBrand, 
