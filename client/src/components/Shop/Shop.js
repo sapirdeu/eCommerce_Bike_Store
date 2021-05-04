@@ -5,7 +5,7 @@ import { getProductsToShop,getBrands, getMaterials} from '../../redux/actions/pr
 import PageTop from '../utils/PageTop';
 import CollapseCheckbox from '../utils/CollapseCheckbox';
 import CollapseRadio from '../utils/CollapseRadio';
-import {frontForkTravel, price} from '../utils/Form/FixedCategories';
+import {frontForkTravel, weight, price} from '../utils/Form/FixedCategories';
 import LoadMoreCards from './LoadMoreCards';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,6 +21,7 @@ function Shop(props) {
         brand:[],
         frontForkTravel:[],
         material:[],
+        weight: [],
         price: []
     })
 
@@ -45,6 +46,19 @@ function Shop(props) {
         return array;
     }
 
+    const handleWeight = (filters) => {
+        const data = weight;
+        let array = [];
+
+        for(let key in data){
+            if(data[key]._id === parseFloat(filters)){
+                array = data[key].array;
+            }
+        }
+
+        return array;
+    }
+
     const showFilteredResults = (newFilters) => {
         dispatch(getProductsToShop(0, limit, newFilters))
         .then(()=>{
@@ -58,6 +72,11 @@ function Shop(props) {
 
         if (category==='price'){
             let priceValue = handlePrice(filters1);
+            newFilters[category] = priceValue;
+        }
+
+        else if (category==='weight'){
+            let priceValue = handleWeight(filters1);
             newFilters[category] = priceValue;
         }
 
@@ -85,7 +104,7 @@ function Shop(props) {
                     <div className="left">
                         <CollapseCheckbox
                             initState={true}
-                            title="Brands"
+                            title="Brand"
                             list={products.brands}
                             handleFilters={(filters)=>handleFilters(filters, 'brand')}
                         />
@@ -97,9 +116,15 @@ function Shop(props) {
                         />
                         <CollapseCheckbox
                             initState={false}
-                            title="Materials"
+                            title="Material"
                             list={products.materials}
                             handleFilters={(filters)=>handleFilters(filters, 'material')}
+                        />
+                        <CollapseRadio
+                            initState={false}
+                            title="Weight"
+                            list={weight}
+                            handleFilters={(filters)=>handleFilters(filters, 'weight')}
                         />
                         <CollapseRadio
                             initState={true}

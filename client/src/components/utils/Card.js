@@ -28,9 +28,9 @@ function Card(props) {
 
             <div className="action_container">
                 <div className="tags">
-                    <div className="brand">{props.brand.name}</div>
-                    <div className="name">{props.name}</div>
+                    <div className="brand">{props.brand.name}, {props.name}</div>
                     <div className="name">${props.price}</div>
+                    <div className="name">{props.weight} kg</div>
                 </div>
             
                 {

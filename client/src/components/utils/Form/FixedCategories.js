@@ -13,6 +13,29 @@ const frontForkTravel = [
     }
 ]
 
+const weight = [
+    {
+        "_id": 0,
+        "name": "Any",
+        "array": []
+    },
+    {
+        "_id": 1,
+        "name": "13.0 kg to 13.49 kg",
+        "array": [13.0, 13.49]
+    },
+    {
+        "_id": 2,
+        "name": "13.5 kg to 14.49 kg",
+        "array": [13.5, 14.49]
+    },
+    {
+        "_id": 3,
+        "name": "More than 14.5 kg",
+        "array": [14.5, 1500000]
+    },
+]
+
 const price = [
     {
         "_id": 0,
@@ -46,4 +69,4 @@ const price = [
     },
 ]
 
-export {frontForkTravel, price}
+export {frontForkTravel, weight, price}
