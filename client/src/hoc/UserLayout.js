@@ -48,14 +48,14 @@ function UserLayout(props) {
                 <div className="user_left_nav">
                     <h2>My account</h2>
                     <div className="links">{generateLinks(links)}</div>
-                    {/* {
+                    {
                         props.user.userData.isAdmin ?
                             <div>
                                 <h2>Admin</h2>
                                 <div className="links">{generateLinks(admin)}</div>
                             </div>
                         : null
-                    } */}
+                    }
                 </div>
 
                 <div className="user_right">

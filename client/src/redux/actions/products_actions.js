@@ -7,8 +7,8 @@ import {
         GET_MATERIALS,
         // ADD_WOOD,
         GET_PRODUCTS_TO_SHOP,
-        // ADD_PRODUCT,
-        // CLEAR_PRODUCT,
+        ADD_PRODUCT,
+        CLEAR_PRODUCT,
         // GET_PRODUCT_DETAIL,
         // CLEAR_PRODUCT_DETAIL
 } from './Types'
@@ -110,23 +110,23 @@ function getMaterials(){
 //     }
 // }
 
-// function addProduct(dataToSubmit){
-//     const request = 
-//         axios.post(`${PRODUCT_SERVER}/article`, dataToSubmit)
-//         .then(response => response.data);
+function addProduct(dataToSubmit){
+    const request = 
+        axios.post(`${PRODUCT_SERVER}/article`, dataToSubmit)
+        .then(response => response.data);
     
-//     return {
-//         type: ADD_PRODUCT, 
-//         payload: request
-//     }
-// }
+    return {
+        type: ADD_PRODUCT, 
+        payload: request
+    }
+}
 
-// function clearProduct(){
-//     return {
-//         type: CLEAR_PRODUCT, 
-//         payload: ''
-//     }
-// }
+function clearProduct(){
+    return {
+        type: CLEAR_PRODUCT, 
+        payload: ''
+    }
+}
 
 // function getProductDetail(id){
 //     const request = 
@@ -151,8 +151,8 @@ export {
     getProductsBySell, 
     getBrands, getMaterials, 
     getProductsToShop, 
-    // addProduct, 
-    // clearProduct, 
+    addProduct, 
+    clearProduct, 
     // addBrand, 
     // addWood,
     // getProductDetail,

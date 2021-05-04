@@ -63,35 +63,35 @@ function isFormValid(formData, formName){
     return formIsValid;
 }
 
-// function populateOptionFields(formData, arrayData = [], field){
-//     const newArr = []
-//     const newFormData = {...formData}
+function populateOptionFields(formData, arrayData = [], field){
+    const newArr = []
+    const newFormData = {...formData}
 
-//     arrayData.forEach(item => {
-//         newArr.push({key: item._id, value: item.name});
-//     })
+    arrayData.forEach(item => {
+        newArr.push({key: item._id, value: item.name});
+    })
 
-//     newFormData[field].config.options = newArr;
-//     return newFormData;
-// }
+    newFormData[field].config.options = newArr;
+    return newFormData;
+}
 
-// function resetFields(formData, formName){
-//     const newFormData = {...formData};
+function resetFields(formData, formName){
+    const newFormData = {...formData};
 
-//     for(let key in newFormData){
-//         if(key === 'images'){
-//             newFormData[key].value = [];
-//         } else {
-//             newFormData[key].value = '';
-//         }
+    for(let key in newFormData){
+        if(key === 'images'){
+            newFormData[key].value = [];
+        } else {
+            newFormData[key].value = '';
+        }
         
-//         newFormData[key].valid = false;
-//         newFormData[key].touched = false;
-//         newFormData[key].validationMessage = '';
-//     }
+        newFormData[key].valid = false;
+        newFormData[key].touched = false;
+        newFormData[key].validationMessage = '';
+    }
 
-//     return newFormData;
-// }
+    return newFormData;
+}
 
 // function populateFields(formData, fields){
 //     const newFormData = {...formData};
@@ -108,4 +108,4 @@ function isFormValid(formData, formName){
 
 // export {update, validate, generateData, isFormValid, populateOptionFields, resetFields, populateFields}
 
-export {update, validate, generateData, isFormValid}
+export {update, validate, generateData, isFormValid, populateOptionFields, resetFields}
