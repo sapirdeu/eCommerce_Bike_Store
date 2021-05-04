@@ -4,8 +4,8 @@ import {useDispatch,connect} from 'react-redux'
 import { getProductsToShop,getBrands, getMaterials} from '../../redux/actions/products_actions'
 import PageTop from '../utils/PageTop';
 import CollapseCheckbox from '../utils/CollapseCheckbox';
-// import CollapseRadio from '../utils/CollapseRadio';
-// import {frets, price} from '../utils/Form/FixedCategories';
+import CollapseRadio from '../utils/CollapseRadio';
+import {frontForkTravel, price} from '../utils/Form/FixedCategories';
 // import LoadMoreCards from './LoadMoreCards';
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,55 +14,55 @@ import CollapseCheckbox from '../utils/CollapseCheckbox';
 
 function Shop(props) {
     const products = props.products;
-    // const [grid,setGrid] = useState('');
-    // const [limit] = useState(6);
-    // const [skip, setSkip] = useState(0);
-    // const [filters, setFilters] = useState({
-    //     brand:[],
-    //     frets:[],
-    //     wood:[],
-    //     price: []
-    // })
+    const [grid,setGrid] = useState('');
+    const [limit] = useState(6);
+    const [skip, setSkip] = useState(0);
+    const [filters, setFilters] = useState({
+        brand:[],
+        frontForkTravel:[],
+        material:[],
+        price: []
+    })
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getBrands())
         dispatch(getMaterials())
-        // dispatch(getProductsToShop(skip, limit, filters))
+        dispatch(getProductsToShop(skip, limit, filters))
     }, [dispatch]);
 
-    // const handlePrice = (filters) => {
-    //     const data = price;
-    //     let array = [];
+    const handlePrice = (filters) => {
+        const data = price;
+        let array = [];
 
-    //     for(let key in data){
-    //         if(data[key]._id === parseInt(filters,10)){
-    //             array = data[key].array;
-    //         }
-    //     }
+        for(let key in data){
+            if(data[key]._id === parseInt(filters,10)){
+                array = data[key].array;
+            }
+        }
 
-    //     return array;
-    // }
+        return array;
+    }
 
-    // const showFilteredResults = (newFilters) => {
-    //     dispatch(getProductsToShop(0, limit, newFilters))
-    //     .then(()=>{
-    //         setSkip(0);
-    //     })
-    // }
+    const showFilteredResults = (newFilters) => {
+        dispatch(getProductsToShop(0, limit, newFilters))
+        .then(()=>{
+            setSkip(0);
+        })
+    }
 
     const handleFilters = (filters1, category) => {
-        // const newFilters = filters;
-        // newFilters[category] = filters1;
+        const newFilters = filters;
+        newFilters[category] = filters1;
 
-        // if (category==='price'){
-        //     let priceValue = handlePrice(filters1);
-        //     newFilters[category] = priceValue;
-        // }
+        if (category==='price'){
+            let priceValue = handlePrice(filters1);
+            newFilters[category] = priceValue;
+        }
 
-        // showFilteredResults(newFilters);
-        // setFilters(newFilters);
+        showFilteredResults(newFilters);
+        setFilters(newFilters);
     }
 
     // const loadMoreCards = () => {
@@ -89,10 +89,10 @@ function Shop(props) {
                             list={products.brands}
                             handleFilters={(filters)=>handleFilters(filters, 'brand')}
                         />
-                        {/* <CollapseCheckbox
+                        <CollapseCheckbox
                             initState={false}
                             title="Front Fork Travel"
-                            list={frets}
+                            list={frontForkTravel}
                             handleFilters={(filters)=>handleFilters(filters, 'frontForkTravel')}
                         />
                         <CollapseCheckbox
@@ -106,7 +106,7 @@ function Shop(props) {
                             title="Price"
                             list={price}
                             handleFilters={(filters)=>handleFilters(filters, 'price')}
-                        /> */}
+                        />
                     </div>
 
                     <div className="right">

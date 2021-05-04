@@ -39,41 +39,41 @@ const {admin} = require('./middleware/admin');
 //             PRODUCTS
 //=================================
 
-// app.post('/api/product/shop', (req, res)=>{
-//     let order = req.body.order ? req.body.order : "desc";
-//     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+app.post('/api/product/shop', (req, res)=>{
+    let order = req.body.order ? req.body.order : "desc";
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
 
-//     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
-//     let skip = parseInt(req.body.skip);
-//     let findArgs = {};
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let skip = parseInt(req.body.skip);
+    let findArgs = {};
 
-//     for(let key in req.body.filters){
-//         if(req.body.filters[key].length > 0){
-//             if(key === 'price') {
-//                 findArgs[key] = {
-//                   $gte: req.body.filters[key][0],
-//                   $lte: req.body.filters[key][1]
-//                 }
-//             } else {
-//                 findArgs[key] = req.body.filters[key];
-//             }
-//         }
-//     }
+    for(let key in req.body.filters){
+        if(req.body.filters[key].length > 0){
+            if(key === 'price') {
+                findArgs[key] = {
+                  $gte: req.body.filters[key][0],
+                  $lte: req.body.filters[key][1]
+                }
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
 
-//     findArgs['publish'] = true;
+    findArgs['publish'] = true;
     
-//     Product
-//     .find(findArgs)
-//     .populate('brand')
-//     .populate('wood')
-//     .sort([[sortBy, order]])
-//     .skip(skip)
-//     .limit(limit)
-//     .exec((err, articles)=>{
-//         if(err) return res.status(400).send(err);
-//         return res.status(200).json({success: true, size: articles.length , articles})       
-//     })  
-// });
+    Product
+    .find(findArgs)
+    .populate('brand')
+    .populate('material')
+    .sort([[sortBy, order]])
+    .skip(skip)
+    .limit(limit)
+    .exec((err, articles)=>{
+        if(err) return res.status(400).send(err);
+        return res.status(200).json({success: true, size: articles.length , articles})       
+    })  
+});
 
 // Getting product by order
 // sort by ARRIVAL: /api/product/articles?sortBy=createdAt&order=desc&limit=4
@@ -86,7 +86,7 @@ app.get('/api/product/articles', (req, res)=>{
     Product
     .find()
     .populate('brand')
-    .populate('wood')
+    .populate('material')
     .sort([[sortBy, order]])
     .limit(limit)
     .exec((err, articles)=>{
