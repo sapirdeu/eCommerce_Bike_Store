@@ -110,7 +110,7 @@ function Shop(props) {
                     </div>
 
                     <div className="right">
-                        right
+                        rightttt
                         {/* <div className="shop_options">
                             <div className="shop_grids clear">
                                 <div
