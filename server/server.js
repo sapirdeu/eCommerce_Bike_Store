@@ -47,7 +47,7 @@ app.post('/api/product/shop', (req, res)=>{
     let skip = parseInt(req.body.skip);
     let findArgs = {};
 
-    for(let key in req.body.filters){
+    for(let key in req.body.filters){        
         if(req.body.filters[key].length > 0){
             if(key === 'price') {
                 findArgs[key] = {
