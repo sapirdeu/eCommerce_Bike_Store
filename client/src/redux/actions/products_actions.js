@@ -9,8 +9,8 @@ import {
         GET_PRODUCTS_TO_SHOP,
         ADD_PRODUCT,
         CLEAR_PRODUCT,
-        // GET_PRODUCT_DETAIL,
-        // CLEAR_PRODUCT_DETAIL
+        GET_PRODUCT_DETAIL,
+        CLEAR_PRODUCT_DETAIL
 } from './Types'
 import {PRODUCT_SERVER} from '../../components/utils/Misc'
 
@@ -128,22 +128,22 @@ function clearProduct(){
     }
 }
 
-// function getProductDetail(id){
-//     const request = 
-//         axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`)
-//         .then(response => response.data[0]);
+function getProductDetail(id){
+    const request = 
+        axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`)
+        .then(response => response.data[0]);
     
-//     return {
-//         type: GET_PRODUCT_DETAIL, 
-//         payload: request
-//     }
-// }
-// function clearProductDetail(){
-//     return {
-//         type: CLEAR_PRODUCT_DETAIL, 
-//         payload: ''
-//     }
-// }
+    return {
+        type: GET_PRODUCT_DETAIL, 
+        payload: request
+    }
+}
+function clearProductDetail(){
+    return {
+        type: CLEAR_PRODUCT_DETAIL, 
+        payload: ''
+    }
+}
 
 
 export {
@@ -155,7 +155,7 @@ export {
     clearProduct, 
     addBrand, 
     addMaterial,
-    // getProductDetail,
-    // clearProductDetail
+    getProductDetail,
+    clearProductDetail
 }
 

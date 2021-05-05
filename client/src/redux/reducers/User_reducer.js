@@ -3,7 +3,7 @@ import {
     REGISTER_USER, 
     AUTH_USER,
     LOGOUT_USER,
-    // ADD_TO_CART_USER,
+    ADD_TO_CART_USER,
     // GET_CART_ITEMS_USER,
     // REMOVE_CART_ITEMS_USER,
     // ON_SUCCESS_BUY_USER,
@@ -19,11 +19,11 @@ const fun = (state = {}, action) => {
         return {...state, loginSuccess: action.payload}
       case AUTH_USER:
         return {...state, userData: action.payload}
-      // case ADD_TO_CART_USER:
-      //   return {...state, userData: {
-      //     ...state.userData,
-      //     cart: action.payload
-      //   }}
+      case ADD_TO_CART_USER:
+        return {...state, userData: {
+          ...state.userData,
+          cart: action.payload
+        }}
       case LOGOUT_USER:
         return {...state}
       // case GET_CART_ITEMS_USER:

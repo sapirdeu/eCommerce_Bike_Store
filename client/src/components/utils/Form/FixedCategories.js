@@ -1,15 +1,15 @@
 const frontForkTravel = [
     {
         "_id": 140,
-        "name": 140
+        "name": "140 mm"
     },
     {
         "_id": 150,
-        "name": 150
+        "name": "150 mm"
     },
     {
         "_id": 160,
-        "name": 160
+        "name": "160 mm"
     }
 ]
 

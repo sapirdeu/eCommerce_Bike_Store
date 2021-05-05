@@ -4,7 +4,7 @@ import {
         REGISTER_USER, 
         AUTH_USER, 
         LOGOUT_USER,
-        // ADD_TO_CART_USER,
+        ADD_TO_CART_USER,
         // GET_CART_ITEMS_USER,
         // REMOVE_CART_ITEMS_USER,
         // ON_SUCCESS_BUY_USER,
@@ -57,16 +57,16 @@ function logoutUser(){
     }
 }
 
-// function addToCart(id){
-//     const request = 
-//     axios.post(`${USER_SERVER}/addToCart?productId=${id}`)
-//     .then(response => response.data);
+function addToCart(id){
+    const request = 
+    axios.post(`${USER_SERVER}/addToCart?productId=${id}`)
+    .then(response => response.data);
 
-//     return {
-//         type: ADD_TO_CART_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: ADD_TO_CART_USER, 
+        payload: request
+    }
+}
 
 // function getCartItems(cartItems, userCart){
 //     const request = 
@@ -142,7 +142,7 @@ export {
     registerUser, 
     auth, 
     logoutUser, 
-    // addToCart, 
+    addToCart, 
     // getCartItems,
     // removeCartItem,
     // onSuccessBuy,
