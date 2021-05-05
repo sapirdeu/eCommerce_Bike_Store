@@ -6,7 +6,7 @@ import {getBrands, getMaterials, addProduct, clearProduct} from '../../../redux/
 
 import {withRouter} from 'react-router-dom'
 import {useDispatch,connect} from 'react-redux'
-// import FileUpload from '../../utils/Form/FileUpload'
+import FileUpload from '../../utils/Form/FileUpload'
 
 function AddProduct(props) {
     const [formError, setFormError] = useState(false);
@@ -177,16 +177,16 @@ function AddProduct(props) {
             validationMessage: '',
             showlabel: true
         },
-        // images:{
-        //     value: '',
-        //     validation:{
-        //         required: false,
-        //     },
-        //     valid: true,
-        //     touched: false,
-        //     validationMessage: '',
-        //     showlabel: false
-        // }
+        images:{
+            value: '',
+            validation:{
+                required: false,
+            },
+            valid: true,
+            touched: false,
+            validationMessage: '',
+            showlabel: false
+        }
     });
 
     const dispatch = useDispatch();
@@ -249,12 +249,12 @@ function AddProduct(props) {
         dispatch(clearProduct())
     }
 
-    // const imagesHandler = (images) => {
-    //     const newFormData = {...formData};
-    //     newFormData['images'].value = images;
-    //     newFormData['images'].valid = true;
-    //     setFormData(newFormData);
-    // }
+    const imagesHandler = (images) => {
+        const newFormData = {...formData};
+        newFormData['images'].value = images;
+        newFormData['images'].valid = true;
+        setFormData(newFormData);
+    }
 
 
     return (
@@ -262,10 +262,10 @@ function AddProduct(props) {
             <div>
                 <h1>Add product</h1>
                 <form onSubmit={(event)=>submitForm(event)}>
-                    {/* <FileUpload
+                    <FileUpload
                         imagesHandler={(images)=> imagesHandler(images)}
                         reset={formSuccess}
-                    /> */}
+                    />
 
                     <FormFields
                         id={'name'}
