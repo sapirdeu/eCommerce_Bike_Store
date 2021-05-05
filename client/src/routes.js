@@ -9,7 +9,7 @@ import UserDashboard from './components/User/UserDashboard';
 import Auth from './hoc/Auth';
 import Shop from './components/Shop/Shop';
 import AddProduct from './components/User/Admin/AddProduct';
-// import ManageCategories from './components/User/Admin/ManageCategories';
+import ManageCategories from './components/User/Admin/ManageCategories';
 // import ProductPage from './components/Product/ProductPage';
 // import UserCart from './components/User/UserCart';
 // import UpdateUserProfile from './components/User/UpdateUserProfile';
@@ -34,6 +34,7 @@ function Routes() {
 
             <Route path="/user/dashboard" exact component={Auth(UserDashboard,true)}/>
             <Route path="/admin/add_product" exact component={Auth(AddProduct,true)}/>
+            <Route path="/admin/manage_categories" exact component={Auth(ManageCategories,true)}/>
             
             <Route path="/register" exact component={Auth(Register,false)}/>
             <Route path="/register_login" exact component={Auth(RegisterLogin,false)}/>

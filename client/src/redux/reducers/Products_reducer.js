@@ -2,9 +2,9 @@ import {
     GET_PRODUCTS_BY_ARRIVAL,
     GET_PRODUCTS_BY_SELL,
     GET_BRANDS,
-    // ADD_BRAND,
+    ADD_BRAND,
     GET_MATERIALS,
-    // ADD_WOOD,
+    ADD_MATERIAL,
     GET_PRODUCTS_TO_SHOP,
     ADD_PRODUCT,
     CLEAR_PRODUCT,
@@ -20,12 +20,12 @@ const fun = (state = {}, action) => {
         return {...state, bySell: action.payload}
       case GET_BRANDS:
           return {...state, brands: action.payload}
-      // case ADD_BRAND:
-      //   return {...state, addBrand: action.payload.success, brands: action.payload.brands}
+      case ADD_BRAND:
+        return {...state, addBrand: action.payload.success, brands: action.payload.brands}
       case GET_MATERIALS:
         return {...state, materials: action.payload}
-      // case ADD_WOOD:
-      //   return {...state, addWood: action.payload.success, woods: action.payload.woods}
+      case ADD_MATERIAL:
+        return {...state, addMaterial: action.payload.success, materials: action.payload.materials}
       case GET_PRODUCTS_TO_SHOP:
           return {...state, toShop: action.payload.articles, toShopSize: action.payload.size}
       case ADD_PRODUCT:

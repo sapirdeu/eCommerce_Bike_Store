@@ -3,9 +3,9 @@ import {
         GET_PRODUCTS_BY_ARRIVAL,
         GET_PRODUCTS_BY_SELL,
         GET_BRANDS,
-        // ADD_BRAND,
+        ADD_BRAND,
         GET_MATERIALS,
-        // ADD_WOOD,
+        ADD_MATERIAL,
         GET_PRODUCTS_TO_SHOP,
         ADD_PRODUCT,
         CLEAR_PRODUCT,
@@ -71,19 +71,19 @@ function getBrands(){
     }
 }
 
-// function addBrand(dataToSubmit, existingBrands){
-//     const request = 
-//         axios.post(`${PRODUCT_SERVER}/brand`, dataToSubmit)
-//         .then(response =>{
-//             let brands = [...existingBrands, response.data.brand];
-//             return {success: response.data.success, brands}
-//         });
+function addBrand(dataToSubmit, existingBrands){
+    const request = 
+        axios.post(`${PRODUCT_SERVER}/brand`, dataToSubmit)
+        .then(response =>{
+            let brands = [...existingBrands, response.data.brand];
+            return {success: response.data.success, brands}
+        });
     
-//     return {
-//         type: ADD_BRAND, 
-//         payload: request
-//     }
-// }
+    return {
+        type: ADD_BRAND, 
+        payload: request
+    }
+}
 
 function getMaterials(){
     const request = 
@@ -96,19 +96,19 @@ function getMaterials(){
     }
 }
 
-// function addWood(dataToSubmit, existingWoods){
-//     const request = 
-//         axios.post(`${PRODUCT_SERVER}/wood`, dataToSubmit)
-//         .then(response =>{
-//             let woods = [...existingWoods, response.data.wood];
-//             return {success: response.data.success, woods}
-//         });
+function addMaterial(dataToSubmit, existingMaterials){
+    const request = 
+        axios.post(`${PRODUCT_SERVER}/material`, dataToSubmit)
+        .then(response =>{
+            let materials = [...existingMaterials, response.data.material];
+            return {success: response.data.success, materials}
+        });
     
-//     return {
-//         type: ADD_WOOD, 
-//         payload: request
-//     }
-// }
+    return {
+        type: ADD_MATERIAL, 
+        payload: request
+    }
+}
 
 function addProduct(dataToSubmit){
     const request = 
@@ -153,8 +153,8 @@ export {
     getProductsToShop, 
     addProduct, 
     clearProduct, 
-    // addBrand, 
-    // addWood,
+    addBrand, 
+    addMaterial,
     // getProductDetail,
     // clearProductDetail
 }
