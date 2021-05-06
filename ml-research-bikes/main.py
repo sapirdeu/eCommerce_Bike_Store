@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-CSV_PATH = "C:/Users\Almog/Desktop/final-project/eCommerce_Bike_Store/ml-research-bikes/bike_sharing_daily.csv"
+CSV_PATH = "./bike_sharing_daily.csv"
 
 def prepareData(csvPath):
     ######################################
