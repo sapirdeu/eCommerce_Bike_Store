@@ -312,30 +312,30 @@ app.post('/api/users/addToCart', auth, (req, res)=>{
     })
 });
 
-// app.get('/api/users/removeFromCart', auth, (req, res)=>{
-//     User.findOneAndUpdate(
-//         {_id: req.user._id},
-//         { "$pull":{ 
-//             cart:{id: mongoose.Types.ObjectId(req.query._id)}}
-//         },
-//         { new: true },
-//         (err, doc) => {
-//             let cart = doc.cart;
-//             let array = cart.map(item=>{
-//                 return mongoose.Types.ObjectId(item.id)
-//             })
+app.get('/api/users/removeFromCart', auth, (req, res)=>{
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        { "$pull":{ 
+            cart:{id: mongoose.Types.ObjectId(req.query._id)}}
+        },
+        { new: true },
+        (err, doc) => {
+            let cart = doc.cart;
+            let array = cart.map(item=>{
+                return mongoose.Types.ObjectId(item.id)
+            })
 
-//             Product
-//             .find({_id: {"$in": array}})
-//             .populate('brand')
-//             .populate('wood')
-//             .exec((err, cartDetail)=>{
-//                 if(err) return res.json({success: false, err});
-//                 return res.status(200).json({success: true, cartDetail, cart})       
-//             })
-//         }
-//     )
-// });
+            Product
+            .find({_id: {"$in": array}})
+            .populate('brand')
+            .populate('material')
+            .exec((err, cartDetail)=>{
+                if(err) return res.json({success: false, err});
+                return res.status(200).json({success: true, cartDetail, cart})       
+            })
+        }
+    )
+});
 
 // app.post('/api/users/successBuy', auth, (req, res)=>{
 //     let history = []

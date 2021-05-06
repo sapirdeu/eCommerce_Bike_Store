@@ -6,7 +6,7 @@ import {
         LOGOUT_USER,
         ADD_TO_CART_USER,
         GET_CART_ITEMS_USER,
-        // REMOVE_CART_ITEMS_USER,
+        REMOVE_CART_ITEMS_USER,
         // ON_SUCCESS_BUY_USER,
         // UPDATE_DATA_USER,
         // CLEAR_UPDATE_USER_DATA
@@ -92,25 +92,25 @@ function getCartItems(cartItems, userCart){
     }
 }
 
-// function removeCartItem(id){
-//     const request = 
-//         axios.get(`${USER_SERVER}/removeFromCart?_id=${id}`)
-//         .then(response => {
-//             response.data.cart.forEach(item=>{
-//                 response.data.cartDetail.forEach((currItem,i)=>{
-//                     if(item.id === currItem._id){
-//                         response.data.cartDetail[i].quantity = item.quantity;
-//                     }
-//                 })
-//             })
-//             return response.data;
-//         });
+function removeCartItem(id){
+    const request = 
+        axios.get(`${USER_SERVER}/removeFromCart?_id=${id}`)
+        .then(response => {
+            response.data.cart.forEach(item=>{
+                response.data.cartDetail.forEach((currItem,i)=>{
+                    if(item.id === currItem._id){
+                        response.data.cartDetail[i].quantity = item.quantity;
+                    }
+                })
+            })
+            return response.data;
+        });
     
-//     return {
-//         type: REMOVE_CART_ITEMS_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: REMOVE_CART_ITEMS_USER, 
+        payload: request
+    }
+}
 
 // function onSuccessBuy(data){
 //     const request = 
@@ -148,7 +148,7 @@ export {
     logoutUser, 
     addToCart, 
     getCartItems,
-    // removeCartItem,
+    removeCartItem,
     // onSuccessBuy,
     // updateUserData,
     // clearUpdateUser

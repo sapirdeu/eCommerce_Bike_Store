@@ -5,7 +5,7 @@ import {
     LOGOUT_USER,
     ADD_TO_CART_USER,
     GET_CART_ITEMS_USER,
-    // REMOVE_CART_ITEMS_USER,
+    REMOVE_CART_ITEMS_USER,
     // ON_SUCCESS_BUY_USER,
     // UPDATE_DATA_USER,
     // CLEAR_UPDATE_USER_DATA
@@ -28,8 +28,8 @@ const fun = (state = {}, action) => {
         return {...state}
       case GET_CART_ITEMS_USER:
           return {...state, cartDetail: action.payload}
-      // case REMOVE_CART_ITEMS_USER:
-      //   return {...state, cartDetail: action.payload.cartDetail, userData:{...state.userData, cart: action.payload.cart}}
+      case REMOVE_CART_ITEMS_USER:
+        return {...state, cartDetail: action.payload.cartDetail, userData:{...state.userData, cart: action.payload.cart}}
       // case ON_SUCCESS_BUY_USER:
       //   return {
       //     ...state, 

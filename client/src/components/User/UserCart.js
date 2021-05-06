@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import UserLayout from '../../hoc/UserLayout'
-import {getCartItems, /*removeCartItem, onSuccessBuy*/} from '../../redux/actions/user_actions'
+import {getCartItems, removeCartItem, /*onSuccessBuy*/} from '../../redux/actions/user_actions'
 
 import {withRouter} from 'react-router-dom'
 import {useDispatch,connect} from 'react-redux'
@@ -8,7 +8,7 @@ import {useDispatch,connect} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import faFrown from '@fortawesome/fontawesome-free-solid/faFrown'
 import faSmile from '@fortawesome/fontawesome-free-solid/faSmile'
-// import UserProductBlock from '../utils/User/UserProductBlock'
+import UserProductBlock from '../utils/User/UserProductBlock'
 // import Paypal from '../utils/Paypal'
 
 
@@ -47,23 +47,23 @@ function UserCart(props) {
         setShowTotal(true);
     }
 
-    // const removeFromCart = (id) => {
-    //     dispatch(removeCartItem(id))
-    //     .then((response)=>{
-    //         if(response.payload.cartDetail.length <=0 ){
-    //             setShowTotal(false);
-    //         } else{
-    //             calculateTotalPrice(response.payload.cartDetail);
-    //         }
-    //     })
-    // }
+    const removeFromCart = (id) => {
+        dispatch(removeCartItem(id))
+        .then((response)=>{
+            if(response.payload.cartDetail.length <=0 ){
+                setShowTotal(false);
+            } else{
+                calculateTotalPrice(response.payload.cartDetail);
+            }
+        })
+    }
 
-    // const showNoItemsMessage = () => (
-    //     <div className="cart_no_items">
-    //         <FontAwesomeIcon icon={faFrown}/>
-    //         <div>You have no items</div>
-    //     </div>
-    // )
+    const showNoItemsMessage = () => (
+        <div className="cart_no_items">
+            <FontAwesomeIcon icon={faFrown}/>
+            <div>You have no items</div>
+        </div>
+    )
     
     // const transactionError = (data) => {
     //     console.log("Paypal error!");
@@ -87,7 +87,7 @@ function UserCart(props) {
         <UserLayout>
             <div>
                 <h1>My cart</h1>
-                {/* <div className="user_cart">
+                <div className="user_cart">
                     <UserProductBlock
                         products={props.user}
                         type="cart"
@@ -116,15 +116,16 @@ function UserCart(props) {
                 {
                     showTotal ?
                         <div className="paypal_button_container">
-                            <Paypal
+                            Paypal
+                            {/* <Paypal
                                 toPay={total}
                                 onError={(data)=>transactionError(data)}
                                 onCancel={(data)=>transactionCanceled(data)}
                                 onSuccess={(data)=>transactionSuccess(data)}
-                            />
+                            /> */}
                         </div>
                     : null
-                } */}
+                } 
             </div>
         </UserLayout>
     )
