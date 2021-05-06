@@ -275,12 +275,15 @@ app.post('/api/users/addToCart', auth, (req, res)=>{
     User.findOne({_id: req.user._id},(err,doc)=>{
         let duplicate = false;
 
+        // check if the product the user tries to add is already in his cart
         doc.cart.forEach((item)=>{
             if(item.id == req.query.productId){
                     duplicate = true;  
             }
         })
 
+        // if the product is already in his cart -> add  1 to the quantity
+        // else -> push the product to the cart array
         if(duplicate){
             User.findOneAndUpdate(
                 {_id: req.user._id, "cart.id": mongoose.Types.ObjectId(req.query.productId)},

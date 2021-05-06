@@ -2,7 +2,7 @@ import React from 'react'
 import MyButton from './MyButton'
 import {withRouter} from 'react-router-dom'
 import {useDispatch,connect} from 'react-redux'
-// import {addToCart} from '../../redux/actions/user_actions'
+import {addToCart} from '../../redux/actions/user_actions'
 
 
 function Card(props) {
@@ -58,11 +58,10 @@ function Card(props) {
                         <MyButton
                             type="bag_link"
                             runAction={()=>{
-                                // props.user.userData.isAuth ? 
-                                //     dispatch(addToCart(props._id))
-                                // : 
-                                //     console.log('You need to log in')
-                                console.log('added to cart')
+                                props.user.userData.isAuth ? 
+                                    dispatch(addToCart(props._id))
+                                : 
+                                    console.log('You need to log in')
                             }}
                             altClass="card_link"
                             title="View product"
