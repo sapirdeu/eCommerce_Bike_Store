@@ -5,7 +5,7 @@ import {
         AUTH_USER, 
         LOGOUT_USER,
         ADD_TO_CART_USER,
-        // GET_CART_ITEMS_USER,
+        GET_CART_ITEMS_USER,
         // REMOVE_CART_ITEMS_USER,
         // ON_SUCCESS_BUY_USER,
         // UPDATE_DATA_USER,
@@ -68,25 +68,29 @@ function addToCart(id){
     }
 }
 
-// function getCartItems(cartItems, userCart){
-//     const request = 
-//         axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${cartItems}&type=array`)
-//         .then(response => {
-//             userCart.forEach(item=>{
-//                 response.data.forEach((k,i)=>{
-//                     if(item.id === k._id){
-//                         response.data[i].quantity = item.quantity;
-//                     }
-//                 })
-//             })
-//             return response.data;
-//         });
+function getCartItems(cartItems, userCart){
+    const request = 
+        axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${cartItems}&type=array`)
+        .then(response => {
+            // For each product in userCart (this information also contains the quantity), 
+            // we will go through all the products returned from the server (response.data) 
+            // and if we found the same id between what came back from the server and the 
+            // item in userCart, we will add to this item the field of the quantity
+            userCart.forEach(item=>{
+                response.data.forEach((k,i)=>{
+                    if(item.id === k._id){
+                        response.data[i].quantity = item.quantity;
+                    }
+                })
+            })
+            return response.data;
+        });
     
-//     return {
-//         type: GET_CART_ITEMS_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: GET_CART_ITEMS_USER, 
+        payload: request
+    }
+}
 
 // function removeCartItem(id){
 //     const request = 
@@ -143,7 +147,7 @@ export {
     auth, 
     logoutUser, 
     addToCart, 
-    // getCartItems,
+    getCartItems,
     // removeCartItem,
     // onSuccessBuy,
     // updateUserData,
