@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import UserLayout from '../../hoc/UserLayout'
-import {getCartItems, removeCartItem, /*onSuccessBuy*/} from '../../redux/actions/user_actions'
+import {getCartItems, removeCartItem, onSuccessBuy} from '../../redux/actions/user_actions'
 
 import {withRouter} from 'react-router-dom'
 import {useDispatch,connect} from 'react-redux'
@@ -9,8 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import faFrown from '@fortawesome/fontawesome-free-solid/faFrown'
 import faSmile from '@fortawesome/fontawesome-free-solid/faSmile'
 import UserProductBlock from '../utils/User/UserProductBlock'
-// import Paypal from '../utils/Paypal'
+import Paypal from '../utils/Paypal'
 
+// ARaiSVctw7Bhs7_bnp4zXuPN-qFwT7NQWus6G4ttFN9AQa2V-1dEYNZOdhIXnYSR2FdjILUobvtHWBRC
 
 function UserCart(props) {
     //const [isLoading, setIsLoadind] = useState(true);
@@ -65,23 +66,23 @@ function UserCart(props) {
         </div>
     )
     
-    // const transactionError = (data) => {
-    //     console.log("Paypal error!");
-    // }
+    const transactionError = (data) => {
+        console.log("Paypal error!");
+    }
     
-    // const transactionCanceled = (data) => {
-    //     console.log("Transaction canceled!");
-    // }
+    const transactionCanceled = (data) => {
+        console.log("Transaction canceled!");
+    }
 
-    // const transactionSuccess = (data) => {
-    //     dispatch(onSuccessBuy({cartDetail:props.user.cartDetail, paymentData: data}))
-    //     .then((response)=>{
-    //         if(response.payload.success){
-    //             setShowTotal(false);
-    //             setShowSuccess(true);
-    //         }
-    //     })
-    // }
+    const transactionSuccess = (data) => {
+        dispatch(onSuccessBuy({cartDetail:props.user.cartDetail, paymentData: data}))
+        .then((response)=>{
+            if(response.payload.success){
+                setShowTotal(false);
+                setShowSuccess(true);
+            }
+        })
+    }
 
     return (
         <UserLayout>
@@ -116,13 +117,12 @@ function UserCart(props) {
                 {
                     showTotal ?
                         <div className="paypal_button_container">
-                            Paypal
-                            {/* <Paypal
+                            <Paypal
                                 toPay={total}
                                 onError={(data)=>transactionError(data)}
                                 onCancel={(data)=>transactionCanceled(data)}
                                 onSuccess={(data)=>transactionSuccess(data)}
-                            /> */}
+                            />
                         </div>
                     : null
                 } 

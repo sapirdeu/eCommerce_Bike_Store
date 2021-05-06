@@ -7,7 +7,7 @@ import {
         ADD_TO_CART_USER,
         GET_CART_ITEMS_USER,
         REMOVE_CART_ITEMS_USER,
-        // ON_SUCCESS_BUY_USER,
+        ON_SUCCESS_BUY_USER,
         // UPDATE_DATA_USER,
         // CLEAR_UPDATE_USER_DATA
 } from './Types'
@@ -112,16 +112,16 @@ function removeCartItem(id){
     }
 }
 
-// function onSuccessBuy(data){
-//     const request = 
-//     axios.post(`${USER_SERVER}/successBuy`, data)
-//     .then(response => response.data);
+function onSuccessBuy(data){
+    const request = 
+    axios.post(`${USER_SERVER}/successBuy`, data)
+    .then(response => response.data);
 
-//     return {
-//         type: ON_SUCCESS_BUY_USER, 
-//         payload: request
-//     }
-// }
+    return {
+        type: ON_SUCCESS_BUY_USER, 
+        payload: request
+    }
+}
 
 // function updateUserData(dataToSubmit){
 //     const request = 
@@ -149,7 +149,7 @@ export {
     addToCart, 
     getCartItems,
     removeCartItem,
-    // onSuccessBuy,
+    onSuccessBuy,
     // updateUserData,
     // clearUpdateUser
 }
