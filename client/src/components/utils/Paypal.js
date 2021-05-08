@@ -3,9 +3,9 @@ import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 function Paypal(props) {
     const onSuccess = (payment) => {
-        console.log(JSON.stringify(payment));
-        // props.onSuccess(payment);
+        props.onSuccess(payment);
 
+        // JSON.stringify(payment):
         // {
         //     "paid":true,
         //     "cancelled":false,
@@ -27,9 +27,9 @@ function Paypal(props) {
     }
 
     const onCancel = (data) => {
-        console.log(JSON.stringify(data));
-        // props.onCancel(data);
+        props.onCancel(data);
 
+        // JSON.stringify(data):
         // {
         //     "paymentToken":"EC-3KD40170P1153651D",
         //     "paymentID":"PAYID-L6M3H4Y01F06924HX512841H",
@@ -41,8 +41,7 @@ function Paypal(props) {
     }
 
     const onError = (err) => {
-        console.log(JSON.stringify(err));
-        // props.onError(err);
+        props.onError(err);
     }
 
     let env = 'sandbox';

@@ -7,7 +7,7 @@ const cloudinary = require('cloudinary');
 
 const app = express();
 const mongoose = require('mongoose');
-// const async = require('async');
+const async = require('async');
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -28,7 +28,7 @@ const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
  const { Material } = require('./models/material');
 const { Product } = require('./models/product');
-// const { Payment } = require('./models/payment');
+const { Payment } = require('./models/payment');
 // const { Site } = require('./models/site');
 
 // Middlewares
@@ -364,7 +364,7 @@ app.post('/api/users/successBuy', auth, (req, res)=>{
     transactionData.data = req.body.paymentData;
     transactionData.product = history;
 
-    //
+    // Update user's history and delete user's cart
     User.findOneAndUpdate(
         {_id: req.user._id},
         { $push: { history: history }, $set:{cart: []}},
@@ -376,10 +376,15 @@ app.post('/api/users/successBuy', auth, (req, res)=>{
             payment.save((err,doc)=>{
                 if(err) return res.json({success:false,err}); 
 
+                // When the user has paid for the product, the Product table must be updated - the sold field 
+                // updated and the item.quantity added to it.
                 let products = [];
                 doc.product.forEach(item=>{
                     products.push({id: item.id, quantity: item.quantity});
                 })
+
+                // Because we are updating several products, we will also receive a lot of callbacks.
+                // When all updates are completed, we can run a single callback using async.
                 async.eachSeries(products, (item,callback)=>{
                     Product.update(
                         {_id: item.id},
