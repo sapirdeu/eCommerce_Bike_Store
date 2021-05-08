@@ -5,15 +5,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, OneHotEncoder
-from sklearn.metrics import mean_squared_log_error
-from sklearn.compose import ColumnTransformer
-from sklearn.cluster import KMeans
-from sklearn.ensemble import IsolationForest, RandomForestRegressor
-from sklearn.decomposition import PCA
-from sklearn.svm import SVR
+from sklearn.preprocessing import StandardScaler
+
+
 
 warnings.filterwarnings('ignore')
 
