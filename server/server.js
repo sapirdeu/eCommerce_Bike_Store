@@ -29,7 +29,7 @@ const { Brand } = require('./models/brand');
  const { Material } = require('./models/material');
 const { Product } = require('./models/product');
 const { Payment } = require('./models/payment');
-// const { Site } = require('./models/site');
+const { Site } = require('./models/site');
 
 // Middlewares
 const {auth} = require('./middleware/auth')
@@ -413,28 +413,28 @@ app.post('/api/users/update_profile', auth, (req, res)=>{
     )
 });
 
-// //=================================
-// //             SITE
-// //=================================
+//=================================
+//             SITE
+//=================================
 
-// app.get('/api/site/site_data', (req, res)=>{
-//     Site.find({}, (err, site)=>{
-//         if(err) return res.status(400).send(err);
-//         res.status(200).send(site[0].siteInfo);
-//     })
-// });
+app.get('/api/site/site_data', (req, res)=>{
+    Site.find({}, (err, site)=>{
+        if(err) return res.status(400).send(err);
+        res.status(200).send(site[0].siteInfo);
+    })
+});
 
-// app.post('/api/site/site_data', auth, admin, (req, res)=>{
-//     Site.findOneAndUpdate(
-//         {name: 'Site'},
-//         { $set: {siteInfo: req.body}},
-//         { new: true },
-//         (err,doc)=>{
-//             if(err) return res.json({success:false,err});
-//             return res.status(200).send({success:true, siteInfo: doc.siteInfo})
-//         }
-//     )
-// });
+app.post('/api/site/site_data', auth, admin, (req, res)=>{
+    Site.findOneAndUpdate(
+        {name: 'Site'},
+        { $set: {siteInfo: req.body}},
+        { new: true },
+        (err,doc)=>{
+            if(err) return res.json({success:false,err});
+            return res.status(200).send({success:true, siteInfo: doc.siteInfo})
+        }
+    )
+});
 
 
 
