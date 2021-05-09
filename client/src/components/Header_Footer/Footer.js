@@ -3,10 +3,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCompass, faPhone, faClock, faEnvelope} from '@fortawesome/fontawesome-free-solid';
 
 
-// function Footer({data}) {
-function Footer() {
+function Footer({data}) {
     return (
-        // data.siteData ? 
+        data.siteData ? 
             <footer className="bck_b_dark">
                 <div className="container">
                     <div className="logo">
@@ -24,8 +23,7 @@ function Footer() {
                                     />
                                     <div className="nfo">
                                         <div>Address</div>
-                                        <div>Kramer 2345</div>
-                                        {/* <div>{data.siteData[0].address}</div> */}
+                                        <div>{data.siteData[0].address}</div>
                                     </div>
                                 </div>
 
@@ -36,8 +34,7 @@ function Footer() {
                                     />
                                     <div className="nfo">
                                         <div>Phone</div>
-                                        <div>2345-22222</div>
-                                        {/* <div>{data.siteData[0].phone}</div> */}
+                                        <div>{data.siteData[0].phone}</div>
                                     </div>
                                 </div>
 
@@ -48,8 +45,7 @@ function Footer() {
                                     />
                                     <div className="nfo">
                                         <div>Working Hours</div>
-                                        <div>Mon-Sun/ 9am-8pm</div>
-                                        {/* <div>{data.siteData[0].hours}</div> */}
+                                        <div>{data.siteData[0].hours}</div>
                                     </div>
                                 </div>
 
@@ -60,8 +56,7 @@ function Footer() {
                                     />
                                     <div className="nfo">
                                         <div>Email</div>
-                                        <div>nfo@bikey.com</div>
-                                        {/* <div>{data.siteData[0].email}</div> */}
+                                        <div>{data.siteData[0].email}</div>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +73,7 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-        // : null
+        : null
     )
 }
 
