@@ -93,19 +93,19 @@ function resetFields(formData, formName){
     return newFormData;
 }
 
-// function populateFields(formData, fields){
-//     const newFormData = {...formData};
+function populateFields(formData, fields){
+    const newFormData = {...formData};
 
-//     for(let key in newFormData){
-//         newFormData[key].value = fields[key];
-//         newFormData[key].valid = true;
-//         newFormData[key].touched = true;
-//         newFormData[key].validationMessage = '';
-//     }
+    for(let key in newFormData){
+        newFormData[key].value = fields[key];
+        newFormData[key].valid = true;
+        newFormData[key].touched = true;
+        newFormData[key].validationMessage = '';
+    }
 
-//     return newFormData;
-// }
+    return newFormData;
+}
 
-// export {update, validate, generateData, isFormValid, populateOptionFields, resetFields, populateFields}
+export {update, validate, generateData, isFormValid, populateOptionFields, resetFields, populateFields}
 
-export {update, validate, generateData, isFormValid, populateOptionFields, resetFields}
+// export {update, validate, generateData, isFormValid, populateOptionFields, resetFields}
