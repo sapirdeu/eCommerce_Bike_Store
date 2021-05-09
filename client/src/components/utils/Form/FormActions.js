@@ -107,5 +107,3 @@ function populateFields(formData, fields){
 }
 
 export {update, validate, generateData, isFormValid, populateOptionFields, resetFields, populateFields}
-
-// export {update, validate, generateData, isFormValid, populateOptionFields, resetFields}

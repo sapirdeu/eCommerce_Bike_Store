@@ -11,8 +11,6 @@ import faSmile from '@fortawesome/fontawesome-free-solid/faSmile'
 import UserProductBlock from '../utils/User/UserProductBlock'
 import Paypal from '../utils/Paypal'
 
-// ARaiSVctw7Bhs7_bnp4zXuPN-qFwT7NQWus6G4ttFN9AQa2V-1dEYNZOdhIXnYSR2FdjILUobvtHWBRC
-
 function UserCart(props) {
     //const [isLoading, setIsLoadind] = useState(true);
     const [total, setTotal] = useState(0);
