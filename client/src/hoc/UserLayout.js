@@ -31,7 +31,12 @@ function UserLayout(props) {
         {
             name: 'Manage categories',
             linkTo: '/admin/manage_categories'
+        },
+        {
+            name: 'Chatbot Statistics',
+            linkTo: '/admin/chatbot_stat'
         }
+        
     ]
 
     const generateLinks = (links) => (

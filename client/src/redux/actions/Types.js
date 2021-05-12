@@ -23,3 +23,5 @@ export const CLEAR_PRODUCT_DETAIL = 'clear_product_detail';
 
 export const GET_SITE_DATA = 'get_site_data';
 export const UPDATE_SITE_DATA = 'update_site_data';
+
+export const GET_CHATBOT_SURVEY_OVERVIEW = 'get_chatbot_survey_overview'

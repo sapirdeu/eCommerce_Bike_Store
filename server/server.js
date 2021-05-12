@@ -413,6 +413,30 @@ app.post('/api/users/update_profile', auth, (req, res)=>{
     )
 });
 
+app.get('/api/chatbot/surveyOverview', (req, res) => {
+    const {spawn} = require('child_process');
+    const path = require('path');
+    function runScript(){
+        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
+    }
+    const subprocess = runScript();
+    // print output of script
+    subprocess.stdout.on('data', (data) => {
+            console.log(`data:${data}`);
+    });
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    subprocess.stderr.on('close', () => {
+               console.log("Closed");
+    });
+    // const subprocess = runScript()
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+
 //=================================
 //             SITE
 //=================================
@@ -435,7 +459,6 @@ app.post('/api/site/site_data', auth, admin, (req, res)=>{
         }
     )
 });
-
 
 
 const port = process.env.PORT || 3002;

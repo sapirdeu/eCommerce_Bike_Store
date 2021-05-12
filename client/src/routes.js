@@ -14,7 +14,7 @@ import ProductPage from './components/Product/ProductPage';
 import UserCart from './components/User/UserCart';
 import UpdateUserProfile from './components/User/UpdateUserProfile';
 import ManageSite from './components/User/Admin/ManageSite';
-
+import ChatbotStat from './components/Chatbot_Stat/ChatbotStat'
 
 function Routes() {
   return (
@@ -38,6 +38,7 @@ function Routes() {
             <Route path="/admin/add_product" exact component={Auth(AddProduct,true)}/>
             <Route path="/admin/manage_categories" exact component={Auth(ManageCategories,true)}/>
             <Route path="/admin/site_info" exact component={Auth(ManageSite,true)}/>
+            <Route path="/admin/chatbot_stat" exact component={Auth(ChatbotStat,true)}/>
             
             <Route path="/product_detail/:id" exact component={Auth(ProductPage,null)}/>
             <Route path="/register" exact component={Auth(Register,false)}/>
