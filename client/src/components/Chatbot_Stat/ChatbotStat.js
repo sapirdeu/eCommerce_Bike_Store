@@ -44,14 +44,14 @@ function ChatbotStat() {
                 
             </div>
 
-            <div>
+            <pre>
                 {
                     data != '' ?
                     <h3>{data}</h3>
                         :
                         <h3></h3>
                 }
-            </div>
+            </pre>
         </UserLayout>
 
     )
