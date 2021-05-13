@@ -25,3 +25,5 @@ export const GET_SITE_DATA = 'get_site_data';
 export const UPDATE_SITE_DATA = 'update_site_data';
 
 export const GET_CHATBOT_SURVEY_OVERVIEW = 'get_chatbot_survey_overview'
+export const GET_CHATBOT_CLIPING_OUTLIERS = 'get_chatbot_cliping_outliers'
+export const GET_CHATBOT_PERSONALITY_SCORE_MINI = 'get_chatbot_personality_score_mini'
