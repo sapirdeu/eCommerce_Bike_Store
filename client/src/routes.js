@@ -35,10 +35,10 @@ function Routes() {
             <Route path="/user/dashboard" exact component={Auth(UserDashboard,true)}/>
             <Route path="/user/cart" exact component={Auth(UserCart,true)}/>
             <Route path="/user/user_profile" exact component={Auth(UpdateUserProfile,true)}/>
-            <Route path="/admin/add_product" exact component={Auth(AddProduct,true)}/>
-            <Route path="/admin/manage_categories" exact component={Auth(ManageCategories,true)}/>
-            <Route path="/admin/site_info" exact component={Auth(ManageSite,true)}/>
-            <Route path="/admin/chatbot_stat" exact component={Auth(ChatbotStat,true)}/>
+            <Route path="/admin/add_product" exact component={Auth(AddProduct,true,true,false)}/>
+            <Route path="/admin/manage_categories" exact component={Auth(ManageCategories,true,true,false)}/>
+            <Route path="/admin/site_info" exact component={Auth(ManageSite,true,true,false)}/>
+            <Route path="/researcher/chatbot_stat" exact component={Auth(ChatbotStat,true, false, true)}/>
             
             <Route path="/product_detail/:id" exact component={Auth(ProductPage,null)}/>
             <Route path="/register" exact component={Auth(Register,false)}/>

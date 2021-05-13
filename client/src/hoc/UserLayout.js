@@ -31,10 +31,13 @@ function UserLayout(props) {
         {
             name: 'Manage categories',
             linkTo: '/admin/manage_categories'
-        },
+        }
+    ]
+
+    const researcher = [
         {
             name: 'Chatbot Statistics',
-            linkTo: '/admin/chatbot_stat'
+            linkTo: '/researcher/chatbot_stat'
         }
         
     ]
@@ -58,6 +61,14 @@ function UserLayout(props) {
                             <div>
                                 <h2>Admin</h2>
                                 <div className="links">{generateLinks(admin)}</div>
+                            </div>
+                        : null
+                    }
+                    {
+                        props.user.userData.isResearcher ?
+                            <div>
+                                <h2>Researcher</h2>
+                                <div className="links">{generateLinks(researcher)}</div>
                             </div>
                         : null
                     }

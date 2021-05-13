@@ -3,7 +3,7 @@ import {useDispatch,connect} from 'react-redux'
 import {auth} from '../redux/actions/user_actions'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-export default function(ComposedClass, reload, adminRoute=null){
+export default function(ComposedClass, reload, adminRoute=null, researcherRoute=null){
     function Auth(props) {
         const [loading, setLoading] = useState(true);
         const dispatch = useDispatch();
@@ -22,6 +22,10 @@ export default function(ComposedClass, reload, adminRoute=null){
                     } else{
                         // if the user is authenticated and the user isn't an admin
                         if(adminRoute && !user.isAdmin){
+                            props.history.push('/user/dashboard')
+                        }
+
+                        if(researcherRoute && !user.isResearcher){
                             props.history.push('/user/dashboard')
                         }
 

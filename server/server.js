@@ -34,6 +34,7 @@ const { Site } = require('./models/site');
 // Middlewares
 const {auth} = require('./middleware/auth')
 const {admin} = require('./middleware/admin');
+const {researcher} = require('./middleware/researcher');
 // const user = require('./models/user');
 
 //=================================
@@ -185,7 +186,8 @@ app.get('/api/product/brands', (req, res)=>{
 
 app.get('/api/users/auth', auth, (req, res)=>{
     res.status(200).json({
-        isAdmin: req.user.role === 0 ? false : true,
+        isAdmin: (req.user.role === 0 || req.user.role === 2) ? false : true,
+        isResearcher: (req.user.role === 0 || req.user.role === 1) ? false : true,
         isAuth: true,
         email: req.user.email,
         name: req.user.name,
@@ -413,7 +415,7 @@ app.post('/api/users/update_profile', auth, (req, res)=>{
     )
 });
 
-app.get('/api/chatbot/surveyOverview', (req, res) => {
+app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
     const {spawn} = require('child_process');
     const path = require('path');
     function runScript(){
