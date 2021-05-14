@@ -2,7 +2,10 @@ import axios from 'axios'
 import {
     GET_CHATBOT_SURVEY_OVERVIEW,
     GET_CHATBOT_CLIPING_OUTLIERS,
-    GET_CHATBOT_PERSONALITY_SCORE_MINI
+    GET_CHATBOT_PERSONALITY_SCORE_MINI,
+    GET_CHATBOT_RESPONDERS_MAP,
+    GET_CHATBOT_HISTOGRAM,
+    GET_CHATBOT_PERSONALITY_SCORE_CALC
 } from './Types'
 import {CHATBOT_SERVER} from '../../components/utils/Misc'
 
@@ -28,6 +31,28 @@ function getClipingOutliers(){
     }
 }
 
+function getHistorgram(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/histogram`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_HISTOGRAM, 
+        payload: request
+    }
+}
+
+function getRespondersMap(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/respondersMap`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_RESPONDERS_MAP, 
+        payload: request
+    }
+}
+
 function getPersonalityScoreMini(){    
     const request = 
         axios.get(`${CHATBOT_SERVER}/personalityScoreMini`)
@@ -35,6 +60,17 @@ function getPersonalityScoreMini(){
     
     return {
         type: GET_CHATBOT_PERSONALITY_SCORE_MINI, 
+        payload: request
+    }
+}
+
+function getPersonalityScoreCalc(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/personalityScoreCalc`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_PERSONALITY_SCORE_CALC, 
         payload: request
     }
 }
@@ -50,5 +86,8 @@ function getPersonalityScoreMini(){
 export {
     getSurveyOverview,
     getClipingOutliers,
-    getPersonalityScoreMini
+    getHistorgram,
+    getRespondersMap,
+    getPersonalityScoreMini,
+    getPersonalityScoreCalc
 }

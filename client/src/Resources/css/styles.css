@@ -898,3 +898,8 @@ footer .business_nfo .nfo {
     background-position: center center !important;
     border: 1px solid #eaeaea;
 }
+
+tr:hover{
+    cursor: pointer;
+    background-color:#d4e6f5;
+  }

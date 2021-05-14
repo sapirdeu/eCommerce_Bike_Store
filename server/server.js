@@ -422,16 +422,16 @@ app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
         return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
     }
     const subprocess = runScript();
-    // print output of script
-    subprocess.stdout.on('data', (data) => {
-            console.log(`data:${data}`);
-    });
+    // // print output of script
+    // subprocess.stdout.on('data', (data) => {
+    //         console.log(`data:${data}`);
+    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    subprocess.stderr.on('close', () => {
-               console.log("Closed");
-    });
+    // subprocess.stderr.on('close', () => {
+    //            console.log("Closed");
+    // });
     // const subprocess = runScript()
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
@@ -446,16 +446,60 @@ app.get('/api/chatbot/clipingOutliers', auth, researcher, (req, res) => {
     }
     const subprocess = runScript();
     // print output of script
-    subprocess.stdout.on('data', (data) => {
-            console.log(`data:${data}`);
+    // subprocess.stdout.on('data', (data) => {
+    //         console.log(`data:${data}`);
+    // });
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
     });
+    // subprocess.stderr.on('close', () => {
+    //            console.log("Closed");
+    // });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
+    const {spawn} = require('child_process');
+    const path = require('path');
+    function runScript(){
+        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '3']);
+    }
+    const subprocess = runScript();
+    // print output of script
+    // subprocess.stdout.on('data', (data) => {
+    //         console.log(`data:${data}`);
+    // });
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    // subprocess.stderr.on('close', () => {
+    //            console.log("Closed");
+    // });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+
+app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
+    const {spawn} = require('child_process');
+    const path = require('path');
+    function runScript(){
+        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '4']);
+    }
+    const subprocess = runScript();
+    // print output of script
+    // subprocess.stdout.on('data', (data) => {
+    //         console.log(`data:${data}`);
+    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
     subprocess.stderr.on('close', () => {
                console.log("Closed");
     });
-    // const subprocess = runScript()
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
@@ -465,20 +509,41 @@ app.get('/api/chatbot/personalityScoreMini', auth, researcher, (req, res) => {
     const {spawn} = require('child_process');
     const path = require('path');
     function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '3']);
+        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '5']);
     }
     const subprocess = runScript();
     // print output of script
-    subprocess.stdout.on('data', (data) => {
-            console.log(`data:${data}`);
+    // subprocess.stdout.on('data', (data) => {
+    //         console.log(`data:${data}`);
+    // });
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
     });
+    // subprocess.stderr.on('close', () => {
+    //            console.log("Closed");
+    // });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+app.get('/api/chatbot/personalityScoreCalc', auth, researcher, (req, res) => {
+    const {spawn} = require('child_process');
+    const path = require('path');
+    function runScript(){
+        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '6']);
+    }
+    const subprocess = runScript();
+    // print output of script
+    // subprocess.stdout.on('data', (data) => {
+    //         console.log(`data:${data}`);
+    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
     subprocess.stderr.on('close', () => {
                console.log("Closed");
     });
-    // const subprocess = runScript()
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);

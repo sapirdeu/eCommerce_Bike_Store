@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
+import renderHTML from 'react-render-html'
+import { Table } from 'reactstrap';
 import UserLayout from '../../hoc/UserLayout'
-import {getSurveyOverview, getClipingOutliers, getPersonalityScoreMini} from '../../redux/actions/chatbot_actions'
-import {withRouter} from 'react-router-dom'
-import {useDispatch,connect} from 'react-redux'
+import {
+    getSurveyOverview, 
+    getClipingOutliers, 
+    getHistorgram,
+    getRespondersMap,
+    getPersonalityScoreMini,
+    getPersonalityScoreCalc
+} from '../../redux/actions/chatbot_actions'
+import {useDispatch} from 'react-redux'
 
 function ChatbotStat() {
     const [surveyOverviewButton, setSurveyOverviewButton] = useState(true)
@@ -11,9 +19,136 @@ function ChatbotStat() {
     const [clipingOutliersButton, setClipingOutliersButton] = useState(true)
     const [clipingOutliersData, setClipingOutliersData] = useState('')
 
+    const [historgramButton, setHistorgramButton] = useState(true)
+    const [historgramData, setHistorgramData] = useState('')
+
+    const [respondersMapButton, setRespondersMapButton] = useState(true)
+    const [respondersMapData, setRespondersMapData] = useState('')
+
     const [personalityScoreMiniButton, setPersonalityScoreMiniButton] = useState(true)
     const [personalityScoreMiniData, setPersonalityScoreMiniData] = useState('')
 
+    let columns = [
+        {
+          heading: 'Item',
+          property: 'item'
+        },
+        {
+          heading: 'Factor',
+          property: 'factor'
+        },
+        {
+          heading: 'Text',
+          property: 'text'
+        }
+    ]
+      
+    //Data is the array of objects to be placed into the table
+    let data = [
+        {
+            item: '1',
+            factor: 'E',
+            text: 'Am the life of the party.',
+        },
+        {
+            item: '2',
+            factor: 'A',
+            text: 'Sympathize with others’ feelings',
+        },
+        {
+            item: '3',
+            factor: 'C',
+            text: 'Get chores done right away.',
+        },
+        {
+            item: '4',
+            factor: 'N',
+            text: 'Have frequent mood swings.',
+        },
+        {
+            item: '5',
+            factor: 'I',
+            text: 'Have a vivid imagination.',
+        },
+        {
+            item: '6',
+            factor: 'E',
+            text: 'Don’t talk a lot. (R)',
+        },
+        {
+            item: '7',
+            factor: 'A',
+            text: 'Am not interested in other people’s problems. (R)',
+        },
+        {
+            item: '8',
+            factor: 'C',
+            text: 'Often forget to put things back in their proper place. (R)',
+        },
+        {
+            item: '9',
+            factor: 'N',
+            text: 'Am relaxed most of the time. (R)',
+        },
+        {
+            item: '10',
+            factor: 'I',
+            text: 'Am not interested in abstract ideas. (R)',
+        },
+        {
+            item: '11',
+            factor: 'E',
+            text: 'Talk to a lot of different people at parties.',
+        },
+        {
+            item: '12',
+            factor: 'A',
+            text: 'Sympathize with others’ feelings',
+        },
+        {
+            item: '13',
+            factor: 'C',
+            text: 'Like order.',
+        },
+        {
+            item: '14',
+            factor: 'N',
+            text: 'Get upset easily.',
+        },
+        {
+            item: '15',
+            factor: 'I',
+            text: 'Have difficulty understanding abstract ideas. (R)',
+        },
+        {
+            item: '16',
+            factor: 'E',
+            text: 'Keep in the background. (R)',
+        },
+        {
+            item: '17',
+            factor: 'A',
+            text: 'Am not really interested in others. (R)',
+        },
+        {
+            item: '18',
+            factor: 'C',
+            text: 'Make a mess of things. (R)',
+        },
+        {
+            item: '19',
+            factor: 'N',
+            text: 'Seldom feel blue. (R)',
+        },
+        {
+            item: '20',
+            factor: 'I',
+            text: 'Do not have a good imagination. (R)',
+        }
+    ]
+
+    const [personalityScoreCalcButton, setPersonalityScoreCalcButton] = useState(true)
+    const [personalityScoreCalcData, setPersonalityScoreCalcData] = useState('')
 
     const dispatch = useDispatch();
 
@@ -43,6 +178,32 @@ function ChatbotStat() {
         setClipingOutliersData('');
     }
 
+    // Historgram of the duration of test taking (after clipping)
+    function watchHistorgramHandler(){
+        setHistorgramButton(historgramButton ? false : true);
+
+        dispatch(getHistorgram()).then(response=>{
+            setHistorgramData(response.payload)
+        })
+    }
+    function unwatchHistorgramHandler(){
+        setHistorgramButton(historgramButton ? false : true);
+        setHistorgramData('');
+    }
+
+    // Map of responders
+    function watchRespondersMapHandler(){
+        setRespondersMapButton(respondersMapButton ? false : true);
+
+        // dispatch(getRespondersMap()).then(response=>{
+        //     setRespondersMapData(response.payload)
+        // })
+    }
+    function unwatchRespondersMapHandler(){
+        setRespondersMapButton(respondersMapButton ? false : true);
+        setRespondersMapData('');
+    }
+
     // Personality Score Mini-IPIP test questions
     function watchPersonalityScoreMiniHandler(){
         setPersonalityScoreMiniButton(personalityScoreMiniButton ? false : true);
@@ -56,6 +217,19 @@ function ChatbotStat() {
         setPersonalityScoreMiniData('');
     }
 
+    // Personality Score calculation
+    function watchPersonalityScoreCalcHandler(){
+        setPersonalityScoreCalcButton(personalityScoreCalcButton ? false : true);
+
+        dispatch(getPersonalityScoreCalc()).then(response=>{
+            setPersonalityScoreCalcData(response.payload)
+        })
+    }
+    function unwatchPersonalityScoreCalcHandler(){
+        setPersonalityScoreCalcButton(personalityScoreCalcButton ? false : true);
+        setPersonalityScoreCalcData('');
+    }
+
 
     return (
         <UserLayout>
@@ -64,8 +238,9 @@ function ChatbotStat() {
             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>In this notebook, we will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will start with loading the CSV files that we exported from the survey system (Qualtrics, in this example).</h3>
 
-            <br></br>
+            <br/>
 
+            {/* BUTTONS */}
             <div>
                 {
                     surveyOverviewButton ?
@@ -94,6 +269,32 @@ function ChatbotStat() {
 
             <div>
                 {
+                    historgramButton ?
+                        <button onClick={()=> watchHistorgramHandler()}>
+                            Historgram of the duration of test taking (after clipping)
+                        </button>
+                    : 
+                        <button style={{background:"#e8cf2a"}} onClick={()=> unwatchHistorgramHandler()}>
+                            Historgram of the duration of test taking (after clipping)
+                        </button>
+                }
+            </div>
+
+            <div>
+                {
+                    respondersMapButton ?
+                        <button onClick={()=> watchRespondersMapHandler()}>
+                            Map of responders
+                        </button>
+                    : 
+                        <button style={{background:"#e8cf2a"}} onClick={()=> unwatchRespondersMapHandler()}>
+                            Map of responders
+                        </button>
+                }
+            </div>
+
+            <div>
+                {
                     personalityScoreMiniButton ?
                         <button onClick={()=> watchPersonalityScoreMiniHandler()}>
                             Personality Score - Mini-IPIP test questions
@@ -105,53 +306,127 @@ function ChatbotStat() {
                 }
             </div>
 
-            {
-                surveyOverviewData != '' ?
-                    <>
-                        <br></br>
-                        <h3>Survey Overview</h3>
-                        <p>We can explore the number of questions and answers</p>
-                        <br></br>
-                        <pre className="clipping_container">{surveyOverviewData}</pre>
-                    </>
-                :
+            <div>
+                {
+                    personalityScoreCalcButton ?
+                        <button onClick={()=> watchPersonalityScoreCalcHandler()}>
+                            Personality Score Calculation
+                        </button>
+                    : 
+                        <button style={{background:"#e8cf2a"}} onClick={()=> unwatchPersonalityScoreCalcHandler()}>
+                            Personality Score Calculation
+                        </button>
+                }
+            </div>
+
+            {/* RESULTS */}
+            <div>
+                {
+                    surveyOverviewData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Survey Overview</h3>
+                            <p>We can explore the number of questions and answers</p>
+                            <br/>
+                            <pre className="clipping_container">{surveyOverviewData}</pre>
+                        </>
+                    :
+                        null
+                }
+            </div>
+
+            <div>
+                {
+                    clipingOutliersData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Clipping Outliers</h3>
+                            <p>We want to remove outliers to avoid issues from people answering too quick or too slow. Let's calculate the 0.05 and 0.95 percentiles of the data, and then we can clip the data to be above 100 and below 900</p>
+                            <br/>
+                            <pre className="clipping_container">{clipingOutliersData}</pre>
+                        </>
+                    :
+                        null
+                }
+            </div>
+
+            <div>
+                {
+                    historgramData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Historgram of the duration of test taking (after clipping)</h3>
+                            
+                            {renderHTML(historgramData)}
+                        </>
+                    :
                     null
-            }
+                }
+            </div>
 
-            {
-                clipingOutliersData != '' ?
-                    <>
-                        <br></br>
-                        <h3>Clipping Outliers</h3>
-                        <p>We want to remove outliers to avoid issues from people answering too quick or too slow. Let's calculate the 0.05 and 0.95 percentiles of the data, and then we can clip the data to be above 100 and below 900</p>
-                        <br></br>
-                        <pre className="clipping_container">{clipingOutliersData}</pre>
-                    </>
-                :
+            <div>
+                {
+                    respondersMapData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Map of responders</h3>
+                            <p>A general map of the location of the people taking the test</p>
+                            <br/>
+                            <pre className="clipping_container">{historgramData}</pre>
+                        </>
+                    :
+                        <h3>TODO: Map of responders</h3>
+                }
+            </div>
+
+            <div>
+                {
+                    personalityScoreMiniData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Personality Score - Mini-IPIP test questions</h3>
+                            <p>The part of the survey was a personality score that we need to analyze to build the score of each responder. First, let's get the questions that are written in the first line (index=0) of the table. We want the 20 questions from E1 to index I20R. The letter (E, A ...) represents the personality attribute tested, and the R signifies that we need to reverse the score.</p>
+                            <br/>
+                            <p>Based on: "The Mini-IPIP Scales: Tiny-Yet-Effective Measures of the Big Five Factors of Personality"</p>
+                            <br/>
+                            <p>Appendix 20-Item Mini-IPIP</p>
+                            <br/>
+
+                            <div className="clipping_container">
+                                <Table striped bordered hover size="sm">
+                                    <thead>
+                                        <tr>{columns.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
+                                    </thead>
+                                    <tbody>
+                                        {data.map(item => 
+                                            <tr key={`${item.item}-row`}>
+                                                {columns.map(col => <td key={`${item.item}-${col.property}`}>{item[col.property]}</td>)}
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </Table>
+                                <br/>
+                                <pre>{personalityScoreMiniData}</pre>
+                            </div>
+                        </>
+                    :
+                        null
+                }
+            </div>
+
+            <div>
+                {
+                    personalityScoreCalcData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Personality Score Calculation</h3>
+                            <p>We will calculate the score of each of the personality attributes based on the score of the various questions for each</p>
+                            {renderHTML(personalityScoreCalcData)}
+                        </>
+                    :
                     null
-            }
-
-            {
-                personalityScoreMiniData != '' ?
-                    <>
-                        <br></br>
-                        <h3>Personality Score - Mini-IPIP test questions</h3>
-                        <p>The part of the survey was a personality score that we need to analyze to build the score of each responder. First, let's get the questions that are written in the first line (index=0) of the table. We want the 20 questions from E1 to index I20R. The letter (E, A ...) represents the personality attribute tested, and the R signifies that we need to reverse the score.</p>
-                        <br></br>
-                        <p>Based on: "The Mini-IPIP Scales: Tiny-Yet-Effective Measures of the Big Five Factors of Personality"</p>
-                        <br></br>
-                        <p>Appendix 20-Item Mini-IPIP</p>
-                        <br></br>
-
-                        TABLE
-                        <br></br>
-                        <pre>{personalityScoreMiniData}</pre>
-                    </>
-                :
-                    null
-            }
-
-            
+                }
+            </div>
             
         </UserLayout>
 

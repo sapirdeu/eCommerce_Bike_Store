@@ -1,21 +1,23 @@
 import sys
 import pandas as pd
 import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
+# import geopandas
 
 survey_df = pd.read_csv('./server/Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
 
 def surveyOverview():
-    print(survey_df.info())
+    return survey_df.info()
 
 
 def clipingOutliersFirst():
-    print(
+    return (
         survey_df
         .loc[2:,['Duration (in seconds)']]
         .astype(int)
         .quantile([0.05, 0.95])
     )
-    print('\n')
 
 
 def clipingOutliersSecond():
@@ -26,7 +28,51 @@ def clipingOutliersSecond():
         .assign(duration = lambda x : pd.to_numeric(x['Duration (in seconds)']))
         .query("duration > 100 and duration < 900")
     )
-    print(valid_survey_df)
+    return valid_survey_df
+
+
+def historgram(valid_survey_df):
+    (
+        valid_survey_df
+        ['duration']
+        .plot(
+            kind='hist', 
+            alpha=0.5, 
+            title='Duration (in seconds) (between 0.05 and 0.95)'
+        )
+    )
+
+    tmpfile = BytesIO()
+    plt.savefig(tmpfile, format='png')
+    encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+    html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+    return html
+
+
+def respondersMap():
+    # gdf = (
+    #     geopandas
+    #     .GeoDataFrame(
+    #         valid_survey_df, 
+    #         geometry=geopandas.points_from_xy(
+    #             valid_survey_df.LocationLongitude, 
+    #             valid_survey_df.LocationLatitude)
+    #         )
+    # )
+    # world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+
+    # ax = (
+    #     world
+    #     .plot(
+    #         color='white', 
+    #         edgecolor='black',
+    #         figsize=(15,10)
+    #         )
+    # )
+    # gdf.plot(ax=ax, color='red')
+
+    # plt.show()
+    print ("hello11")
 
 
 def personalityScoreMini():
@@ -36,14 +82,95 @@ def personalityScoreMini():
     )
 
 
+def ipip_df(valid_survey_df):
+    survey_ipip_df = (
+        valid_survey_df
+        .assign(pE = 0)
+        .assign(pA = 0)
+        .assign(pC = 0)
+        .assign(pN = 0)
+        .assign(pI = 0)
+        .assign(pE = lambda x : x.pE + x.E1.str[-1:].astype(int))
+        .assign(pA = lambda x : x.pA + x.A2.str[-1:].astype(int))
+        .assign(pC = lambda x : x.pC + x.C3.str[-1:].astype(int))
+        .assign(pN = lambda x : x.pN + x.N4.str[-1:].astype(int))
+        .assign(pI = lambda x : x.pI + x.I5.str[-1:].astype(int))
+        .assign(pE = lambda x : x.pE + 6 - x.E6R.str[-1:].astype(int))
+        .assign(pA = lambda x : x.pA + 6 - x.A7R.str[-1:].astype(int))
+        .assign(pC = lambda x : x.pC + 6 - x.C8R.str[-1:].astype(int))
+        .assign(pN = lambda x : x.pN + 6 - x.N9R.str[-1:].astype(int))
+        .assign(pI = lambda x : x.pI + 6 - x.I10R.str[-1:].astype(int))
+        .assign(pE = lambda x : x.pE + x.E11.str[-1:].astype(int))
+        .assign(pA = lambda x : x.pA + x.A12.str[-1:].astype(int))
+        .assign(pC = lambda x : x.pC + x.C13.str[-1:].astype(int))
+        .assign(pN = lambda x : x.pN + x.N14.str[-1:].astype(int))
+        .assign(pI = lambda x : x.pI + 6 - x.I15R.str[-1:].astype(int))
+        .assign(pE = lambda x : x.pE + 6 - x.E16R.str[-1:].astype(int))
+        .assign(pA = lambda x : x.pA + 6 - x.A17R.str[-1:].astype(int))
+        .assign(pC = lambda x : x.pC + 6 - x.C18R.str[-1:].astype(int))
+        .assign(pN = lambda x : x.pN + 6 - x.N19R.str[-1:].astype(int))
+        .assign(pI = lambda x : x.pI + 6 - x.I20R.str[-1:].astype(int))
+        .assign(pE = lambda x : x.pE / 4)
+        .assign(pA = lambda x : x.pA / 4)
+        .assign(pC = lambda x : x.pC / 4)
+        .assign(pN = lambda x : x.pN / 4)
+        .assign(pI = lambda x : x.pI / 4)
+    )
+    return survey_ipip_df
+
+def personalityScoreCalcFirst(valid_survey_df):
+    survey_ipip_df = ipip_df(valid_survey_df)
+
+    (
+        survey_ipip_df
+        .pE
+        .hist()
+    ).set_title("Extroverts")
+    
+    tmpfile = BytesIO()
+    plt.savefig(tmpfile, format='png')
+    encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+    html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+
+    return html
+
+
+def personalityScoreCalcSecond(valid_survey_df):
+    survey_ipip_df = ipip_df(valid_survey_df)
+
+    plt.gca().cla()
+
+    (
+        survey_ipip_df
+        .pI
+        .hist()
+    ).set_title("Information")
+    
+    tmpfile = BytesIO()
+    plt.savefig(tmpfile, format='png')
+    encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+    html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+
+    return html
+
+
 def main(argv):
+    valid_survey_df = clipingOutliersSecond()
     if (argv[0] == '1'):
         surveyOverview()
     elif (argv[0] == '2'):
-        clipingOutliersFirst()
-        clipingOutliersSecond()
+        print(clipingOutliersFirst())
+        print('\n')
+        print(valid_survey_df)
     elif (argv[0] == '3'):
+        print (historgram(valid_survey_df))
+    elif (argv[0] == '4'):
+        respondersMap()
+    elif (argv[0] == '5'):
         personalityScoreMini()
+    elif (argv[0] == '6'):
+        print (personalityScoreCalcFirst(valid_survey_df))
+        print (personalityScoreCalcSecond(valid_survey_df))
     else:
         print("bye")
 

@@ -24,6 +24,9 @@ export const CLEAR_PRODUCT_DETAIL = 'clear_product_detail';
 export const GET_SITE_DATA = 'get_site_data';
 export const UPDATE_SITE_DATA = 'update_site_data';
 
-export const GET_CHATBOT_SURVEY_OVERVIEW = 'get_chatbot_survey_overview'
-export const GET_CHATBOT_CLIPING_OUTLIERS = 'get_chatbot_cliping_outliers'
-export const GET_CHATBOT_PERSONALITY_SCORE_MINI = 'get_chatbot_personality_score_mini'
+export const GET_CHATBOT_SURVEY_OVERVIEW = 'get_chatbot_survey_overview';
+export const GET_CHATBOT_CLIPING_OUTLIERS = 'get_chatbot_cliping_outliers';
+export const GET_CHATBOT_HISTOGRAM = 'get_chatbot_historgram';
+export const GET_CHATBOT_RESPONDERS_MAP = 'get_chatbot_responders_map';
+export const GET_CHATBOT_PERSONALITY_SCORE_MINI = 'get_chatbot_personality_score_mini';
+export const GET_CHATBOT_PERSONALITY_SCORE_CALC = 'get_chatbot_personality_score_calc';
