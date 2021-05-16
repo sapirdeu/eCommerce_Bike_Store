@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
-# import geopandas
+#import geopandas
+import numpy as np
 
 survey_df = pd.read_csv('./server/Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
 
@@ -118,8 +119,8 @@ def ipip_df(valid_survey_df):
     )
     return survey_ipip_df
 
-def personalityScoreCalcFirst(valid_survey_df):
-    survey_ipip_df = ipip_df(valid_survey_df)
+def personalityScoreCalcFirst(survey_ipip_df):
+    #survey_ipip_df = ipip_df(valid_survey_df)
 
     (
         survey_ipip_df
@@ -135,8 +136,8 @@ def personalityScoreCalcFirst(valid_survey_df):
     return html
 
 
-def personalityScoreCalcSecond(valid_survey_df):
-    survey_ipip_df = ipip_df(valid_survey_df)
+def personalityScoreCalcSecond(survey_ipip_df):
+    #survey_ipip_df = ipip_df(valid_survey_df)
 
     plt.gca().cla()
 
@@ -154,8 +155,34 @@ def personalityScoreCalcSecond(valid_survey_df):
     return html
 
 
+def groupAssignment(survey_ipip_df):
+        #survey_ipip_df = ipip_df(valid_survey_df)
+        survey_ipip_df['group'] = np.select(
+            [
+                survey_ipip_df['Introvert_Time_Page Submit'].notnull(), 
+                survey_ipip_df['Extrovert_Time_Page Submit'].notnull(), 
+            ], 
+            [
+                'Introvert Bot', 
+                'Extrovert Bot'
+            ], 
+            default='Unknown'
+        )
+
+        return (
+            survey_ipip_df
+            .groupby('group')
+            ['Finished']
+            .count()
+        )
+
+
+
 def main(argv):
     valid_survey_df = clipingOutliersSecond()
+    survey_ipip_df = ipip_df(valid_survey_df)
+
+    
     if (argv[0] == '1'):
         surveyOverview()
     elif (argv[0] == '2'):
@@ -169,8 +196,10 @@ def main(argv):
     elif (argv[0] == '5'):
         personalityScoreMini()
     elif (argv[0] == '6'):
-        print (personalityScoreCalcFirst(valid_survey_df))
-        print (personalityScoreCalcSecond(valid_survey_df))
+        print (personalityScoreCalcFirst(survey_ipip_df))
+        print (personalityScoreCalcSecond(survey_ipip_df))
+    elif (argv[0] == '7'):
+        print(groupAssignment(survey_ipip_df))
     else:
         print("bye")
 

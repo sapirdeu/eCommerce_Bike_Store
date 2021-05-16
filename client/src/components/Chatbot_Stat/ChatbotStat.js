@@ -8,7 +8,8 @@ import {
     getHistorgram,
     getRespondersMap,
     getPersonalityScoreMini,
-    getPersonalityScoreCalc
+    getPersonalityScoreCalc,
+    getGroupAssignment
 } from '../../redux/actions/chatbot_actions'
 import {useDispatch} from 'react-redux'
 
@@ -27,6 +28,9 @@ function ChatbotStat() {
 
     const [personalityScoreMiniButton, setPersonalityScoreMiniButton] = useState(true)
     const [personalityScoreMiniData, setPersonalityScoreMiniData] = useState('')
+
+    const [groupAssignmentButton, setGroupAssignmentButton] = useState(true)
+    const [groupAssignmentData, setGroupAssignmentData] = useState('')
 
     let columns = [
         {
@@ -165,7 +169,7 @@ function ChatbotStat() {
         setSurveyOverviewData('');
     }
 
-    // Cliping Outliers
+    // Clipping Outliers
     function watchClipingOutliersHandler(){
         setClipingOutliersButton(clipingOutliersButton ? false : true);
 
@@ -228,6 +232,19 @@ function ChatbotStat() {
     function unwatchPersonalityScoreCalcHandler(){
         setPersonalityScoreCalcButton(personalityScoreCalcButton ? false : true);
         setPersonalityScoreCalcData('');
+    }
+
+    // Random Groups - Group Assignment
+    function watchGroupAssignmentHandler(){
+        setGroupAssignmentButton(groupAssignmentButton ? false : true);
+
+        dispatch(getGroupAssignment()).then(response=>{
+            setGroupAssignmentData(response.payload)
+        })
+    }
+    function unwatchGroupAssignmentHandler(){
+        setGroupAssignmentButton(groupAssignmentButton ? false : true);
+        setGroupAssignmentData('');
     }
 
 
@@ -319,6 +336,19 @@ function ChatbotStat() {
                 }
             </div>
 
+            <div>
+                {
+                    groupAssignmentButton ?
+                        <button onClick={()=> watchGroupAssignmentHandler()}>
+                            Random Groups - Group Assignment
+                        </button>
+                    : 
+                        <button style={{background:"#e8cf2a"}} onClick={()=> unwatchGroupAssignmentHandler()}>
+                            Random Groups - Group Assignment
+                        </button>
+                }
+            </div>
+
             {/* RESULTS */}
             <div>
                 {
@@ -333,7 +363,7 @@ function ChatbotStat() {
                     :
                         null
                 }
-            </div>
+            </div><br></br>
 
             <div>
                 {
@@ -348,7 +378,7 @@ function ChatbotStat() {
                     :
                         null
                 }
-            </div>
+            </div><br></br>
 
             <div>
                 {
@@ -362,7 +392,7 @@ function ChatbotStat() {
                     :
                     null
                 }
-            </div>
+            </div><br></br>
 
             <div>
                 {
@@ -377,7 +407,7 @@ function ChatbotStat() {
                     :
                         <h3>TODO: Map of responders</h3>
                 }
-            </div>
+            </div><br></br>
 
             <div>
                 {
@@ -412,7 +442,7 @@ function ChatbotStat() {
                     :
                         null
                 }
-            </div>
+            </div><br></br>
 
             <div>
                 {
@@ -426,7 +456,24 @@ function ChatbotStat() {
                     :
                     null
                 }
-            </div>
+            </div><br></br>
+
+            <div>
+                {
+                    groupAssignmentData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Random Groups - Group Assignment</h3>
+                            <p>The survey system is randomaly assigning each participat to one of the group by showing either the Introvert or the Extrovert dialog.</p>
+                            <p>The following cell is calculating the group assignment, based on which answer each participant gave.</p>
+                            <p>We expect see almost equal sizes for the groups:</p>
+                            <br></br>
+                            <pre>{renderHTML(groupAssignmentData)}</pre>
+                        </>
+                    :
+                    null
+                }
+            </div><br></br>
             
         </UserLayout>
 

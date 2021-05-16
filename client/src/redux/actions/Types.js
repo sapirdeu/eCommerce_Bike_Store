@@ -30,3 +30,4 @@ export const GET_CHATBOT_HISTOGRAM = 'get_chatbot_historgram';
 export const GET_CHATBOT_RESPONDERS_MAP = 'get_chatbot_responders_map';
 export const GET_CHATBOT_PERSONALITY_SCORE_MINI = 'get_chatbot_personality_score_mini';
 export const GET_CHATBOT_PERSONALITY_SCORE_CALC = 'get_chatbot_personality_score_calc';
+export const GET_CHATBOT_GROUP_ASSIGNMENT = 'get_chatbot_group_assignment';

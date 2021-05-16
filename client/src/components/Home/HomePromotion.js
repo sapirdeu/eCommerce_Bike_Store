@@ -4,7 +4,7 @@ import MyButton from '../utils/MyButton'
 function HomePromotion(props) {
     const [promotion] = useState(
         {
-            img: 'images/featured/featured_home_3.jpg',
+            img: 'images/featured/featured_home_4.jpg',
             lineOne: 'Up to 40% off',
             lineTwo: 'In second hand bikes',
             linkTitle: 'Shop now',

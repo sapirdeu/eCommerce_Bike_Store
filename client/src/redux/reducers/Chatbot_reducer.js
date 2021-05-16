@@ -4,7 +4,8 @@ import {
     GET_CHATBOT_HISTOGRAM,
     GET_CHATBOT_RESPONDERS_MAP,
     GET_CHATBOT_PERSONALITY_SCORE_MINI,
-    GET_CHATBOT_PERSONALITY_SCORE_CALC
+    GET_CHATBOT_PERSONALITY_SCORE_CALC,
+    GET_CHATBOT_GROUP_ASSIGNMENT
 } from '../actions/Types'
 
 const fun = (state = {}, action) => {
@@ -21,6 +22,8 @@ const fun = (state = {}, action) => {
         return {...state, personalityScoreMini: action.payload}
       case GET_CHATBOT_PERSONALITY_SCORE_CALC:
         return {...state, personalityScoreCalc: action.payload}
+      case GET_CHATBOT_GROUP_ASSIGNMENT:
+        return {...state, groupAssignment: action.payload}
       default:
         return state
     }
