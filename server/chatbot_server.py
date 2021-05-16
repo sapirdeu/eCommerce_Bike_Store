@@ -5,6 +5,8 @@ import base64
 from io import BytesIO
 #import geopandas
 import numpy as np
+#import pingouin as pg
+
 
 survey_df = pd.read_csv('./server/Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
 
@@ -177,11 +179,29 @@ def groupAssignment(survey_ipip_df):
         )
 
 
+def analyzingResponse():
+    return (
+    survey_df
+    .loc[0,'Appropriate 1':'Online experience 1']
+    )
+    #return survey_questions
+
+
+def numeric_ipip_def(survey_ipip_df):
+    numeric_survey_ipip_df = (
+    survey_ipip_df
+        .apply(lambda x: x.str[-1:].astype(int) if x.name.startswith('Appropriate') else x)
+        .apply(lambda x: x.str[-1:].astype(int) if x.name.startswith('Trust') else x)
+        .apply(lambda x: x.str[-1:].astype(int) if x.name.startswith('Retention') else x)
+        .apply(lambda x: x.str[-1:].astype(int) if x.name.startswith('Purchase') else x)
+        .apply(lambda x: x.str[-1:].astype(int) if x.name.startswith('Online') else x)
+    )
+    return numeric_survey_ipip_df
 
 def main(argv):
     valid_survey_df = clipingOutliersSecond()
     survey_ipip_df = ipip_df(valid_survey_df)
-
+    numeric_survey_ipip_def = numeric_ipip_def(survey_ipip_df)
     
     if (argv[0] == '1'):
         surveyOverview()
@@ -200,6 +220,8 @@ def main(argv):
         print (personalityScoreCalcSecond(survey_ipip_df))
     elif (argv[0] == '7'):
         print(groupAssignment(survey_ipip_df))
+    elif (argv[0] == '8'):
+        print(analyzingResponse())
     else:
         print("bye")
 

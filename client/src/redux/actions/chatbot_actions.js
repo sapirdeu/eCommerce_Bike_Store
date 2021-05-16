@@ -6,7 +6,8 @@ import {
     GET_CHATBOT_RESPONDERS_MAP,
     GET_CHATBOT_HISTOGRAM,
     GET_CHATBOT_PERSONALITY_SCORE_CALC,
-    GET_CHATBOT_GROUP_ASSIGNMENT
+    GET_CHATBOT_GROUP_ASSIGNMENT,
+    GET_CHATBOT_ANALYZING_RESPONSE
 } from './Types'
 import {CHATBOT_SERVER} from '../../components/utils/Misc'
 
@@ -87,6 +88,17 @@ function getGroupAssignment(){
     }
 }
 
+function getAnalyzingResponse(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/analyzingResponse`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_ANALYZING_RESPONSE, 
+        payload: request
+    }
+}
+
 // function clearProductDetail(){
 //     return {
 //         type: CLEAR_PRODUCT_DETAIL, 
@@ -102,5 +114,6 @@ export {
     getRespondersMap,
     getPersonalityScoreMini,
     getPersonalityScoreCalc,
-    getGroupAssignment
+    getGroupAssignment,
+    getAnalyzingResponse
 }

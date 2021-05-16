@@ -9,7 +9,8 @@ import {
     getRespondersMap,
     getPersonalityScoreMini,
     getPersonalityScoreCalc,
-    getGroupAssignment
+    getGroupAssignment,
+    getAnalyzingResponse
 } from '../../redux/actions/chatbot_actions'
 import {useDispatch} from 'react-redux'
 
@@ -31,6 +32,9 @@ function ChatbotStat() {
 
     const [groupAssignmentButton, setGroupAssignmentButton] = useState(true)
     const [groupAssignmentData, setGroupAssignmentData] = useState('')
+
+    const [analyzingResponseButton, setAnalyzingResponseButton] = useState(true)
+    const [analyzingResponseData, setAnalyzingResponseData] = useState('')
 
     let columns = [
         {
@@ -247,6 +251,19 @@ function ChatbotStat() {
         setGroupAssignmentData('');
     }
 
+    // Analyzing the survey response to the different aspects of the experiment
+    function watchAnalyzingResponseHandler(){
+        setAnalyzingResponseButton(analyzingResponseButton ? false : true);
+
+        dispatch(getAnalyzingResponse()).then(response=>{
+            setAnalyzingResponseData(response.payload)
+        })
+    }
+    function unwatchAnalyzingResponseHandler(){
+        setAnalyzingResponseButton(analyzingResponseButton ? false : true);
+        setAnalyzingResponseData('');
+    }
+
 
     return (
         <UserLayout>
@@ -349,6 +366,19 @@ function ChatbotStat() {
                 }
             </div>
 
+            <div>
+                {
+                    analyzingResponseButton ?
+                        <button onClick={()=> watchAnalyzingResponseHandler()}>
+                            Analyzing the survey response to the different aspects of the experiment
+                        </button>
+                    : 
+                        <button style={{background:"#e8cf2a"}} onClick={()=> unwatchAnalyzingResponseHandler()}>
+                            Analyzing the survey response to the different aspects of the experiment
+                        </button>
+                }
+            </div>
+
             {/* RESULTS */}
             <div>
                 {
@@ -359,11 +389,12 @@ function ChatbotStat() {
                             <p>We can explore the number of questions and answers</p>
                             <br/>
                             <pre className="clipping_container">{surveyOverviewData}</pre>
+                            <br></br><br></br>
                         </>
                     :
                         null
                 }
-            </div><br></br>
+            </div>
 
             <div>
                 {
@@ -374,11 +405,12 @@ function ChatbotStat() {
                             <p>We want to remove outliers to avoid issues from people answering too quick or too slow. Let's calculate the 0.05 and 0.95 percentiles of the data, and then we can clip the data to be above 100 and below 900</p>
                             <br/>
                             <pre className="clipping_container">{clipingOutliersData}</pre>
+                            <br></br><br></br>
                         </>
                     :
                         null
                 }
-            </div><br></br>
+            </div>
 
             <div>
                 {
@@ -388,11 +420,12 @@ function ChatbotStat() {
                             <h3>Historgram of the duration of test taking (after clipping)</h3>
                             
                             {renderHTML(historgramData)}
+                            <br></br><br></br>
                         </>
                     :
                     null
                 }
-            </div><br></br>
+            </div>
 
             <div>
                 {
@@ -403,11 +436,12 @@ function ChatbotStat() {
                             <p>A general map of the location of the people taking the test</p>
                             <br/>
                             <pre className="clipping_container">{historgramData}</pre>
+                            <br></br><br></br>
                         </>
                     :
                         <h3>TODO: Map of responders</h3>
                 }
-            </div><br></br>
+            </div>
 
             <div>
                 {
@@ -438,11 +472,12 @@ function ChatbotStat() {
                                 <br/>
                                 <pre>{personalityScoreMiniData}</pre>
                             </div>
+                            <br></br><br></br>
                         </>
                     :
                         null
                 }
-            </div><br></br>
+            </div>
 
             <div>
                 {
@@ -452,11 +487,12 @@ function ChatbotStat() {
                             <h3>Personality Score Calculation</h3>
                             <p>We will calculate the score of each of the personality attributes based on the score of the various questions for each</p>
                             {renderHTML(personalityScoreCalcData)}
+                            <br></br><br></br>
                         </>
                     :
                     null
                 }
-            </div><br></br>
+            </div>
 
             <div>
                 {
@@ -467,13 +503,31 @@ function ChatbotStat() {
                             <p>The survey system is randomaly assigning each participat to one of the group by showing either the Introvert or the Extrovert dialog.</p>
                             <p>The following cell is calculating the group assignment, based on which answer each participant gave.</p>
                             <p>We expect see almost equal sizes for the groups:</p>
-                            <br></br>
                             <pre>{renderHTML(groupAssignmentData)}</pre>
+                            <br></br><br></br>
                         </>
                     :
                     null
                 }
-            </div><br></br>
+            </div>
+
+            <div>
+                {
+                    analyzingResponseData !== '' ?
+                        <>
+                            <br/>
+                            <h3>Analyzing the survey response to the different aspects of the experiment</h3>
+                            <p>We will take all the questions between the first and last survey attribute questions.</p>
+                            <br/>
+                            <pre className="clipping_container">{analyzingResponseData}</pre>
+                            <br></br>
+                            <p>We will extract the numeric value of the asnwers (removing the textual "Strongly Disagree", etc.)</p>
+                            <br></br><br></br>
+                        </>
+                    :
+                        null
+                }
+            </div>
             
         </UserLayout>
 
