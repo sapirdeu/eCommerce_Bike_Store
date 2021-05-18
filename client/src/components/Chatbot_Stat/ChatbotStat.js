@@ -203,9 +203,9 @@ function ChatbotStat() {
     function watchRespondersMapHandler(){
         setRespondersMapButton(respondersMapButton ? false : true);
 
-        // dispatch(getRespondersMap()).then(response=>{
-        //     setRespondersMapData(response.payload)
-        // })
+        dispatch(getRespondersMap()).then(response=>{
+            setRespondersMapData(response.payload)
+        })
     }
     function unwatchRespondersMapHandler(){
         setRespondersMapButton(respondersMapButton ? false : true);
@@ -434,9 +434,7 @@ function ChatbotStat() {
                             <br/>
                             <h3>Map of responders</h3>
                             <p>A general map of the location of the people taking the test</p>
-                            <br/>
-                            <pre className="clipping_container">{historgramData}</pre>
-                            <br></br><br></br>
+                            {renderHTML(respondersMapData)}
                         </>
                     :
                         <h3>TODO: Map of responders</h3>

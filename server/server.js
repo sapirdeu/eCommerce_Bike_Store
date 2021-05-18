@@ -37,6 +37,9 @@ const {admin} = require('./middleware/admin');
 const {researcher} = require('./middleware/researcher');
 // const user = require('./models/user');
 
+const {spawn} = require('child_process');
+const path = require('path');
+
 //=================================
 //             PRODUCTS
 //=================================
@@ -420,12 +423,15 @@ app.post('/api/users/update_profile', auth, (req, res)=>{
 //=================================
 
 app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    
+
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(1);
     // // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -443,12 +449,13 @@ app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
 });
 
 app.get('/api/chatbot/clipingOutliers', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '2']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '2']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(2);
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -465,12 +472,13 @@ app.get('/api/chatbot/clipingOutliers', auth, researcher, (req, res) => {
 });
 
 app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '3']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '3']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(3);
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -487,13 +495,16 @@ app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
 });
 
 
+
 app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '4']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     //return spawn('python', [path.join(__dirname, './chatbot_server.py'), '4']);
+    //     return runSpawn(4);
+    // }
+    const subprocess = runSpawn(4);
+    // const subprocess = runScript();
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -510,12 +521,13 @@ app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
 });
 
 app.get('/api/chatbot/personalityScoreMini', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '5']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '5']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(5);
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -532,12 +544,13 @@ app.get('/api/chatbot/personalityScoreMini', auth, researcher, (req, res) => {
 });
 
 app.get('/api/chatbot/personalityScoreCalc', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '6']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '6']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(6);
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -555,12 +568,13 @@ app.get('/api/chatbot/personalityScoreCalc', auth, researcher, (req, res) => {
 
 
 app.get('/api/chatbot/groupAssignment', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '7']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '7']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(7);
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -578,12 +592,13 @@ app.get('/api/chatbot/groupAssignment', auth, researcher, (req, res) => {
 });
 
 app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
-    const {spawn} = require('child_process');
-    const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '8']);
-    }
-    const subprocess = runScript();
+    // const {spawn} = require('child_process');
+    // const path = require('path');
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '8']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(8);
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -628,3 +643,8 @@ const port = process.env.PORT || 3002;
 app.listen(port, ()=> {
     console.log(`Server running at ${port}`)
 });
+
+function runSpawn(actionNum) {
+    // CHANGE THE PATH TO ANACONDA
+    return spawn('D:\\downloads\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
+}
