@@ -13,8 +13,10 @@ require('dotenv').config();
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:true}));
+// app.use(bodyParser.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 
 cloudinary.config({
@@ -426,11 +428,11 @@ app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
     // const {spawn} = require('child_process');
     // const path = require('path');
 
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
-    }
-    const subprocess = runScript();
-    //const subprocess = runSpawn(1);
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
+    // }
+    // const subprocess = runScript();
+    const subprocess = runSpawn(1);
     // // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -498,12 +500,12 @@ app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
 app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
     // const {spawn} = require('child_process');
     // const path = require('path');
-    function runScript(){
-        return spawn('python', [path.join(__dirname, './chatbot_server.py'), '4']);
-        //return runSpawn(4);
-    }
-    //const subprocess = runSpawn(4);
-    const subprocess = runScript();
+    // function runScript(){
+    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '4']);
+    //     //return runSpawn(4);
+    // }
+    const subprocess = runSpawn(4);
+    // const subprocess = runScript();
     // print output of script
     // subprocess.stdout.on('data', (data) => {
     //         console.log(`data:${data}`);
@@ -643,7 +645,8 @@ app.listen(port, ()=> {
     console.log(`Server running at ${port}`)
 });
 
-// function runSpawn(actionNum) {
-//     // CHANGE THE PATH TO ANACONDA
-//     return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
-// }
+function runSpawn(actionNum) {
+    // CHANGE THE PATH TO ANACONDA
+    // return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
+    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
+}

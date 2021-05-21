@@ -1,5 +1,6 @@
 import React from 'react'
 import { CSVReader, jsonToCSV } from 'react-papaparse'
+import axios from 'axios'
 
 
 function DragAndDropCSV() {
@@ -23,6 +24,9 @@ function DragAndDropCSV() {
             console.log("CSV file")
             const csvFile = jsonToCSV(file)
             //
+            const request = 
+                axios.post(`/api/product/article`, {csv: csvFile}) // CHANGE THE URL!!
+                .then(response => response.data);
             console.log(csvFile)
 
         }

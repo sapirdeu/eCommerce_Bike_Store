@@ -3,11 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
-#import geopandas
+import geopandas
 import numpy as np
 #import pingouin as pg
 
 survey_df = pd.read_csv('./server/Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
+#survey_df = pd.read_csv('D:\\ReactProjects\\eCommerce_Bike_Store\\server\\Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
 
 def surveyOverview():
     return survey_df.info()
@@ -52,35 +53,35 @@ def historgram(valid_survey_df):
 
 
 def respondersMap(valid_survey_df):
-    # gdf = (
-    #     geopandas
-    #     .GeoDataFrame(
-    #         valid_survey_df, 
-    #         geometry=geopandas.points_from_xy(
-    #             valid_survey_df.LocationLongitude, 
-    #             valid_survey_df.LocationLatitude)
-    #         )
-    # )
-    # world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+    gdf = (
+        geopandas
+        .GeoDataFrame(
+            valid_survey_df, 
+            geometry=geopandas.points_from_xy(
+                valid_survey_df.LocationLongitude, 
+                valid_survey_df.LocationLatitude)
+            )
+    )
+    world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 
-    # ax = (
-    #     world
-    #     .plot(
-    #         color='white', 
-    #         edgecolor='black',
-    #         figsize=(15,10)
-    #         )
-    # )
-    # gdf.plot(ax=ax, color='red')
+    ax = (
+        world
+        .plot(
+            color='white', 
+            edgecolor='black',
+            figsize=(15,10)
+            )
+    )
+    gdf.plot(ax=ax, color='red')
 
 #    plt.show()
 
-    # tmpfile = BytesIO()
-    # plt.savefig(tmpfile, format='png')
-    # encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
-    # html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
-    # return html
-    print ("hello11")
+    tmpfile = BytesIO()
+    plt.savefig(tmpfile, format='png')
+    encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+    html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+    return html
+    # print ("hello11")
 
 
 def personalityScoreMini():
