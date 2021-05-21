@@ -12,9 +12,11 @@ import {
     getGroupAssignment,
     getAnalyzingResponse
 } from '../../redux/actions/chatbot_actions'
-import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux';
+import DragAndDropCSV from './DragAndDropCSV'
 
 function ChatbotStat() {
+    // buttons and data displayed
     const [surveyOverviewButton, setSurveyOverviewButton] = useState(true)
     const [surveyOverviewData, setSurveyOverviewData] = useState('')
 
@@ -271,7 +273,9 @@ function ChatbotStat() {
             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We often want to survey people on their views or reactions to possible events (design or promotion, for example). There are many survey tools that are good in designing the survey, presenting it on various forms, such as web or mobile, distributing it and collecting the responses. However, when it comes to analyzing the responses, you are left with fewer options, and most of them are out-dated (SPSS, for example).</h3>
             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>In this notebook, we will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will start with loading the CSV files that we exported from the survey system (Qualtrics, in this example).</h3>
-
+            <br/>
+            <DragAndDropCSV/>
+            <br/>
             <br/>
 
             {/* BUTTONS */}
