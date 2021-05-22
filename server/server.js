@@ -5,7 +5,11 @@ const cookieParser = require('cookie-parser');
 const formidable = require('express-formidable');
 const cloudinary = require('cloudinary');
 
+var multer = require('multer')
+var cors = require('cors');
+
 const app = express();
+app.use(cors())
 const mongoose = require('mongoose');
 const async = require('async');
 require('dotenv').config();
@@ -615,6 +619,86 @@ app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
 });
+
+
+//=================================
+//             DROPZONE
+//=================================
+
+// var storage = multer.diskStorage({
+//     // destination: function (req, file, cb) {
+//     //     console.log(file)
+//     //     cb(null, 'public')
+//     // },
+//     // filename: function (req, file, cb) {
+//     //     cb(null, Date.now() + '-' +file.originalname )
+//     // }
+//     destination: "./public/uploads/",
+//       filename: function (req, file, cb) {
+//         cb(
+//           null,
+//           file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+//         );
+//       },
+// })
+
+// var upload = multer({ storage: storage, limits: { fileSize: 10000000000 } }).single('file')
+
+// const upload = multer({ dest: 'public', limits: { fileSize: 10000000000 } });
+// const csv = require('fast-csv');
+// var fs = require('fs');
+// var jsonexport = require('jsonexport');
+const { writeToPath } = require('fast-csv');
+
+app.post('/api/dropzone/uploadCSV', (req, res)=>{
+    // console.log(req);
+    // console.log('hello')
+    // res.status(200).json({success: true})       
+//     upload(req, res, function (err) {
+//         if (err instanceof multer.MulterError) {
+//             return res.status(500).json(err)
+//         } else if (err) {
+//             return res.status(500).json(err)
+//         }
+//    return res.status(200).send(req.file)
+
+    // console.log(req)
+    
+
+    const path = 'D:/ReactProjects/eCommerce_Bike_Store/client/public/c.csv';
+    const data = req.body;
+    // console.log(req)
+    const options = { headers: true, quoteColumns: true };
+
+    writeToPath(path, data, options)
+            .on('error', err => console.error(err))
+            .on('finish', () => console.log('Done writing.'));
+        return res.status(200).send({success:true})
+
+    // const fileRows = [];
+
+    // // open uploaded file
+    // csv.fromPath(req.file.path)
+    //   .on("data", function (data) {
+    //     fileRows.push(data); // push each row
+    //   })
+    //   .on("error", function () {
+    //       res.status(500).json({
+    //           message: "Failed to upload file"
+    //       });
+    //   })
+    //   .on("end", function () {
+    //     console.log(fileRows)
+    //     fs.unlinkSync(req.file.path);   // remove temp file
+        
+    //     //process "fileRows" and respond
+        
+    //      res.json({
+    //         message: "Upload Completed!"
+    //      });
+    //   })
+});
+
 
 //=================================
 //             SITE

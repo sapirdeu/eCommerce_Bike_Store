@@ -32,3 +32,5 @@ export const GET_CHATBOT_PERSONALITY_SCORE_MINI = 'get_chatbot_personality_score
 export const GET_CHATBOT_PERSONALITY_SCORE_CALC = 'get_chatbot_personality_score_calc';
 export const GET_CHATBOT_GROUP_ASSIGNMENT = 'get_chatbot_group_assignment';
 export const GET_CHATBOT_ANALYZING_RESPONSE = 'get_chatbot_analyzing_response';
+
+export const POST_DROPZONE_UPLOAD_CSV = 'post_dropzone_upload_csv';

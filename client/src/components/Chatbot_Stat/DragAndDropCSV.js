@@ -1,9 +1,12 @@
 import React from 'react'
 import { CSVReader, jsonToCSV } from 'react-papaparse'
 import axios from 'axios'
+import {postUploadCSV} from '../../redux/actions/dropzone_actions'
+import {useDispatch} from 'react-redux';
 
 
 function DragAndDropCSV() {
+    const dispatch = useDispatch();
 
     function handleOnError (err){
         console.log(err)
@@ -22,12 +25,17 @@ function DragAndDropCSV() {
         //console.log(event.type)
         if(event.type === "text/CSV" || event.type === "application/vnd.ms-excel"){
             console.log("CSV file")
-            const csvFile = jsonToCSV(file)
+            // const csvFile = jsonToCSV(file)
             //
-            const request = 
-                axios.post(`/api/product/article`, {csv: csvFile}) // CHANGE THE URL!!
-                .then(response => response.data);
-            console.log(csvFile)
+
+            dispatch(postUploadCSV(file))
+            // .then(response=>{
+            //     console.log(response)
+            // });
+            // const request = 
+            //     axios.post(`/api/product/article`, {csv: csvFile}) // CHANGE THE URL!!
+            //     .then(response => response.data);
+            // console.log(csvFile)
 
         }
         else{ 
