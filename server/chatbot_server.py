@@ -5,7 +5,17 @@ import base64
 from io import BytesIO
 import geopandas
 import numpy as np
-#import pingouin as pg
+import pingouin as pg
+import typing
+import seaborn as sns
+# # import warnings
+
+# # warnings.filterwarnings()
+# import os
+
+# # Set environment variables
+# os.environ['OUTDATED_IGNORE'] = 1
+
 
 survey_df = pd.read_csv('./server/Bot_Research.csv')
 #survey_df = pd.read_csv('D:\\ReactProjects\\eCommerce_Bike_Store\\server\\Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
@@ -191,7 +201,7 @@ def analyzingResponse():
     #return survey_questions
 
 
-def numeric_ipip_def(survey_ipip_df):
+def numeric_ipip_df(survey_ipip_df):
     numeric_survey_ipip_df = (
     survey_ipip_df
         .apply(lambda x: x.str[-1:].astype(int) if x.name.startswith('Appropriate') else x)
@@ -202,10 +212,107 @@ def numeric_ipip_def(survey_ipip_df):
     )
     return numeric_survey_ipip_df
 
+##################### Anaconda funcs ######################
+# Testing Reliability with Alpha Button
+def get_questions_for(numeric_survey_ipip_df, attribute:str):
+    '''
+    Function to return all the question of a specific attribute based on the prefix
+    of the question name
+    '''
+    return [x for x in numeric_survey_ipip_df.columns if x.startswith(attribute)]
+
+def cronbach_alpha(numeric_survey_ipip_df, str):
+    pg.cronbach_alpha(data=
+    numeric_survey_ipip_df
+    .loc[:,get_questions_for(str)])
+
+# # Cronbach-Alpha Summary Button
+# def summary_numeric_df(numeric_survey_ipip_df):
+#     summary_numeric_survey_df = (
+#     numeric_survey_ipip_df
+#     .assign(Purchase = 
+#         numeric_survey_ipip_df[get_questions_for(numeric_survey_ipip_df,'Purchase')]
+#         .mean(axis='columns')
+#     )
+#     .assign(Appropriate = 
+#         numeric_survey_ipip_df[get_questions_for(numeric_survey_ipip_df,'Appropriate')]
+#         .mean(axis='columns')
+#     )
+#     .assign(Trust = 
+#         numeric_survey_ipip_df[get_questions_for(numeric_survey_ipip_df,'Trust')]
+#         .mean(axis='columns')
+#     )
+#     .assign(Trust_Competence = 
+#         numeric_survey_ipip_df[get_questions_for(numeric_survey_ipip_df,'Trust Competence')]
+#         .mean(axis='columns')
+#     )
+#     .assign(Trust_Benevolence = 
+#         numeric_survey_ipip_df[get_questions_for(numeric_survey_ipip_df,'Trust Benevolence')]
+#         .mean(axis='columns')
+#     )
+#     .assign(Trust_Info = 
+#         numeric_survey_ipip_df[get_questions_for(numeric_survey_ipip_df,'Trust Info')]
+#         .mean(axis='columns')
+#     ))
+
+#     return summary_numeric_survey_df
+
+
+# def cronbach_alpha_summary(summary_numeric_survey_df,survey_attributes):
+#     # survey_attributes = ['Appropriate','Trust_Benevolence','Trust_Competence','Trust_Info','Purchase','Trust']
+#     # personality_attributes = ['pE','pA','pC','pN','pI']
+
+#     for attribute in survey_attributes:
+#         fig, ax = plt.subplots()
+#         (
+#             summary_numeric_survey_df
+#             [attribute]
+#             .hist(ax=ax)
+#         ).set_title(attribute)
+
+#     (
+#     summary_numeric_survey_df
+#     [survey_attributes +['group']]
+#     .boxplot(by='group', figsize=(13,8))
+#     )
+#     #make graphs suit html format
+
+
+# # Visual Differences between the groups for the questions Button
+# def visual_diffrences_graph(summary_numeric_survey_df,survey_questions):
+#     (
+#     summary_numeric_survey_df
+#     .boxplot(column=list(survey_questions.index), by='group', figsize=(14, 10))
+#     )
+
+# # Scatter with the personality attributes button
+# def scatter_personality_attr(summary_numeric_survey_df, survey_attributes):
+#     fig, ax = plt.subplots(6, 2, figsize=(10,12))
+
+#     for idx, attribute in enumerate(survey_attributes):
+#         for i,group in enumerate(sorted(summary_numeric_survey_df.group.unique())):
+#             sub_df = summary_numeric_survey_df.query('group == @group')
+#             sns.regplot(x=sub_df.pE, y=sub_df[attribute], ax=ax[idx,i])
+#             ax[idx,i].set_title(group, loc='left')
+
+#     fig.tight_layout()
+#     # fig.subplots_adjust(top=0.95)
+
+#     plt.show()
+#     # plt.clf()
+#     # plt.close()
+
+
+
 def main(argv):
     valid_survey_df = clipingOutliersSecond()
     survey_ipip_df = ipip_df(valid_survey_df)
-    numeric_survey_ipip_def = numeric_ipip_def(survey_ipip_df)
+    numeric_survey_ipip_df = numeric_ipip_df(survey_ipip_df)
+    #summary_numeric_survey_df = summary_numeric_df(numeric_survey_ipip_df)
+
+    #survey_questions = analyzingResponse()
+    #survey_attributes = ['Appropriate','Trust_Benevolence','Trust_Competence','Trust_Info','Purchase','Trust']
+    #personality_attributes = ['pE','pA','pC','pN','pI']
     
     if (argv[0] == '1'):
         surveyOverview()
@@ -226,6 +333,20 @@ def main(argv):
         print(groupAssignment(survey_ipip_df))
     elif (argv[0] == '8'):
         print(analyzingResponse())
+    elif (argv[0] == '9'):
+        print('Appropriate: ', cronbach_alpha(numeric_survey_ipip_df,'Appropriate'))
+        print('Trust: ', cronbach_alpha(numeric_survey_ipip_df,'Trust'))
+        print('Trust Competence: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Competence'))
+        print('Trust Benevolence: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Benevolence'))
+        print('Trust Info: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Info'))
+        print('Purchase: ', cronbach_alpha(numeric_survey_ipip_df,'Purchase'))
+    # elif (argv[0] == '10'):
+    #     print(cronbach_alpha_summary(summary_numeric_survey_df,survey_attributes))
+    #     print(list(survey_questions.index))
+    # elif (argv[0] == '11'):
+    #     print(visual_diffrences_graph(summary_numeric_survey_df,survey_questions))
+    # elif (argv[0]== '12'):
+    #     print(scatter_personality_attr(summary_numeric_survey_df, survey_attributes))
     else:
         print("bye")
 

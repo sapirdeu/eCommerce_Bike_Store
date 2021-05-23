@@ -441,7 +441,7 @@ function ChatbotStat() {
                             {renderHTML(respondersMapData)}
                         </>
                     :
-                        <h3>TODO: Map of responders</h3>
+                        null
                 }
             </div>
 
