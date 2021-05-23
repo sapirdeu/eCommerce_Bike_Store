@@ -7,7 +7,7 @@ import geopandas
 import numpy as np
 #import pingouin as pg
 
-survey_df = pd.read_csv('./server/Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
+survey_df = pd.read_csv('./server/Bot_Research.csv')
 #survey_df = pd.read_csv('D:\\ReactProjects\\eCommerce_Bike_Store\\server\\Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
 
 def surveyOverview():

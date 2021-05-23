@@ -665,8 +665,12 @@ app.post('/api/dropzone/uploadCSV', (req, res)=>{
     // console.log(req)
     
 
-    const path = 'D:/ReactProjects/eCommerce_Bike_Store/client/public/c.csv';
-    const data = req.body;
+    const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
+    //const reqData = req.body;
+    const data = []
+    for (var i=0; i<req.body.length; i++){
+        data[i] = req.body[i].data
+    }
     // console.log(req)
     const options = { headers: true, quoteColumns: true };
 
