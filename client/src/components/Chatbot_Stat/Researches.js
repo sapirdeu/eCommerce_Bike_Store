@@ -31,6 +31,9 @@ function Researches(props) {
     // buttons and data displayed
     //const [surveyOverviewButton, setSurveyOverviewButton] = useState(true)
     const [surveyOverviewData, setSurveyOverviewData] = useState('')
+    const [clipingOutliersData, setClipingOutliersData] = useState('')
+    const [historgramData, setHistorgramData] = useState('')
+    const [respondersMapData, setRespondersMapData] = useState('')
     // const products = props.products;
     // const [grid,setGrid] = useState('');
     // const [limit] = useState(6);
@@ -47,10 +50,27 @@ function Researches(props) {
             setSurveyOverviewData(response.payload)
         })
     }
-    // function unwatchSurveyOverviewHandler(){
-    //     setSurveyOverviewData('');
-    // }
 
+    // Clipping Outliers
+    function watchClipingOutliersHandler(){
+        dispatch(getClipingOutliers()).then(response=>{
+            setClipingOutliersData(response.payload)
+        })
+    }
+
+    // Historgram of the duration of test taking (after clipping)
+    function watchHistorgramHandler(){
+        dispatch(getHistorgram()).then(response=>{
+            setHistorgramData(response.payload)
+        })
+    }
+
+    // Map of responders
+    function watchRespondersMapHandler(){
+        dispatch(getRespondersMap()).then(response=>{
+            setRespondersMapData(response.payload)
+        })
+    }
     // useEffect(() => {
     //     // dispatch(getBrands())
     //     // dispatch(getMaterials())
@@ -73,8 +93,13 @@ function Researches(props) {
         console.log(filters1)
         for (var index in filters1){
             //console.log(index)
-            if (filters1[index]==1)
-                watchSurveyOverviewHandler();
+            switch (filters1[index]){
+                case 1: watchSurveyOverviewHandler();
+                case 2: watchClipingOutliersHandler();
+                case 3: watchHistorgramHandler();
+                case 4: watchRespondersMapHandler();
+            }
+            
         }
         setFilters(filters1);
         //const newFilters = filters;
@@ -121,6 +146,51 @@ function Researches(props) {
                                             <br/>
                                             <pre className="clipping_container">{surveyOverviewData}</pre>
                                             <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    clipingOutliersData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Clipping Outliers</h3>
+                                            <p>We want to remove outliers to avoid issues from people answering too quick or too slow. Let's calculate the 0.05 and 0.95 percentiles of the data, and then we can clip the data to be above 100 and below 900</p>
+                                            <br/>
+                                            <pre className="clipping_container">{clipingOutliersData}</pre>
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    historgramData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Historgram of the duration of test taking (after clipping)</h3>
+                                            
+                                            {renderHTML(historgramData)}
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    respondersMapData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Map of responders</h3>
+                                            <p>A general map of the location of the people taking the test</p>
+                                            {renderHTML(respondersMapData)}
                                         </>
                                     :
                                         null
