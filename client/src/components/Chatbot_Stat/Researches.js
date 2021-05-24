@@ -94,10 +94,10 @@ function Researches(props) {
         for (var index in filters1){
             //console.log(index)
             switch (filters1[index]){
-                case 1: watchSurveyOverviewHandler();
-                case 2: watchClipingOutliersHandler();
-                case 3: watchHistorgramHandler();
-                case 4: watchRespondersMapHandler();
+                case 1: watchSurveyOverviewHandler(); break;
+                case 2: watchClipingOutliersHandler(); break;
+                case 3: watchHistorgramHandler(); break;
+                case 4: watchRespondersMapHandler(); break;
             }
             
         }
