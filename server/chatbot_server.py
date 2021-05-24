@@ -5,9 +5,9 @@ import base64
 from io import BytesIO
 import geopandas
 import numpy as np
-# import pingouin as pg
-# import typing
-# import seaborn as sns
+import pingouin as pg
+import typing
+import seaborn as sns
 
 # import warnings
 # warnings.filterwarnings("ignore", category=DeprecationWarning)

@@ -572,5 +572,5 @@ app.listen(port, ()=> {
 function runSpawn(actionNum) {
     // CHANGE THE PATH TO ANACONDA
     // return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
-    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python -W ignore::DeprecationWarning ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
+    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
 }
