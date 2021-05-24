@@ -5,9 +5,13 @@ import base64
 from io import BytesIO
 import geopandas
 import numpy as np
-import pingouin as pg
-import typing
-import seaborn as sns
+# import pingouin as pg
+# import typing
+# import seaborn as sns
+
+# import warnings
+# warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 # # import warnings
 
 # # warnings.filterwarnings()
@@ -221,10 +225,10 @@ def get_questions_for(numeric_survey_ipip_df, attribute:str):
     '''
     return [x for x in numeric_survey_ipip_df.columns if x.startswith(attribute)]
 
-def cronbach_alpha(numeric_survey_ipip_df, str):
-    pg.cronbach_alpha(data=
-    numeric_survey_ipip_df
-    .loc[:,get_questions_for(str)])
+# def cronbach_alpha(numeric_survey_ipip_df, str):
+#     pg.cronbach_alpha(data=
+#     numeric_survey_ipip_df
+#     .loc[:,get_questions_for(str)])
 
 # # Cronbach-Alpha Summary Button
 # def summary_numeric_df(numeric_survey_ipip_df):
@@ -333,13 +337,13 @@ def main(argv):
         print(groupAssignment(survey_ipip_df))
     elif (argv[0] == '8'):
         print(analyzingResponse())
-    elif (argv[0] == '9'):
-        print('Appropriate: ', cronbach_alpha(numeric_survey_ipip_df,'Appropriate'))
-        print('Trust: ', cronbach_alpha(numeric_survey_ipip_df,'Trust'))
-        print('Trust Competence: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Competence'))
-        print('Trust Benevolence: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Benevolence'))
-        print('Trust Info: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Info'))
-        print('Purchase: ', cronbach_alpha(numeric_survey_ipip_df,'Purchase'))
+    # elif (argv[0] == '9'):
+    #     print('Appropriate: ', cronbach_alpha(numeric_survey_ipip_df,'Appropriate'))
+    #     print('Trust: ', cronbach_alpha(numeric_survey_ipip_df,'Trust'))
+    #     print('Trust Competence: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Competence'))
+    #     print('Trust Benevolence: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Benevolence'))
+    #     print('Trust Info: ', cronbach_alpha(numeric_survey_ipip_df,'Trust Info'))
+    #     print('Purchase: ', cronbach_alpha(numeric_survey_ipip_df,'Purchase'))
     # elif (argv[0] == '10'):
     #     print(cronbach_alpha_summary(summary_numeric_survey_df,survey_attributes))
     #     print(list(survey_questions.index))

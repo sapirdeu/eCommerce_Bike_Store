@@ -665,7 +665,8 @@ app.post('/api/dropzone/uploadCSV', (req, res)=>{
     // console.log(req)
     
 
-    const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
+    // const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
+    const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
     //const reqData = req.body;
     const data = []
     for (var i=0; i<req.body.length; i++){
@@ -736,5 +737,5 @@ app.listen(port, ()=> {
 function runSpawn(actionNum) {
     // CHANGE THE PATH TO ANACONDA
     // return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
-    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
+    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python -W ignore::DeprecationWarning ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
 }
