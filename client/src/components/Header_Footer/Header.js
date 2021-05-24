@@ -5,6 +5,8 @@ import {withRouter} from 'react-router';
 import {logoutUser} from '../../redux/actions/user_actions'
 
 function Header(props) {
+    console.log(props)
+
     const [page] = useState([
         {
             name: 'Home',
@@ -17,6 +19,20 @@ function Header(props) {
             public: true
         }
     ])
+
+    const [pageResearcher] = useState([
+        {
+            name: 'Home',
+            linkTo: '/',
+            public: true
+        },
+        {
+            name: 'Researcher',
+            linkTo: '/researcher',
+            public: true
+        }
+    ])
+
     const [user] = useState([
         {
             name: 'My Cart',
