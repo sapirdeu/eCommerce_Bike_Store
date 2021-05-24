@@ -69,4 +69,63 @@ const price = [
     },
 ]
 
-export {frontForkTravel, weight, price}
+const chatbotStatistics = [
+    {
+        "_id": 1,
+        "name": "Survey Overview"
+    },
+    {
+        "_id": 2,
+        "name": "Clipping Outliers"
+    },
+    {
+        "_id": 3,
+        "name": "Historgram of the duration of test taking (after clipping)"
+    },
+    {
+        "_id": 4,
+        "name": "Map of responders"
+    },
+    {
+        "_id": 5,
+        "name": "Personality Score - Mini-IPIP test questions"
+    },
+    {
+        "_id": 6,
+        "name": "Personality Score Calculation"
+    },
+    {
+        "_id": 7,
+        "name": "Random Groups - Group Assignment"
+    },
+    {
+        "_id": 8,
+        "name": "Analyzing the survey response to the different aspects of the experiment"
+    },
+    {
+        "_id": 9,
+        "name": "Testing Reliability with Alpha"
+    },
+    {
+        "_id": 10,
+        "name": "Analyzing the survey response to the different aspects of the experiment"
+    },
+    {
+        "_id": 11,
+        "name": "Cronbach-Alpha Summary"
+    },
+    {
+        "_id": 12,
+        "name": "Visual Differences between the groups for the questions"
+    },
+    {
+        "_id": 13,
+        "name": "Scatter with the personality attributes"
+    },
+    {
+        "_id": 14,
+        "name": "Analysis of each question"
+    }
+]
+
+export {frontForkTravel, weight, price, chatbotStatistics}

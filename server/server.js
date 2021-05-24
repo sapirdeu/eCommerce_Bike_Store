@@ -429,71 +429,30 @@ app.post('/api/users/update_profile', auth, (req, res)=>{
 //=================================
 
 app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '1']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(1);
-    // // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    // subprocess.stderr.on('close', () => {
-    //            console.log("Closed");
-    // });
-    // const subprocess = runScript()
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
 });
 
 app.get('/api/chatbot/clipingOutliers', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '2']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(2);
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    // subprocess.stderr.on('close', () => {
-    //            console.log("Closed");
-    // });
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
 });
 
 app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '3']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(3);
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    // subprocess.stderr.on('close', () => {
-    //            console.log("Closed");
-    // });
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
@@ -502,18 +461,7 @@ app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
 
 
 app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '4']);
-    //     //return runSpawn(4);
-    // }
     const subprocess = runSpawn(4);
-    // const subprocess = runScript();
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
@@ -526,40 +474,17 @@ app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
 });
 
 app.get('/api/chatbot/personalityScoreMini', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '5']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(5);
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    // subprocess.stderr.on('close', () => {
-    //            console.log("Closed");
-    // });
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
 });
 
 app.get('/api/chatbot/personalityScoreCalc', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '6']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(6);
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
@@ -573,48 +498,20 @@ app.get('/api/chatbot/personalityScoreCalc', auth, researcher, (req, res) => {
 
 
 app.get('/api/chatbot/groupAssignment', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '7']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(7);
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    // subprocess.stderr.on('close', () => {
-    //            console.log("Closed");
-    // });
-    // const subprocess = runScript()
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
 });
 
 app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
-    // const {spawn} = require('child_process');
-    // const path = require('path');
-    // function runScript(){
-    //     return spawn('python', [path.join(__dirname, './chatbot_server.py'), '8']);
-    // }
-    // const subprocess = runScript();
     const subprocess = runSpawn(8);
-    // print output of script
-    // subprocess.stdout.on('data', (data) => {
-    //         console.log(`data:${data}`);
-    // });
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
-    // subprocess.stderr.on('close', () => {
-    //            console.log("Closed");
-    // });
-    // const subprocess = runScript()
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
@@ -625,83 +522,21 @@ app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
 //             DROPZONE
 //=================================
 
-// var storage = multer.diskStorage({
-//     // destination: function (req, file, cb) {
-//     //     console.log(file)
-//     //     cb(null, 'public')
-//     // },
-//     // filename: function (req, file, cb) {
-//     //     cb(null, Date.now() + '-' +file.originalname )
-//     // }
-//     destination: "./public/uploads/",
-//       filename: function (req, file, cb) {
-//         cb(
-//           null,
-//           file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-//         );
-//       },
-// })
-
-// var upload = multer({ storage: storage, limits: { fileSize: 10000000000 } }).single('file')
-
-// const upload = multer({ dest: 'public', limits: { fileSize: 10000000000 } });
-// const csv = require('fast-csv');
-// var fs = require('fs');
-// var jsonexport = require('jsonexport');
 const { writeToPath } = require('fast-csv');
 
-app.post('/api/dropzone/uploadCSV', (req, res)=>{
-    // console.log(req);
-    // console.log('hello')
-    // res.status(200).json({success: true})       
-//     upload(req, res, function (err) {
-//         if (err instanceof multer.MulterError) {
-//             return res.status(500).json(err)
-//         } else if (err) {
-//             return res.status(500).json(err)
-//         }
-//    return res.status(200).send(req.file)
-
-    // console.log(req)
-    
-
-    // const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
-    const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
-    //const reqData = req.body;
+app.post('/api/dropzone/uploadCSV', (req, res)=>{  
+    const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
+    //const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
     const data = []
     for (var i=0; i<req.body.length; i++){
         data[i] = req.body[i].data
     }
-    // console.log(req)
     const options = { headers: true, quoteColumns: true };
 
     writeToPath(path, data, options)
             .on('error', err => console.error(err))
             .on('finish', () => console.log('Done writing.'));
         return res.status(200).send({success:true})
-
-    // const fileRows = [];
-
-    // // open uploaded file
-    // csv.fromPath(req.file.path)
-    //   .on("data", function (data) {
-    //     fileRows.push(data); // push each row
-    //   })
-    //   .on("error", function () {
-    //       res.status(500).json({
-    //           message: "Failed to upload file"
-    //       });
-    //   })
-    //   .on("end", function () {
-    //     console.log(fileRows)
-    //     fs.unlinkSync(req.file.path);   // remove temp file
-        
-    //     //process "fileRows" and respond
-        
-    //      res.json({
-    //         message: "Upload Completed!"
-    //      });
-    //   })
 });
 
 

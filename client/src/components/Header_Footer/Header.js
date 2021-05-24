@@ -4,9 +4,9 @@ import {useDispatch,connect} from 'react-redux'
 import {withRouter} from 'react-router';
 import {logoutUser} from '../../redux/actions/user_actions'
 
-function Header(props) {
-    console.log(props)
 
+
+function Header(props) {
     const [page] = useState([
         {
             name: 'Home',
@@ -27,8 +27,8 @@ function Header(props) {
             public: true
         },
         {
-            name: 'Researcher',
-            linkTo: '/researcher',
+            name: 'Researches',
+            linkTo: '/researches',
             public: true
         }
     ])
@@ -138,7 +138,13 @@ function Header(props) {
                         {showLinks(user)} 
                     </div>
                     <div className="bottom">
-                        {showLinks(page)}
+                        {
+                            props?.user?.userData?.isResearcher ?
+                                showLinks(pageResearcher)
+                                :
+                                showLinks(page)
+                        }
+                        
                     </div>
                 </div >
             </div>
