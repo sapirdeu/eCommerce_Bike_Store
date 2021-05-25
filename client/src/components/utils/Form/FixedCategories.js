@@ -108,22 +108,18 @@ const chatbotStatistics = [
     },
     {
         "_id": 10,
-        "name": "Analyzing the survey response to the different aspects of the experiment"
-    },
-    {
-        "_id": 11,
         "name": "Cronbach-Alpha Summary"
     },
     {
-        "_id": 12,
+        "_id": 11,
         "name": "Visual Differences between the groups for the questions"
     },
     {
-        "_id": 13,
+        "_id": 12,
         "name": "Scatter with the personality attributes"
     },
     {
-        "_id": 14,
+        "_id": 13,
         "name": "Analysis of each question"
     }
 ]

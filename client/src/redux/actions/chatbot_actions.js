@@ -7,7 +7,12 @@ import {
     GET_CHATBOT_HISTOGRAM,
     GET_CHATBOT_PERSONALITY_SCORE_CALC,
     GET_CHATBOT_GROUP_ASSIGNMENT,
-    GET_CHATBOT_ANALYZING_RESPONSE
+    GET_CHATBOT_ANALYZING_RESPONSE,
+    GET_CHATBOT_TESTING_RELIABILITY,
+    GET_CHATBOT_CRONBACH_ALPHA,
+    GET_CHATBOT_VISUAL_DIFFERENCES,
+    GET_CHATBOT_SCATTER,
+    GET_CHATBOT_ANALYSIS_QUESTION
 } from './Types'
 import {CHATBOT_SERVER} from '../../components/utils/Misc'
 
@@ -99,6 +104,61 @@ function getAnalyzingResponse(){
     }
 }
 
+function getTestingReliability(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/testingReliability`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_TESTING_RELIABILITY, 
+        payload: request
+    }
+}
+
+function getCronbachAlpha(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/cronbachAlpha`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_CRONBACH_ALPHA, 
+        payload: request
+    }
+}
+
+function getVisualDifferences(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/visualDifferences`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_VISUAL_DIFFERENCES, 
+        payload: request
+    }
+}
+
+function getScatter(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/scatter`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_SCATTER, 
+        payload: request
+    }
+}
+
+function getAnalysisQuestion(){    
+    const request = 
+        axios.get(`${CHATBOT_SERVER}/analysisQuestion`)
+        .then(response => response.data);
+    
+    return {
+        type: GET_CHATBOT_ANALYSIS_QUESTION, 
+        payload: request
+    }
+}
+
 // function clearProductDetail(){
 //     return {
 //         type: CLEAR_PRODUCT_DETAIL, 
@@ -115,5 +175,10 @@ export {
     getPersonalityScoreMini,
     getPersonalityScoreCalc,
     getGroupAssignment,
-    getAnalyzingResponse
+    getAnalyzingResponse,
+    getTestingReliability,
+    getCronbachAlpha,
+    getVisualDifferences,
+    getScatter,
+    getAnalysisQuestion
 }

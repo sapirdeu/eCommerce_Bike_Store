@@ -517,6 +517,55 @@ app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
     subprocess.stderr.pipe(res);
 });
 
+app.get('/api/chatbot/testingReliability', auth, researcher, (req, res) => {
+    const subprocess = runSpawn(9);
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+app.get('/api/chatbot/cronbachAlpha', auth, researcher, (req, res) => {
+    const subprocess = runSpawn(10);
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+app.get('/api/chatbot/visualDifferences', auth, researcher, (req, res) => {
+    const subprocess = runSpawn(11);
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+app.get('/api/chatbot/scatter', auth, researcher, (req, res) => {
+    const subprocess = runSpawn(12);
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
+
+app.get('/api/chatbot/analysisQuestion', auth, researcher, (req, res) => {
+    const subprocess = runSpawn(13);
+    subprocess.stderr.on('data', (data) => {
+           console.log(`error:${data}`);
+    });
+    res.set('Content-Type', 'text/plain');
+    subprocess.stdout.pipe(res);
+    subprocess.stderr.pipe(res);
+});
 
 //=================================
 //             DROPZONE
@@ -525,8 +574,8 @@ app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
 const { writeToPath } = require('fast-csv');
 
 app.post('/api/dropzone/uploadCSV', (req, res)=>{  
-    const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
-    //const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
+    // const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
+    const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
     const data = []
     for (var i=0; i<req.body.length; i++){
         data[i] = req.body[i].data

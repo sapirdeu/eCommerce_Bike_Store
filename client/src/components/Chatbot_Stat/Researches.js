@@ -23,7 +23,12 @@ import {
     getPersonalityScoreMini,
     getPersonalityScoreCalc,
     getGroupAssignment,
-    getAnalyzingResponse
+    getAnalyzingResponse,
+    getTestingReliability,
+    getCronbachAlpha,
+    getVisualDifferences,
+    getScatter,
+    getAnalysisQuestion
 } from '../../redux/actions/chatbot_actions'
 import DragAndDropCSV from './DragAndDropCSV'
 
@@ -34,6 +39,141 @@ function Researches(props) {
     const [clipingOutliersData, setClipingOutliersData] = useState('')
     const [historgramData, setHistorgramData] = useState('')
     const [respondersMapData, setRespondersMapData] = useState('')
+    const [personalityScoreMiniData, setPersonalityScoreMiniData] = useState('')
+    const [personalityScoreCalcData, setPersonalityScoreCalcData] = useState('')
+    const [groupAssignmentData, setGroupAssignmentData] = useState('')
+    const [analyzingResponseData, setAnalyzingResponseData] = useState('')
+    
+    const [testingReliabilityData, setTestingReliabilityData] = useState('')
+    const [cronbachAlphaData, setCronbachAlphaData] = useState('')
+    const [visualDifferencesData, setVisualDifferencesData] = useState('')
+    const [scatterData, setScatterData] = useState('')
+    const [analysisQuestionData, setAnalysisQuestionData] = useState('')
+
+
+    let columns = [
+        {
+          heading: 'Item',
+          property: 'item'
+        },
+        {
+          heading: 'Factor',
+          property: 'factor'
+        },
+        {
+          heading: 'Text',
+          property: 'text'
+        }
+    ]
+
+    //Data is the array of objects to be placed into the table
+    let data = [
+        {
+            item: '1',
+            factor: 'E',
+            text: 'Am the life of the party.',
+        },
+        {
+            item: '2',
+            factor: 'A',
+            text: 'Sympathize with others’ feelings',
+        },
+        {
+            item: '3',
+            factor: 'C',
+            text: 'Get chores done right away.',
+        },
+        {
+            item: '4',
+            factor: 'N',
+            text: 'Have frequent mood swings.',
+        },
+        {
+            item: '5',
+            factor: 'I',
+            text: 'Have a vivid imagination.',
+        },
+        {
+            item: '6',
+            factor: 'E',
+            text: 'Don’t talk a lot. (R)',
+        },
+        {
+            item: '7',
+            factor: 'A',
+            text: 'Am not interested in other people’s problems. (R)',
+        },
+        {
+            item: '8',
+            factor: 'C',
+            text: 'Often forget to put things back in their proper place. (R)',
+        },
+        {
+            item: '9',
+            factor: 'N',
+            text: 'Am relaxed most of the time. (R)',
+        },
+        {
+            item: '10',
+            factor: 'I',
+            text: 'Am not interested in abstract ideas. (R)',
+        },
+        {
+            item: '11',
+            factor: 'E',
+            text: 'Talk to a lot of different people at parties.',
+        },
+        {
+            item: '12',
+            factor: 'A',
+            text: 'Sympathize with others’ feelings',
+        },
+        {
+            item: '13',
+            factor: 'C',
+            text: 'Like order.',
+        },
+        {
+            item: '14',
+            factor: 'N',
+            text: 'Get upset easily.',
+        },
+        {
+            item: '15',
+            factor: 'I',
+            text: 'Have difficulty understanding abstract ideas. (R)',
+        },
+        {
+            item: '16',
+            factor: 'E',
+            text: 'Keep in the background. (R)',
+        },
+        {
+            item: '17',
+            factor: 'A',
+            text: 'Am not really interested in others. (R)',
+        },
+        {
+            item: '18',
+            factor: 'C',
+            text: 'Make a mess of things. (R)',
+        },
+        {
+            item: '19',
+            factor: 'N',
+            text: 'Seldom feel blue. (R)',
+        },
+        {
+            item: '20',
+            factor: 'I',
+            text: 'Do not have a good imagination. (R)',
+        }
+    ]
+
+    
+
+
+
     // const products = props.products;
     // const [grid,setGrid] = useState('');
     // const [limit] = useState(6);
@@ -71,6 +211,67 @@ function Researches(props) {
             setRespondersMapData(response.payload)
         })
     }
+
+    // Personality Score Mini-IPIP test questions
+    function watchPersonalityScoreMiniHandler(){
+        dispatch(getPersonalityScoreMini()).then(response=>{
+            setPersonalityScoreMiniData(response.payload)
+        })
+    }
+
+    // Personality Score calculation
+    function watchPersonalityScoreCalcHandler(){
+        dispatch(getPersonalityScoreCalc()).then(response=>{
+            setPersonalityScoreCalcData(response.payload)
+        })
+    }
+
+    // Random Groups - Group Assignment
+    function watchGroupAssignmentHandler(){
+        dispatch(getGroupAssignment()).then(response=>{
+            setGroupAssignmentData(response.payload)
+        })
+    }
+
+    // Analyzing the survey response to the different aspects of the experiment
+    function watchAnalyzingResponseHandler(){
+        dispatch(getAnalyzingResponse()).then(response=>{
+            setAnalyzingResponseData(response.payload)
+        })
+    }
+
+    function watchTestingReliabilityHandler(){
+        dispatch(getTestingReliability()).then(response=>{
+            setTestingReliabilityData(response.payload)
+        })
+    }
+
+    function watchCronbachAlphaHandler(){
+        dispatch(getCronbachAlpha()).then(response=>{
+            setCronbachAlphaData(response.payload)
+        })
+    }
+
+    function watchVisualDifferencesHandler(){
+        dispatch(getVisualDifferences()).then(response=>{
+            setVisualDifferencesData(response.payload)
+        })
+    }
+
+    function watchScatterHandler(){
+        dispatch(getScatter()).then(response=>{
+            setScatterData(response.payload)
+        })
+    }
+
+    function watchAnalysisQuestionHandler(){
+        dispatch(getAnalysisQuestion()).then(response=>{
+            setAnalysisQuestionData(response.payload)
+        })
+    }
+
+
+
     // useEffect(() => {
     //     // dispatch(getBrands())
     //     // dispatch(getMaterials())
@@ -98,6 +299,15 @@ function Researches(props) {
                 case 2: watchClipingOutliersHandler(); break;
                 case 3: watchHistorgramHandler(); break;
                 case 4: watchRespondersMapHandler(); break;
+                case 5: watchPersonalityScoreMiniHandler(); break;
+                case 6: watchPersonalityScoreCalcHandler(); break;
+                case 7: watchGroupAssignmentHandler(); break;
+                case 8: watchAnalyzingResponseHandler(); break;
+                case 9: watchTestingReliabilityHandler(); break;
+                case 10: watchCronbachAlphaHandler(); break;
+                case 11: watchVisualDifferencesHandler(); break;
+                case 12: watchScatterHandler(); break;
+                case 13: watchAnalysisQuestionHandler(); break;
             }
             
         }
@@ -126,15 +336,15 @@ function Researches(props) {
                     </div>
 
                     <div className="right">
-                    <div>
-                        <h1>Survey Analysis</h1>
-                        <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We often want to survey people on their views or reactions to possible events (design or promotion, for example). There are many survey tools that are good in designing the survey, presenting it on various forms, such as web or mobile, distributing it and collecting the responses. However, when it comes to analyzing the responses, you are left with fewer options, and most of them are out-dated (SPSS, for example).</h3>
-                        <h3 style={{fontWeight:"normal", fontSize:"15px"}}>In this notebook, we will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
-                        <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will start with loading the CSV files that we exported from the survey system (Qualtrics, in this example).</h3>
-                        <br/>
-                        <DragAndDropCSV/>
-                        <br/>
-                        <br/>
+                        <div>
+                            <h1>Survey Analysis</h1>
+                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We often want to survey people on their views or reactions to possible events (design or promotion, for example). There are many survey tools that are good in designing the survey, presenting it on various forms, such as web or mobile, distributing it and collecting the responses. However, when it comes to analyzing the responses, you are left with fewer options, and most of them are out-dated (SPSS, for example).</h3>
+                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>In this notebook, we will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
+                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will start with loading the CSV files that we exported from the survey system (Qualtrics, in this example).</h3>
+                            <br/>
+                            <DragAndDropCSV/>
+                            <br/>
+                            <br/>
                             {/* RESULTS */}
                             <div>
                                 {
@@ -174,7 +384,6 @@ function Researches(props) {
                                         <>
                                             <br/>
                                             <h3>Historgram of the duration of test taking (after clipping)</h3>
-                                            
                                             {renderHTML(historgramData)}
                                             <br></br><br></br>
                                         </>
@@ -197,8 +406,165 @@ function Researches(props) {
                                 }
                             </div>
 
-                        </div>
+                            <div>
+                                {
+                                    personalityScoreMiniData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Personality Score - Mini-IPIP test questions</h3>
+                                            <p>The part of the survey was a personality score that we need to analyze to build the score of each responder. First, let's get the questions that are written in the first line (index=0) of the table. We want the 20 questions from E1 to index I20R. The letter (E, A ...) represents the personality attribute tested, and the R signifies that we need to reverse the score.</p>
+                                            <br/>
+                                            <p>Based on: "The Mini-IPIP Scales: Tiny-Yet-Effective Measures of the Big Five Factors of Personality"</p>
+                                            <br/>
+                                            <p>Appendix 20-Item Mini-IPIP</p>
+                                            <br/>
 
+                                            <div className="clipping_container">
+                                                <Table striped bordered hover size="sm">
+                                                    <thead>
+                                                        <tr>{columns.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {data.map(item => 
+                                                            <tr key={`${item.item}-row`}>
+                                                                {columns.map(col => <td key={`${item.item}-${col.property}`}>{item[col.property]}</td>)}
+                                                            </tr>
+                                                        )}
+                                                    </tbody>
+                                                </Table>
+                                                <br/>
+                                                <pre>{personalityScoreMiniData}</pre>
+                                            </div>
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    personalityScoreCalcData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Personality Score Calculation</h3>
+                                            <p>We will calculate the score of each of the personality attributes based on the score of the various questions for each</p>
+                                            {renderHTML(personalityScoreCalcData)}
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    groupAssignmentData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Random Groups - Group Assignment</h3>
+                                            <p>The survey system is randomaly assigning each participat to one of the group by showing either the Introvert or the Extrovert dialog.</p>
+                                            <p>The following cell is calculating the group assignment, based on which answer each participant gave.</p>
+                                            <p>We expect see almost equal sizes for the groups:</p>
+                                            <pre>{renderHTML(groupAssignmentData)}</pre>
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    analyzingResponseData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Analyzing the survey response to the different aspects of the experiment</h3>
+                                            <p>We will take all the questions between the first and last survey attribute questions.</p>
+                                            <br/>
+                                            <pre className="clipping_container">{analyzingResponseData}</pre>
+                                            <br></br>
+                                            <p>We will extract the numeric value of the asnwers (removing the textual "Strongly Disagree", etc.)</p>
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    testingReliabilityData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Testing Reliability with Alpha</h3>
+                                            <p>We will calculate the Cronbach-Alpha score for each set of related questions.</p>
+                                            <br/>
+                                            <pre>{testingReliabilityData}</pre>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    cronbachAlphaData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Cronbach-Alpha Summary</h3>
+                                            <p>All the question groups got a score above 0.7 (except for Trust Info with 0.69), which is the threahold for reliability.</p>
+                                            {renderHTML(cronbachAlphaData)}
+                                            <br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    visualDifferencesData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Visual Differences between the groups for the questions</h3>
+                                            <p>Visualizing the Differences between the groups as box plots.</p>
+                                            {renderHTML(visualDifferencesData)}
+                                            <br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    scatterData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Scatter with the personality attributes</h3>
+                                            {renderHTML(scatterData)}
+                                            <br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    analysisQuestionData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h3>Analysis of each question</h3>
+                                            {renderHTML(analysisQuestionData)}
+                                            <br></br>
+                                        </>
+                                    :
+                                    null
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

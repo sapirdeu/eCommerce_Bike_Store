@@ -32,5 +32,10 @@ export const GET_CHATBOT_PERSONALITY_SCORE_MINI = 'get_chatbot_personality_score
 export const GET_CHATBOT_PERSONALITY_SCORE_CALC = 'get_chatbot_personality_score_calc';
 export const GET_CHATBOT_GROUP_ASSIGNMENT = 'get_chatbot_group_assignment';
 export const GET_CHATBOT_ANALYZING_RESPONSE = 'get_chatbot_analyzing_response';
+export const GET_CHATBOT_TESTING_RELIABILITY = 'get_chatbot_testing_reliability';
+export const GET_CHATBOT_CRONBACH_ALPHA = 'get_chatbot_cronbach_alpha';
+export const GET_CHATBOT_VISUAL_DIFFERENCES = 'get_chatbot_visual_differences';
+export const GET_CHATBOT_SCATTER = 'get_chatbot_scatter';
+export const GET_CHATBOT_ANALYSIS_QUESTION = 'get_chatbot_analysis_question';
 
 export const POST_DROPZONE_UPLOAD_CSV = 'post_dropzone_upload_csv';

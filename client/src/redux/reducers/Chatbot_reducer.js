@@ -6,7 +6,12 @@ import {
     GET_CHATBOT_PERSONALITY_SCORE_MINI,
     GET_CHATBOT_PERSONALITY_SCORE_CALC,
     GET_CHATBOT_GROUP_ASSIGNMENT,
-    GET_CHATBOT_ANALYZING_RESPONSE
+    GET_CHATBOT_ANALYZING_RESPONSE,
+    GET_CHATBOT_TESTING_RELIABILITY,
+    GET_CHATBOT_CRONBACH_ALPHA,
+    GET_CHATBOT_VISUAL_DIFFERENCES,
+    GET_CHATBOT_SCATTER,
+    GET_CHATBOT_ANALYSIS_QUESTION
 } from '../actions/Types'
 
 const fun = (state = {}, action) => {
@@ -27,6 +32,16 @@ const fun = (state = {}, action) => {
         return {...state, groupAssignment: action.payload}
       case GET_CHATBOT_ANALYZING_RESPONSE:
         return {...state, analyzingResponse: action.payload}
+      case GET_CHATBOT_TESTING_RELIABILITY:
+        return {...state, testingReliability: action.payload}
+      case GET_CHATBOT_CRONBACH_ALPHA:
+        return {...state, cronbachAlpha: action.payload}
+      case GET_CHATBOT_VISUAL_DIFFERENCES:
+        return {...state, visualDifferences: action.payload}
+      case GET_CHATBOT_SCATTER:
+        return {...state, scatter: action.payload}
+      case GET_CHATBOT_ANALYSIS_QUESTION:
+        return {...state, analysisQuestion: action.payload}
       default:
         return state
     }
