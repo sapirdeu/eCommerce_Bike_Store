@@ -11,12 +11,14 @@ from sklearn.cluster import KMeans
 from sklearn.ensemble import IsolationForest, RandomForestRegressor
 from sklearn.decomposition import PCA
 from sklearn.svm import SVR
+from scipy.stats import ttest_ind
 
 warnings.filterwarnings('ignore')
 
 CSV_PATH = "./bike_sharing.csv"
 CSV_ANOM_PATH = "./anomalies.csv"
 CSV_NO_ANOMALIES_PATH = "./bike_sharing_no_anomalies.csv"
+
 
 # - instant: record index
 # - dteday : date
@@ -27,10 +29,9 @@ CSV_NO_ANOMALIES_PATH = "./bike_sharing_no_anomalies.csv"
 # - weekday : day of the week
 # - workingday : if day is neither weekend nor holiday is 1, otherwise is 0.
 # + weathersit :
-#    - 1: Clear, Few clouds, Partly cloudy
+#    - 1: Clear, Few clouds, Partly cloudy, Partly cloudy
 #    - 2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist
 #    - 3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds
-#    - 4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
 # - temp : Normalized temperature in Celsius. The values are divided to 41 (max)
 # - atemp: Normalized feeling temperature in Celsius. The values are divided to 50 (max)
 # - hum: Normalized humidity. The values are divided to 100 (max)
@@ -62,17 +63,11 @@ def prepareData(csvPath):
     # reading csv file
     df = pd.read_csv(csvPath)
 
-    # peeking first 5 rows to make sure file was read properly
-    print(df.head())
-
     # info about the data- checking missing values and the datatypes of the features
     print(df.info())
 
     # fix datatypes
     df = fixingDatatypes(df)
-
-    # getting some interesting info about count
-    print(df['cnt'].describe())
 
     # check the correlation of the features
     plotHeatmap(df)
@@ -93,18 +88,19 @@ def prepareData(csvPath):
 # showing the heatmap to check linear correlation between features
 def plotHeatmap(df):
     # check the correlation of the features
+    plt.subplots(figsize=(9, 9))
     heatmapFeatures = df[['cnt', 'season', 'yr', 'mnth', 'holiday', 'weekday', 'workingday',
                           'weathersit', 'temp', 'atemp', 'hum', 'windspeed']]
     sns.heatmap(abs(heatmapFeatures.corr()), square=True, annot=True, cmap="Reds")
-    plt.show()  #heatmap graph
+    plt.show()  # heatmap graph
 
 
 # receives the model with the data and executes it. returns the loss and the predictions
 def executeModel(model, x_train, x_test, y_train, y_test):
     model.fit(x_train, y_train[:, 2])
     y_hat = model.predict(x_test)
-    #print(np.round(y_hat))
-    #print(y_test[:, 2])
+    # print(np.round(y_hat))
+    # print(y_test[:, 2])
     # Mean Square Error- the sum of squared distances between the target variable and predicted values
     # We chose MSE as our loss function because it is outlier sensitive: sigma((y_hat-y_test)^2)
     modelMSE = mean_squared_error(y_hat, y_test[:, 2])
@@ -115,6 +111,7 @@ def executeModel(model, x_train, x_test, y_train, y_test):
 
 # plot the graph for each model
 def plotModelGraph(y_test, y_hat, sign, model_name):
+    plt.subplots(figsize=(8, 6))
     plt.plot(y_test[:, 2], y_hat, sign)
     plt.xlabel("Predicted Value")
     plt.ylabel("Count Value")
@@ -195,10 +192,10 @@ def zScoreNormalize(reduced_df):
 # performing K-Means end to end: elbow function, choosing k, clusters, anomalies
 def K_Means(df, reduced_df):
     # elbow method to choose K
-    n_cluster = range(1, 12)
+    n_cluster = range(1, 10)
     kmeans = [KMeans(n_clusters=i).fit(reduced_df) for i in n_cluster]
     scores = [kmeans[i].score(reduced_df) for i in range(len(kmeans))]
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(6, 3))
     ax.plot(n_cluster, scores)
     plt.show()
 
@@ -207,6 +204,7 @@ def K_Means(df, reduced_df):
     df['cluster'] = kmeans[cluster_index].predict(reduced_df)
     df['PCA1'] = reduced_df[0]
     df['PCA2'] = reduced_df[1]
+    plt.subplots(figsize=(8, 6))
     plt.yticks(df['cluster'].value_counts())
     df['cluster'].value_counts().plot.bar()
     plt.show()
@@ -250,7 +248,7 @@ def Isolation_forest(df, reduced_df):
 
 # plot the graph for the anomalies
 def plotAnomalyGraph(df, hue_name):
-    plt.subplots(figsize=(7, 7))
+    plt.subplots(figsize=(10, 8))
     sns.scatterplot(df['PCA1'], df['PCA2'], hue=df[hue_name],
                     data=df, style=df["cluster"])
     plt.show()
@@ -266,14 +264,167 @@ def saveAnomalies(df):
     print(df['Anom-Isol'].value_counts())
 
 
+############################################
+def ttest(df):
+    # As we can see below season has an impact on bikeshare usage.
+    # There are the least number of rides in winter and the greatest in summer.
+    # The large T-Value of -20.41 and the small P-Value of 2.12e-62 tell us there is
+    # a significant difference between summer and winter ridership.
+    # The differences in ridership between Spring and Fall however are not significant
+    # with a small T-value of 1.48 and a large P-Value of 0.14.
+    print('Winter vs. Spring:')
+    print(ttest_ind(df.cnt[df['season'] == 1], df.cnt[df['season'] == 2]))
+    print("")
+    print('Winter vs. Summer:')
+    print(ttest_ind(df.cnt[df['season'] == 1], df.cnt[df['season'] == 3]))
+    print("")
+    print('Winter vs. Fall:')
+    print(ttest_ind(df.cnt[df['season'] == 1], df.cnt[df['season'] == 4]))
+    print("")
+    print('Spring vs. Fall:')
+    print(ttest_ind(df.cnt[df['season'] == 2], df.cnt[df['season'] == 4]))
+    print("")
+    print('Spring vs. Summer:')
+    print(ttest_ind(df.cnt[df['season'] == 2], df.cnt[df['season'] == 3]))
+    print("")
+    print('Summer vs. Fall:')
+    print(ttest_ind(df.cnt[df['season'] == 3], df.cnt[df['season'] == 4]))
+    print("")
+
+
+def rideBySeason(df):
+    fig, ax = plt.subplots()
+    sns.barplot(data=df[['season', 'cnt']],
+                x='season',
+                y='cnt',
+                ax=ax)
+
+    plt.title('Capital Bikeshare Ridership by Season')
+    plt.ylabel('Total Rides')
+    plt.xlabel('Season')
+
+    tick_val = [0, 1, 2, 3]
+    tick_lab = ['Winter', 'Spring', 'Summer', 'Fall']
+    plt.xticks(tick_val, tick_lab)
+
+    plt.show()
+
+
+def rideByMonth(df):
+    fig, ax = plt.subplots()
+    sns.barplot(data=df[['mnth', 'cnt']], x='mnth', y='cnt', ax=ax)
+
+    plt.title('Capital Bikeshare Ridership by mnth')
+    plt.ylabel('Total Rides')
+    plt.xlabel('mnth')
+
+    tick_val = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    tick_lab = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
+                'Nov', 'Dec']
+    plt.xticks(tick_val, tick_lab)
+
+    plt.show()
+
+
+def rideByDay(df):
+    # create a column for the day of the month, range 1-31
+    df['day_of_month'] = df.dteday.str[:2]
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    sns.pointplot(data=df[['day_of_month', 'cnt', 'season']],
+                  x='day_of_month',
+                  y='cnt',
+                  hue='season',
+                  ax=ax)
+
+    plt.title('Capital Bikeshare Ridership by Day')
+    plt.ylabel('Total Rides')
+    plt.xlabel('Day of Month')
+
+    leg_handles = ax.get_legend_handles_labels()[0]
+    ax.legend(leg_handles, ['Winter', 'Spring', 'Summer', 'Fall'], title='Season', bbox_to_anchor=(1, 1), loc=2)
+    plt.show()
+
+
+def rideByWeather(df):
+    # As we can see below, types of weather has a large impact on ridership.
+    # There are significantly less rides during snow and thunderstorms than during periods of nicer weather.
+    # We can also see that this trend holds up across all seasons
+    plt.rcParams['figure.figsize'] = [13.0, 10.0]
+    sns.set_context('talk', font_scale=0.8)
+
+    g = sns.FacetGrid(data=df,
+                      col='season',
+                      row='weathersit', hue='season')
+    g.map(plt.hist, 'cnt')
+    plt.subplots_adjust(top=0.9)
+    g.fig.suptitle('Capital Bikeshare Ridership by Weather Type')
+
+    g.set_xlabels('Total Rides')
+    g.set_ylabels('Frequency')
+
+    plt.show()
+
+
+def countPerDay(df):
+    df.cnt.plot(title="Count of total rental bikes per day")
+    plt.xlabel("")
+    plt.ylabel("Count")
+    plt.tight_layout()
+    plt.show()
+
+
+def pieChartBySeason(df):
+    season_data = df[['season', 'cnt']]
+    grouped_data = season_data.groupby('season', as_index=False).sum()
+    grouped_data['season'].replace([1, 2, 3, 4], ['spring', 'summer', 'fall', 'winter'], inplace=True)
+
+    plt.figure(figsize=(6, 6))
+    plt.pie(grouped_data['cnt'],
+            labels=grouped_data['season'],
+            autopct='%.1f',
+            wedgeprops={'linewidth': 4,
+                        'edgecolor': "white"})
+
+    plt.suptitle('Percentage count of Bike Rentals by Season')
+    plt.show()
+
+
+def analyzeData(CSV_PATH):
+    df = pd.read_csv(CSV_PATH)
+
+    # peeking first 5 rows to make sure file was read properly
+    print(df.head())
+
+    # getting some interesting info about count
+    print(df['cnt'].describe())
+
+    # plot count graph per day
+    countPerDay(df)
+
+    # question: does season affect bikeshare usage? yes
+    ttest(df)
+    rideBySeason(df)
+    pieChartBySeason(df)
+    rideByMonth(df)
+    rideByDay(df)
+
+    # question: does weather affect bikeshare usage? yes
+    rideByWeather(df)
+
+
+############################################
 if __name__ == '__main__':
+    # analyze data.
+    analyzeData(CSV_PATH)
+
     # predict count before anomaly-detector.
-    #predictCount(CSV_PATH)
+    predictCount(CSV_PATH)
 
     # detect anomalies.
     detectAnomalies(CSV_PATH)
 
     # predict count after anomalies are removed from the dataset -> loss is lower -> better accuracy.
-    #predictCount(CSV_NO_ANOMALIES_PATH)
+    predictCount(CSV_NO_ANOMALIES_PATH)
 
     print("\n\nTHE END\n\n")
