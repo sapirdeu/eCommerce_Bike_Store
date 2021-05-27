@@ -90,14 +90,11 @@ def respondersMap(valid_survey_df):
     )
     gdf.plot(ax=ax, color='red')
 
-#    plt.show()
-
     tmpfile = BytesIO()
     plt.savefig(tmpfile, format='png')
     encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
     html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
     return html
-    # print ("hello11")
 
 
 def personalityScoreMini():
@@ -144,7 +141,6 @@ def ipip_df(valid_survey_df):
     return survey_ipip_df
 
 def personalityScoreCalcFirst(survey_ipip_df):
-    #survey_ipip_df = ipip_df(valid_survey_df)
     (
         survey_ipip_df
         .pE
@@ -160,7 +156,6 @@ def personalityScoreCalcFirst(survey_ipip_df):
 
 
 def personalityScoreCalcSecond(survey_ipip_df):
-    #survey_ipip_df = ipip_df(valid_survey_df)
     plt.gca().cla()
 
     (
@@ -178,25 +173,24 @@ def personalityScoreCalcSecond(survey_ipip_df):
 
 
 def groupAssignment(survey_ipip_df):
-        #survey_ipip_df = ipip_df(valid_survey_df)
-        survey_ipip_df['group'] = np.select(
-            [
-                survey_ipip_df['Introvert_Time_Page Submit'].notnull(), 
-                survey_ipip_df['Extrovert_Time_Page Submit'].notnull(), 
-            ], 
-            [
-                'Introvert Bot', 
-                'Extrovert Bot'
-            ], 
-            default='Unknown'
-        )
+    survey_ipip_df['group'] = np.select(
+        [
+            survey_ipip_df['Introvert_Time_Page Submit'].notnull(), 
+            survey_ipip_df['Extrovert_Time_Page Submit'].notnull(), 
+        ], 
+        [
+            'Introvert Bot', 
+            'Extrovert Bot'
+        ], 
+        default='Unknown'
+    )
 
-        return (
-            survey_ipip_df
-            .groupby('group')
-            ['Finished']
-            .count()
-        )
+    return (
+        survey_ipip_df
+        .groupby('group')
+        ['Finished']
+        .count()
+    )
 
 
 def analyzingResponse():
@@ -282,12 +276,9 @@ def cronbachAlphaSummaryFirst(summary_numeric_survey_df,survey_attributes):
         html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
 
         print(html)
-
+    
 
 def cronbachAlphaSummarySecond(summary_numeric_survey_df,survey_attributes):
-    # attributes = survey_attributes +['group']
-    # print(attributes)
-    # print(summary_numeric_survey_df)
     plt.gca().cla()
 
     (
@@ -301,10 +292,6 @@ def cronbachAlphaSummarySecond(summary_numeric_survey_df,survey_attributes):
     html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
 
     print(html)
-
-    # print("\n\n\n\nADDDDDDDDDDDDD: cronbachAlphaSummarySecond\n\n\n\n\n\n\n\n")
-
-
 
 
 # Visual Differences between the groups for the questions Button
@@ -324,6 +311,7 @@ def visualDiffrencesGraph(summary_numeric_survey_df,survey_questions):
     html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
 
     print(html)
+
 
 # Scatter with the personality attributes button
 def scatterPersonalityAttrFirst(summary_numeric_survey_df, survey_attributes):
@@ -380,20 +368,61 @@ def scatterPersonalityAttrSecond(survey_attributes, personality_attributes, summ
             row.append(anova_table.iloc[2,3])
 
         table.append(row)
-
     df_sig = pd.DataFrame(table, columns=['Attribute'] + personality_attributes)
+    df_sig.style.applymap(color_yellow)
+    return df_sig
 
+
+def plotBuild(survey_questions,summary_numeric_survey_df):
+### PLOT BUILD
+    for index, q in survey_questions.items():
+        fig, ax = plt.subplots(1, 4, figsize=(12,5))
+        for i,group in enumerate(sorted(summary_numeric_survey_df.group.unique())):
+
+            sub_df = summary_numeric_survey_df.query('group == @group')
+            sns.regplot(x=sub_df.pE, y=sub_df[index], ax=ax[i])
+            ax[i].set_title(group, loc='left')
+            sns.regplot(x=sub_df.pI, y=sub_df[index], ax=ax[2+i])
+            ax[2+i].set_title(group, loc='left')
+
+        fig.tight_layout()
+        tmpfile = BytesIO()
+        plt.savefig(tmpfile, format='png')
+        encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+        html = '<img src=\'data:image/png;base64,{}\'>'.format(encoded)
+        print(html)
+        #plt.show()
+
+def createLastTable(survey_questions, personality_attributes,summary_numeric_survey_df):
+    specialChars = "!#$%^&*() '" 
+    table = []
+    for q in survey_questions.keys():
+        cleanQ = q
+        for specialChar in specialChars:
+            cleanQ = cleanQ.replace(specialChar, '')
+        row = [cleanQ]
+        for personality_attr in personality_attributes:
+            model = ols(
+                f'{cleanQ} ~ C(group) * {personality_attr}', 
+                data=summary_numeric_survey_df
+                .loc[:,[personality_attr,q,'group']]
+                .rename(columns={q:cleanQ})
+            ).fit()
+            anova_table = sm.stats.anova_lm(model, typ=2)
+            # display(anova_table)
+            row.append(anova_table.iloc[2,3])
+        table.append(row)
+    df_sig = pd.DataFrame(table, columns=['Question'] + personality_attributes)
     df_sig.style.applymap(color_yellow)
 
     return df_sig
-
 
 
 def main(argv):
     valid_survey_df = clipingOutliersSecond()
     survey_ipip_df = ipip_df(valid_survey_df)
     survey_ipip_df_with_group = groupAssignment(survey_ipip_df)
-    # numeric_survey_ipip_df = numeric_ipip_df(survey_ipip_df_with_group)
+    #numeric_survey_ipip_df = numeric_ipip_df(survey_ipip_df_with_group)
     numeric_survey_ipip_df = numeric_ipip_df(survey_ipip_df)
     summary_numeric_survey_df = summary_numeric_df(numeric_survey_ipip_df)
 
@@ -424,27 +453,27 @@ def main(argv):
     elif (argv[0] == '8'):
         print(analyzingResponse())
     elif (argv[0] == '9'):
-        print('Appropriate: ', cronbachAlpha(numeric_survey_ipip_df,'Appropriate'))
-        print('Trust: ', cronbachAlpha(numeric_survey_ipip_df,'Trust'))
-        print('Trust Competence: ', cronbachAlpha(numeric_survey_ipip_df,'Trust Competence'))
-        print('Trust Benevolence: ', cronbachAlpha(numeric_survey_ipip_df,'Trust Benevolence'))
-        print('Trust Info: ', cronbachAlpha(numeric_survey_ipip_df,'Trust Info'))
-        print('Purchase: ', cronbachAlpha(numeric_survey_ipip_df,'Purchase'))
+        print('Appropriate:         ', cronbachAlpha(numeric_survey_ipip_df,'Appropriate'))
+        print('Trust:               ', cronbachAlpha(numeric_survey_ipip_df,'Trust'))
+        print('Trust Competence:    ', cronbachAlpha(numeric_survey_ipip_df,'Trust Competence'))
+        print('Trust Benevolence:   ', cronbachAlpha(numeric_survey_ipip_df,'Trust Benevolence'))
+        print('Trust Info:          ', cronbachAlpha(numeric_survey_ipip_df,'Trust Info'))
+        print('Purchase:            ', cronbachAlpha(numeric_survey_ipip_df,'Purchase'))
     elif (argv[0] == '10'):
         cronbachAlphaSummaryFirst(summary_numeric_survey_df,survey_attributes)
         cronbachAlphaSummarySecond(summary_numeric_survey_df,survey_attributes)
         print(list(survey_questions.index))
     elif (argv[0] == '11'):
         visualDiffrencesGraph(summary_numeric_survey_df,survey_questions)
-        # print("ADD Visual Differences between the groups for the questions")
     elif (argv[0]== '12'):
         print(scatterPersonalityAttrFirst(summary_numeric_survey_df, survey_attributes))
         print(scatterPersonalityAttrSecond(survey_attributes, personality_attributes, summary_numeric_survey_df))
-        # print("ADD Scatter with the personality attributes")
     elif (argv[0]== '13'):
-        print("ADD Analysis of each question")
+        print(plotBuild(survey_questions,summary_numeric_survey_df))
+        print(summary_numeric_survey_df.info())
+        print(createLastTable(survey_questions, personality_attributes,summary_numeric_survey_df))
     else:
-        print("bye")
+        print("end of survey analysis")
 
 
 if __name__ == "__main__":

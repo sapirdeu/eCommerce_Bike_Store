@@ -53,7 +53,7 @@ function DragAndDropCSV() {
                 removeButtonColor='#FF3C3C'
                 onRemoveFile={(event) => handleOnRemoveFile (event)}
                 >
-                    <span>Please drop a csv file here</span>
+                    <span>Please drop a CSV file here</span>
             </CSVReader>
        </div>
     )

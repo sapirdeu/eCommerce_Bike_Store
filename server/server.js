@@ -575,7 +575,8 @@ const { writeToPath } = require('fast-csv');
 
 app.post('/api/dropzone/uploadCSV', (req, res)=>{  
     // const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
-    const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
+    //const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
+    const path = './server/Bot_Research.csv';
     const data = []
     for (var i=0; i<req.body.length; i++){
         data[i] = req.body[i].data

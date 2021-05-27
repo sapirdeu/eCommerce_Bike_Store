@@ -5,7 +5,7 @@ import {useDispatch,connect} from 'react-redux'
 import PageTop from '../utils/PageTop';
 import CollapseCheckbox from '../utils/CollapseCheckbox';
 //import CollapseRadio from '../utils/CollapseRadio';
-import {chatbotStatistics} from '../utils/Form/FixedCategories';
+import {chatbotStatistics, mlResearch} from '../utils/Form/FixedCategories';
 //import LoadMoreCards from './LoadMoreCards';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -180,6 +180,7 @@ function Researches(props) {
     // const [skip, setSkip] = useState(0);
     const [filters, setFilters] = useState({
         chatbotStatistics:[],
+        mlResearch:[],
     })
 
     const dispatch = useDispatch();
@@ -190,12 +191,18 @@ function Researches(props) {
             setSurveyOverviewData(response.payload)
         })
     }
+    function unwatchSurveyOverviewHandler(){
+        setSurveyOverviewData('');
+    }
 
     // Clipping Outliers
     function watchClipingOutliersHandler(){
         dispatch(getClipingOutliers()).then(response=>{
             setClipingOutliersData(response.payload)
         })
+    }
+    function unwatchClipingOutliersHandler(){
+        setClipingOutliersData('');
     }
 
     // Historgram of the duration of test taking (after clipping)
@@ -204,12 +211,18 @@ function Researches(props) {
             setHistorgramData(response.payload)
         })
     }
+    function unwatchHistorgramHandler(){
+        setHistorgramData('');
+    }
 
     // Map of responders
     function watchRespondersMapHandler(){
         dispatch(getRespondersMap()).then(response=>{
             setRespondersMapData(response.payload)
         })
+    }
+    function unwatchRespondersMapHandler(){
+        setRespondersMapData('');
     }
 
     // Personality Score Mini-IPIP test questions
@@ -218,12 +231,18 @@ function Researches(props) {
             setPersonalityScoreMiniData(response.payload)
         })
     }
+    function unwatchPersonalityScoreMiniHandler(){
+        setPersonalityScoreMiniData('');
+    }
 
     // Personality Score calculation
     function watchPersonalityScoreCalcHandler(){
         dispatch(getPersonalityScoreCalc()).then(response=>{
             setPersonalityScoreCalcData(response.payload)
         })
+    }
+    function unwatchPersonalityScoreCalcHandler(){
+        setPersonalityScoreCalcData('');
     }
 
     // Random Groups - Group Assignment
@@ -232,6 +251,9 @@ function Researches(props) {
             setGroupAssignmentData(response.payload)
         })
     }
+    function unwatchGroupAssignmentHandler(){
+        setGroupAssignmentData('');
+    }
 
     // Analyzing the survey response to the different aspects of the experiment
     function watchAnalyzingResponseHandler(){
@@ -239,17 +261,28 @@ function Researches(props) {
             setAnalyzingResponseData(response.payload)
         })
     }
+    function unwatchAnalyzingResponseHandler(){
+        setAnalyzingResponseData('');
+    }
 
     function watchTestingReliabilityHandler(){
         dispatch(getTestingReliability()).then(response=>{
             setTestingReliabilityData(response.payload)
         })
     }
+    function unwatchTestingReliabilityHandler(){
+        setTestingReliabilityData('');
+    }
+
+
 
     function watchCronbachAlphaHandler(){
         dispatch(getCronbachAlpha()).then(response=>{
             setCronbachAlphaData(response.payload)
         })
+    }
+    function unwatchCronbachAlphaHandler(){
+        setCronbachAlphaData('');
     }
 
     function watchVisualDifferencesHandler(){
@@ -257,60 +290,75 @@ function Researches(props) {
             setVisualDifferencesData(response.payload)
         })
     }
+    function unwatchVisualDifferencesHandler(){
+        setVisualDifferencesData('');
+    }
+
 
     function watchScatterHandler(){
         dispatch(getScatter()).then(response=>{
             setScatterData(response.payload)
         })
     }
+    function unwatchScatterHandler(){
+        setScatterData('');
+    }
+
 
     function watchAnalysisQuestionHandler(){
         dispatch(getAnalysisQuestion()).then(response=>{
             setAnalysisQuestionData(response.payload)
         })
     }
+    function unwatchAnalysisQuestionHandler(){
+        setAnalysisQuestionData('');
+    }
 
 
-
-    // useEffect(() => {
-    //     // dispatch(getBrands())
-    //     // dispatch(getMaterials())
-    //     // dispatch(getProductsToShop(skip, limit, filters))
-    // }, [dispatch]);
-
-    
-    // const showFilteredResults = (newFilters) => {
-    //     console.log(newFilters)
-    //     for (var v in newFilters){
-    //         console.log(v)
-    //         if (v+1==1)
-    //             watchSurveyOverviewHandler();
-    //     }
-    //     // if (newFilters == 1)
-    //     //     watchSurveyOverviewHandler();
-    // }   
 
     const handleFilters = (filters1, category) => {
         console.log(filters1)
+        //var unwatch = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        //console.log(unwatch)
+
         for (var index in filters1){
-            //console.log(index)
             switch (filters1[index]){
-                case 1: watchSurveyOverviewHandler(); break;
-                case 2: watchClipingOutliersHandler(); break;
-                case 3: watchHistorgramHandler(); break;
-                case 4: watchRespondersMapHandler(); break;
-                case 5: watchPersonalityScoreMiniHandler(); break;
-                case 6: watchPersonalityScoreCalcHandler(); break;
-                case 7: watchGroupAssignmentHandler(); break;
-                case 8: watchAnalyzingResponseHandler(); break;
-                case 9: watchTestingReliabilityHandler(); break;
-                case 10: watchCronbachAlphaHandler(); break;
-                case 11: watchVisualDifferencesHandler(); break;
-                case 12: watchScatterHandler(); break;
-                case 13: watchAnalysisQuestionHandler(); break;
+                case 1: watchSurveyOverviewHandler(); /*unwatch[1] = 0;*/ break;
+                case 2: watchClipingOutliersHandler(); /*unwatch[2] = 0;*/ break;
+                case 3: watchHistorgramHandler(); /*unwatch[3] = 0;*/ break;
+                case 4: watchRespondersMapHandler(); /*unwatch[4] = 0;*/ break;
+                case 5: watchPersonalityScoreMiniHandler(); /*unwatch[5] = 0;*/ break;
+                case 6: watchPersonalityScoreCalcHandler(); /*unwatch[6] = 0;*/ break;
+                case 7: watchGroupAssignmentHandler(); /*unwatch[7] = 0;*/ break;
+                case 8: watchAnalyzingResponseHandler(); /*unwatch[8] = 0;*/ break;
+                case 9: watchTestingReliabilityHandler(); /*unwatch[9] = 0;*/ break;
+                case 10: watchCronbachAlphaHandler(); /*unwatch[10] = 0;*/ break;
+                case 11: watchVisualDifferencesHandler(); /*unwatch[11] = 0;*/ break;
+                case 12: watchScatterHandler(); /*unwatch[12] = 0;*/ break;
+                case 13: watchAnalysisQuestionHandler(); /*unwatch[13] = 0;*/ break;
             }
-            
         }
+        // console.log(unwatch)
+        // for (var i=1 ; i<unwatch.length; i++){
+        //     if (unwatch[i] == 1){
+        //         switch (i){
+        //             case 1: unwatchSurveyOverviewHandler(); break;
+        //             case 2: unwatchClipingOutliersHandler(); break;
+        //             case 3: unwatchHistorgramHandler(); break;
+        //             case 4: unwatchRespondersMapHandler(); break;
+        //             case 5: unwatchPersonalityScoreMiniHandler(); break;
+        //             case 6: unwatchPersonalityScoreCalcHandler(); break;
+        //             case 7: unwatchGroupAssignmentHandler(); break;
+        //             case 8: unwatchAnalyzingResponseHandler(); break;
+        //             case 9: unwatchTestingReliabilityHandler(); break;
+        //             case 10: unwatchCronbachAlphaHandler(); break;
+        //             case 11: unwatchVisualDifferencesHandler(); break;
+        //             case 12: unwatchScatterHandler(); break;
+        //             case 13: unwatchAnalysisQuestionHandler(); break;
+        //         }
+        //     }
+        // }
+
         setFilters(filters1);
         //const newFilters = filters;
         //newFilters[category] = filters1;
@@ -333,9 +381,15 @@ function Researches(props) {
                             handleFilters={(filters)=>handleFilters(filters, 'chatbotStatistics')}
                         />
                         
+                        <CollapseCheckbox
+                            initState={true}
+                            title="Machine Learning Bikes Research"
+                            list={mlResearch}
+                            handleFilters={(filters)=>handleFilters(filters, 'mlResearch')}
+                        />
                     </div>
 
-                    <div className="right">
+                    <div className="right" style={{paddingLeft:"25px"}}>
                         <div>
                             <h1>Survey Analysis</h1>
                             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We often want to survey people on their views or reactions to possible events (design or promotion, for example). There are many survey tools that are good in designing the survey, presenting it on various forms, such as web or mobile, distributing it and collecting the responses. However, when it comes to analyzing the responses, you are left with fewer options, and most of them are out-dated (SPSS, for example).</h3>
@@ -543,7 +597,7 @@ function Researches(props) {
                                         <>
                                             <br/>
                                             <h3>Scatter with the personality attributes</h3>
-                                            {renderHTML(scatterData)}
+                                            <pre>{renderHTML(scatterData)}</pre>
                                             <br></br>
                                         </>
                                     :
@@ -557,7 +611,7 @@ function Researches(props) {
                                         <>
                                             <br/>
                                             <h3>Analysis of each question</h3>
-                                            {renderHTML(analysisQuestionData)}
+                                            <pre>{renderHTML(analysisQuestionData)}</pre>
                                             <br></br>
                                         </>
                                     :

@@ -124,4 +124,23 @@ const chatbotStatistics = [
     }
 ]
 
-export {frontForkTravel, weight, price, chatbotStatistics}
+const mlResearch = [
+    {
+        "_id": 14,
+        "name": "Analyze Data"
+    },
+    {
+        "_id": 15,
+        "name": "Predctions Before Anomaly Detection"
+    },
+    {
+        "_id": 16,
+        "name": "Detect Anomalies"
+    },
+    {
+        "_id": 17,
+        "name": "Predctions After Anomaly Detection"
+    }
+]
+
+export {frontForkTravel, weight, price, chatbotStatistics, mlResearch}
