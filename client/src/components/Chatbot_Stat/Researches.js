@@ -317,25 +317,26 @@ function Researches(props) {
 
 
     const handleFilters = (filters1, category) => {
-        console.log(filters1)
         //var unwatch = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         //console.log(unwatch)
-
-        for (var index in filters1){
-            switch (filters1[index]){
-                case 1: watchSurveyOverviewHandler(); /*unwatch[1] = 0;*/ break;
-                case 2: watchClipingOutliersHandler(); /*unwatch[2] = 0;*/ break;
-                case 3: watchHistorgramHandler(); /*unwatch[3] = 0;*/ break;
-                case 4: watchRespondersMapHandler(); /*unwatch[4] = 0;*/ break;
-                case 5: watchPersonalityScoreMiniHandler(); /*unwatch[5] = 0;*/ break;
-                case 6: watchPersonalityScoreCalcHandler(); /*unwatch[6] = 0;*/ break;
-                case 7: watchGroupAssignmentHandler(); /*unwatch[7] = 0;*/ break;
-                case 8: watchAnalyzingResponseHandler(); /*unwatch[8] = 0;*/ break;
-                case 9: watchTestingReliabilityHandler(); /*unwatch[9] = 0;*/ break;
-                case 10: watchCronbachAlphaHandler(); /*unwatch[10] = 0;*/ break;
-                case 11: watchVisualDifferencesHandler(); /*unwatch[11] = 0;*/ break;
-                case 12: watchScatterHandler(); /*unwatch[12] = 0;*/ break;
-                case 13: watchAnalysisQuestionHandler(); /*unwatch[13] = 0;*/ break;
+        if (category === 'chatbotStatistics'){
+            console.log(filters1)
+            for (var index in filters1){
+                switch (filters1[index]){
+                    case 1: watchSurveyOverviewHandler(); /*unwatch[1] = 0;*/ break;
+                    case 2: watchClipingOutliersHandler(); /*unwatch[2] = 0;*/ break;
+                    case 3: watchHistorgramHandler(); /*unwatch[3] = 0;*/ break;
+                    case 4: watchRespondersMapHandler(); /*unwatch[4] = 0;*/ break;
+                    case 5: watchPersonalityScoreMiniHandler(); /*unwatch[5] = 0;*/ break;
+                    case 6: watchPersonalityScoreCalcHandler(); /*unwatch[6] = 0;*/ break;
+                    case 7: watchGroupAssignmentHandler(); /*unwatch[7] = 0;*/ break;
+                    case 8: watchAnalyzingResponseHandler(); /*unwatch[8] = 0;*/ break;
+                    case 9: watchTestingReliabilityHandler(); /*unwatch[9] = 0;*/ break;
+                    case 10: watchCronbachAlphaHandler(); /*unwatch[10] = 0;*/ break;
+                    case 11: watchVisualDifferencesHandler(); /*unwatch[11] = 0;*/ break;
+                    case 12: watchScatterHandler(); /*unwatch[12] = 0;*/ break;
+                    case 13: watchAnalysisQuestionHandler(); /*unwatch[13] = 0;*/ break;
+                }
             }
         }
         // console.log(unwatch)

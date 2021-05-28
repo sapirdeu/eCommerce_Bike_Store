@@ -126,19 +126,19 @@ const chatbotStatistics = [
 
 const mlResearch = [
     {
-        "_id": 14,
+        "_id": 1,
         "name": "Analyze Data"
     },
     {
-        "_id": 15,
+        "_id": 2,
         "name": "Predctions Before Anomaly Detection"
     },
     {
-        "_id": 16,
+        "_id": 3,
         "name": "Detect Anomalies"
     },
     {
-        "_id": 17,
+        "_id": 4,
         "name": "Predctions After Anomaly Detection"
     }
 ]
