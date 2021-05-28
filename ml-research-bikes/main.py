@@ -299,7 +299,7 @@ def rideBySeason(df):
                 y='cnt',
                 ax=ax)
 
-    plt.title('Capital Bikeshare Ridership by Season')
+    plt.title('Rental bikes by season')
     plt.ylabel('Total Rides')
     plt.xlabel('Season')
 
@@ -314,9 +314,9 @@ def rideByMonth(df):
     fig, ax = plt.subplots()
     sns.barplot(data=df[['mnth', 'cnt']], x='mnth', y='cnt', ax=ax)
 
-    plt.title('Capital Bikeshare Ridership by mnth')
+    plt.title('Rental bikes by month')
     plt.ylabel('Total Rides')
-    plt.xlabel('mnth')
+    plt.xlabel('month')
 
     tick_val = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     tick_lab = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
@@ -337,7 +337,7 @@ def rideByDay(df):
                   hue='season',
                   ax=ax)
 
-    plt.title('Capital Bikeshare Ridership by Day')
+    plt.title('Rental bikes by day')
     plt.ylabel('Total Rides')
     plt.xlabel('Day of Month')
 
@@ -358,7 +358,7 @@ def rideByWeather(df):
                       row='weathersit', hue='season')
     g.map(plt.hist, 'cnt')
     plt.subplots_adjust(top=0.9)
-    g.fig.suptitle('Capital Bikeshare Ridership by Weather Type')
+    g.fig.suptitle('Rental bikes by weather type')
 
     g.set_xlabels('Total Rides')
     g.set_ylabels('Frequency')
@@ -386,7 +386,7 @@ def pieChartBySeason(df):
             wedgeprops={'linewidth': 4,
                         'edgecolor': "white"})
 
-    plt.suptitle('Percentage count of Bike Rentals by Season')
+    plt.suptitle('Percentage count of rental bikes by season')
     plt.show()
 
 
@@ -418,13 +418,13 @@ if __name__ == '__main__':
     # analyze data.
     analyzeData(CSV_PATH)
 
-    # predict count before anomaly-detector.
-    predictCount(CSV_PATH)
+    # # predict count before anomaly-detector.
+    # predictCount(CSV_PATH)
 
-    # detect anomalies.
-    detectAnomalies(CSV_PATH)
+    # # detect anomalies.
+    # detectAnomalies(CSV_PATH)
 
-    # predict count after anomalies are removed from the dataset -> loss is lower -> better accuracy.
-    predictCount(CSV_NO_ANOMALIES_PATH)
+    # # predict count after anomalies are removed from the dataset -> loss is lower -> better accuracy.
+    # predictCount(CSV_NO_ANOMALIES_PATH)
 
     print("\n\nTHE END\n\n")

@@ -339,6 +339,18 @@ function Researches(props) {
                 }
             }
         }
+
+        if (category === 'mlResearch'){
+            // console.log(filters1)
+            for (var index in filters1){
+                switch (filters1[index]){
+                    case 1: break;
+                    case 2: break;
+                    case 3: break;
+                    case 4: break;
+                }
+            }
+        }
         // console.log(unwatch)
         // for (var i=1 ; i<unwatch.length; i++){
         //     if (unwatch[i] == 1){
@@ -383,7 +395,7 @@ function Researches(props) {
                         />
                         
                         <CollapseCheckbox
-                            initState={true}
+                            initState={false}
                             title="Machine Learning Bikes Research"
                             list={mlResearch}
                             handleFilters={(filters)=>handleFilters(filters, 'mlResearch')}
@@ -598,7 +610,7 @@ function Researches(props) {
                                         <>
                                             <br/>
                                             <h3>Scatter with the personality attributes</h3>
-                                            <pre>{renderHTML(scatterData)}</pre>
+                                            <pre className="big_container">{renderHTML(scatterData)}</pre>
                                             <br></br>
                                         </>
                                     :
@@ -612,7 +624,7 @@ function Researches(props) {
                                         <>
                                             <br/>
                                             <h3>Analysis of each question</h3>
-                                            <pre>{renderHTML(analysisQuestionData)}</pre>
+                                            <pre className="big_container">{renderHTML(analysisQuestionData)}</pre>
                                             <br></br>
                                         </>
                                     :

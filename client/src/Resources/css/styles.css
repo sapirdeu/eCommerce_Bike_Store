@@ -863,6 +863,13 @@ footer .business_nfo .nfo {
     margin-right: 20px;
 }
 
+
+.big_container {
+    height: 500px;
+    overflow-y: scroll;
+    margin-right: 20px;
+}
+
 .brands_container .category_item  {
     width: 200px;
     font-size: 20px;
