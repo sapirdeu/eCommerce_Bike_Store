@@ -428,144 +428,43 @@ app.post('/api/users/update_profile', auth, (req, res)=>{
 //        CHATBOT STATISTICS
 //=================================
 
-app.get('/api/chatbot/surveyOverview', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(1);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
+app.get('/api/chatbot/statistics', auth, researcher, (req, res)=>{
+    let statistic = req.query.statistic;
+    let subprocess;
 
-app.get('/api/chatbot/clipingOutliers', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(2);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
+    switch (statistic){
+        case "surveyOverview": subprocess = runSpawn(1); break;
+        case "clipingOutliers": subprocess = runSpawn(2); break;
+        case "histogram": subprocess = runSpawn(3); break;
+        case "respondersMap": subprocess = runSpawn(4); break;
+        case "personalityScoreMini": subprocess = runSpawn(5); break;
+        case "personalityScoreCalc": subprocess = runSpawn(6); break;
+        case "groupAssignment": subprocess = runSpawn(7); break;
+        case "analyzingResponse": subprocess = runSpawn(8); break;
+        case "testingReliability": subprocess = runSpawn(9); break;
+        case "cronbachAlpha": subprocess = runSpawn(10); break;
+        case "visualDifferences": subprocess = runSpawn(11); break;
+        case "scatter": subprocess = runSpawn(12); break;
+        case "analysisQuestion": subprocess = runSpawn(13); break;
+    }
 
-app.get('/api/chatbot/histogram', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(3);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-
-
-app.get('/api/chatbot/respondersMap', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(4);
     subprocess.stderr.on('data', (data) => {
            console.log(`error:${data}`);
     });
     subprocess.stderr.on('close', () => {
-               console.log("Closed");
+                console.log("Closed");
     });
     res.set('Content-Type', 'text/plain');
     subprocess.stdout.pipe(res);
     subprocess.stderr.pipe(res);
 });
 
-app.get('/api/chatbot/personalityScoreMini', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(5);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
+function runSpawn(actionNum) {
+    // CHANGE THE PATH TO ANACONDA
+    // return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
+    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
+}
 
-app.get('/api/chatbot/personalityScoreCalc', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(6);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    subprocess.stderr.on('close', () => {
-               console.log("Closed");
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-
-app.get('/api/chatbot/groupAssignment', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(7);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-app.get('/api/chatbot/analyzingResponse', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(8);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-app.get('/api/chatbot/testingReliability', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(9);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-app.get('/api/chatbot/cronbachAlpha', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(10);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-app.get('/api/chatbot/visualDifferences', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(11);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-app.get('/api/chatbot/scatter', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(12);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
-
-app.get('/api/chatbot/analysisQuestion', auth, researcher, (req, res) => {
-    const subprocess = runSpawn(13);
-    subprocess.stderr.on('data', (data) => {
-           console.log(`error:${data}`);
-    });
-    res.set('Content-Type', 'text/plain');
-    subprocess.stdout.pipe(res);
-    subprocess.stderr.pipe(res);
-});
 
 //=================================
 //             DROPZONE
@@ -618,9 +517,3 @@ const port = process.env.PORT || 3002;
 app.listen(port, ()=> {
     console.log(`Server running at ${port}`)
 });
-
-function runSpawn(actionNum) {
-    // CHANGE THE PATH TO ANACONDA
-    // return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
-    return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
-}

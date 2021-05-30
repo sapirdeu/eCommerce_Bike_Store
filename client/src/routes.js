@@ -15,7 +15,8 @@ import UserCart from './components/User/UserCart';
 import UpdateUserProfile from './components/User/UpdateUserProfile';
 import ManageSite from './components/User/Admin/ManageSite';
 import ChatbotStat from './components/Chatbot_Stat/ChatbotStat'
-import Researches from './components/Chatbot_Stat/Researches'
+import ChatbotResearche from './components/Chatbot_Stat/ChatbotResearche'
+import AnomaliesResearch from './components/Chatbot_Stat/AnomaliesResearch'
 
 function Routes() {
   return (
@@ -44,7 +45,8 @@ function Routes() {
             <Route path="/product_detail/:id" exact component={Auth(ProductPage,null)}/>
             <Route path="/register" exact component={Auth(Register,false)}/>
             <Route path="/register_login" exact component={Auth(RegisterLogin,false)}/>
-            <Route path="/researches" exact component={Auth(Researches,null)}/>
+            <Route path="/chatbotResearche" exact component={Auth(ChatbotResearche,null)}/>
+            <Route path="/anomaliesResearch" exact component={Auth(AnomaliesResearch,null)}/>
             <Route path="/shop" exact component={Auth(Shop,null)}/>
             <Route path="/" exact component={Auth(Home,null)}/>
           </Switch>  

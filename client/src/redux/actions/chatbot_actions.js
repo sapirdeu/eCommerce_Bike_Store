@@ -16,10 +16,13 @@ import {
 } from './Types'
 import {CHATBOT_SERVER} from '../../components/utils/Misc'
 
-function getSurveyOverview(){    
+function getSurveyOverview(){  
     const request = 
-        axios.get(`${CHATBOT_SERVER}/surveyOverview`)
-        .then(response => response.data);
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=surveyOverview`)
+        .then(response => response.data);  
+    // const request = 
+    //     axios.get(`${CHATBOT_SERVER}/surveyOverview`)
+    //     .then(response => response.data);
     
     return {
         type: GET_CHATBOT_SURVEY_OVERVIEW, 
@@ -29,7 +32,7 @@ function getSurveyOverview(){
 
 function getClipingOutliers(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/clipingOutliers`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=clipingOutliers`)
         .then(response => response.data);
     
     return {
@@ -40,7 +43,7 @@ function getClipingOutliers(){
 
 function getHistorgram(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/histogram`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=histogram`)
         .then(response => response.data);
     
     return {
@@ -51,7 +54,7 @@ function getHistorgram(){
 
 function getRespondersMap(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/respondersMap`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=respondersMap`)
         .then(response => response.data);
     
     return {
@@ -62,7 +65,7 @@ function getRespondersMap(){
 
 function getPersonalityScoreMini(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/personalityScoreMini`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=personalityScoreMini`)
         .then(response => response.data);
     
     return {
@@ -73,7 +76,7 @@ function getPersonalityScoreMini(){
 
 function getPersonalityScoreCalc(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/personalityScoreCalc`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=personalityScoreCalc`)
         .then(response => response.data);
     
     return {
@@ -84,7 +87,7 @@ function getPersonalityScoreCalc(){
 
 function getGroupAssignment(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/groupAssignment`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=groupAssignment`)
         .then(response => response.data);
     
     return {
@@ -95,7 +98,7 @@ function getGroupAssignment(){
 
 function getAnalyzingResponse(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/analyzingResponse`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=analyzingResponse`)
         .then(response => response.data);
     
     return {
@@ -106,7 +109,7 @@ function getAnalyzingResponse(){
 
 function getTestingReliability(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/testingReliability`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=testingReliability`)
         .then(response => response.data);
     
     return {
@@ -117,7 +120,7 @@ function getTestingReliability(){
 
 function getCronbachAlpha(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/cronbachAlpha`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=cronbachAlpha`)
         .then(response => response.data);
     
     return {
@@ -128,7 +131,7 @@ function getCronbachAlpha(){
 
 function getVisualDifferences(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/visualDifferences`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=visualDifferences`)
         .then(response => response.data);
     
     return {
@@ -139,7 +142,7 @@ function getVisualDifferences(){
 
 function getScatter(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/scatter`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=scatter`)
         .then(response => response.data);
     
     return {
@@ -150,7 +153,7 @@ function getScatter(){
 
 function getAnalysisQuestion(){    
     const request = 
-        axios.get(`${CHATBOT_SERVER}/analysisQuestion`)
+        axios.get(`${CHATBOT_SERVER}/statistics?statistic=analysisQuestion`)
         .then(response => response.data);
     
     return {

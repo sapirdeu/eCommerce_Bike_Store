@@ -5,7 +5,7 @@ import {useDispatch,connect} from 'react-redux'
 import PageTop from '../utils/PageTop';
 import CollapseCheckbox from '../utils/CollapseCheckbox';
 //import CollapseRadio from '../utils/CollapseRadio';
-import {chatbotStatistics, mlResearch} from '../utils/Form/FixedCategories';
+import {chatbotStatistics} from '../utils/Form/FixedCategories';
 //import LoadMoreCards from './LoadMoreCards';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,7 +32,7 @@ import {
 } from '../../redux/actions/chatbot_actions'
 import DragAndDropCSV from './DragAndDropCSV'
 
-function Researches(props) {
+function ChatbotResearche(props) {
     // buttons and data displayed
     //const [surveyOverviewButton, setSurveyOverviewButton] = useState(true)
     const [surveyOverviewData, setSurveyOverviewData] = useState('')
@@ -180,7 +180,6 @@ function Researches(props) {
     // const [skip, setSkip] = useState(0);
     const [filters, setFilters] = useState({
         chatbotStatistics:[],
-        mlResearch:[],
     })
 
     const dispatch = useDispatch();
@@ -340,17 +339,6 @@ function Researches(props) {
             }
         }
 
-        if (category === 'mlResearch'){
-            // console.log(filters1)
-            for (var index in filters1){
-                switch (filters1[index]){
-                    case 1: break;
-                    case 2: break;
-                    case 3: break;
-                    case 4: break;
-                }
-            }
-        }
         // console.log(unwatch)
         // for (var i=1 ; i<unwatch.length; i++){
         //     if (unwatch[i] == 1){
@@ -392,13 +380,6 @@ function Researches(props) {
                             title="Chatbot Statistics"
                             list={chatbotStatistics}
                             handleFilters={(filters)=>handleFilters(filters, 'chatbotStatistics')}
-                        />
-                        
-                        <CollapseCheckbox
-                            initState={false}
-                            title="Machine Learning Bikes Research"
-                            list={mlResearch}
-                            handleFilters={(filters)=>handleFilters(filters, 'mlResearch')}
                         />
                     </div>
 
@@ -596,7 +577,7 @@ function Researches(props) {
                                             <br/>
                                             <h3>Visual Differences between the groups for the questions</h3>
                                             <p>Visualizing the Differences between the groups as box plots.</p>
-                                            {renderHTML(visualDifferencesData)}
+                                            <pre className="big_container">{renderHTML(visualDifferencesData)}</pre>
                                             <br></br>
                                         </>
                                     :
@@ -645,4 +626,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(withRouter(Researches));
+export default connect(mapStateToProps)(withRouter(ChatbotResearche));
