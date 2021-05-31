@@ -32,7 +32,7 @@ import {
 } from '../../redux/actions/chatbot_actions'
 import DragAndDropCSV from './DragAndDropCSV'
 
-function ChatbotResearche(props) {
+function ChatbotResearch(props) {
     // buttons and data displayed
     //const [surveyOverviewButton, setSurveyOverviewButton] = useState(true)
     const [surveyOverviewData, setSurveyOverviewData] = useState('')
@@ -626,4 +626,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(withRouter(ChatbotResearche));
+export default connect(mapStateToProps)(withRouter(ChatbotResearch));
