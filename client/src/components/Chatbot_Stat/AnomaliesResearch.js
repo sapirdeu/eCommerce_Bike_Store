@@ -35,18 +35,28 @@ function AnomaliesResearch(props) {
 
 
     const handleFilters = (filters1, category) => {
+        var unwatch = [1,1,1,1,1,1]
+        //console.log(unwatch)
         if (category === 'mlResearch'){
             // console.log(filters1)
             for (var index in filters1){
                 switch (filters1[index]){
-                    case 1: watchResearchOverviewHandler(); break;
+                    case 1: watchResearchOverviewHandler(); unwatch[1] = 0; break;
                     case 2: break;
                     case 3: break;
                     case 4: break;
                 }
             }
+
+             for (var i=1 ; i<unwatch.length; i++){
+                if (unwatch[i] == 1){
+                    switch (i){
+                        case 1: unWatchResearchOverviewHandler(); break;
+                    }
+                }
+            }
+            setFilters(filters1);
         }
-        setFilters(filters1);
     }
 
     
