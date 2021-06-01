@@ -416,10 +416,10 @@ def analyzeData(CSV_PATH):
 ############################################
 if __name__ == '__main__':
     # analyze data.
-    analyzeData(CSV_PATH)
+    # analyzeData(CSV_PATH)
 
     # # predict count before anomaly-detector.
-    # predictCount(CSV_PATH)
+    predictCount(CSV_PATH)
 
     # # detect anomalies.
     # detectAnomalies(CSV_PATH)
