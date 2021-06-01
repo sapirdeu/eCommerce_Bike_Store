@@ -131,7 +131,7 @@ const mlResearch = [
     },
     {
         "_id": 2,
-        "name": "Analyze Data"
+        "name": "Data Analysis"
     },
     {
         "_id": 3,
@@ -139,7 +139,7 @@ const mlResearch = [
     },
     {
         "_id": 4,
-        "name": "Detect Anomalies"
+        "name": "Anomaly Detector"
     },
     {
         "_id": 5,
