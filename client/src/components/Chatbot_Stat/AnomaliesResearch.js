@@ -20,6 +20,11 @@ import DragAndDropCSV from './DragAndDropCSV'
 function AnomaliesResearch(props) {
     const [researchOverviewData, setResearchOverviewData] = useState('')
     const [analysiseData, setAnalysisData] = useState('')
+    const [prepareData, setPrepareData] = useState('')
+    const [predictBeforeData, setPredictBeforeData] = useState('')
+    const [anomaliesData, setAnomaliesData] = useState('')
+    const [predictAfterData, setPredictAfterData] = useState('')
+
 
     const [filters, setFilters] = useState({
         mlResearch:[],
@@ -237,7 +242,207 @@ function AnomaliesResearch(props) {
         }
     ]
 
-    
+ 
+    // 3rd table
+    let columns3 = [
+        {
+          heading: 'Num',
+          property: 'Num'
+        },
+        {
+            heading: 'Column',
+            property: 'Column'
+        },
+        {
+            heading: 'NonNull',
+            property: 'NonNull'
+        },
+        {
+            heading: 'Type',
+            property: 'Type'
+        }
+    ]
+      
+    //Data3 is the array of objects to be placed into the table
+    let data3 = [
+        {
+            Num: '0',
+            Column: 'instant',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '1',
+            Column: 'dteday',
+            NonNull: '731 non-null',
+            Type: 'object',
+        },
+        {
+            Num: '2',
+            Column: 'season',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '3',
+            Column: 'yr',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '4',
+            Column: 'mnth',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '5',
+            Column: 'holiday',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '6',
+            Column: 'weekday',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '7',
+            Column: 'workingday',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '8',
+            Column: 'weathersit',
+            NonNull: '731 non-null',
+            Type: 'float64',
+        },
+        {
+            Num: '9',
+            Column: 'temp',
+            NonNull: '731 non-null',
+            Type: 'float64',
+        },
+        {
+            Num: '10',
+            Column: 'atemp',
+            NonNull: '731 non-null',
+            Type: 'float64',
+        },
+        {
+            Num: '11',
+            Column: 'hum',
+            NonNull: '731 non-null',
+            Type: 'float64',
+        },
+        {
+            Num: '12',
+            Column: 'windspeed',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '13',
+            Column: 'casual',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '14',
+            Column: 'registered',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        },
+        {
+            Num: '15',
+            Column: 'cnt',
+            NonNull: '731 non-null',
+            Type: 'int64',
+        }
+    ]
+
+// 4th table
+   let columns4 = [
+    {
+        heading: 'Column',
+        property: 'Column'
+    },
+    {
+        heading: 'Type',
+        property: 'Type'
+    }
+]
+  
+//Data4 is the array of objects to be placed into the table
+let data4 = [
+    {
+        Column: 'instant',
+        Type: 'int64',
+    },
+    {
+        Column: 'dteday',
+        Type: 'datetime64[ns]',
+    },
+    {
+        Column: 'season',
+        Type: 'category',
+    },
+    {
+        Column: 'yr',
+        Type: 'category',
+    },
+    {
+        Column: 'mnth',
+        Type: 'category',
+    },
+    {
+        Column: 'holiday',
+        Type: 'bool',
+    },
+    {
+        Column: 'weekday',
+        Type: 'category',
+    },
+    {
+        Column: 'workingday',
+        Type: 'bool',
+    },
+    {
+        Column: 'weathersit',
+        Type: 'category',
+    },
+    {
+        Column: 'temp',
+        Type: 'float64',
+    },
+    {
+        Column: 'atemp',
+        Type: 'float64',
+    },
+    {
+        Column: 'hum',
+        Type: 'float64',
+    },
+    {
+        Column: 'windspeed',
+        Type: 'float64',
+    },
+    {
+        Column: 'casual',
+        Type: 'int64',
+    },
+    {
+        Column: 'registered',
+        Type: 'int64',
+    },
+    {
+        Column: 'cnt',
+        Type: 'int64',
+    }
+]
+
     // Research Overview
     function watchResearchOverviewHandler(){
         setResearchOverviewData('ON')
@@ -254,19 +459,50 @@ function AnomaliesResearch(props) {
         setAnalysisData('');
     }
 
+    // Data Preparation
+    function watchPrepareDataHandler(){
+        setPrepareData('ON')
+    }
+    function unWatchPrepareDataHandler(){
+        setPrepareData('');
+    }
+
+    // Predict Before
+    function watchPredictBeforeHandler(){
+        setPredictBeforeData('ON')
+    }
+    function unWatchPredictBeforeHandler(){
+        setPredictBeforeData('');
+    }
+
+    // Detect Anomalies
+    function watchAnomaliesHandler(){
+        setAnomaliesData('ON')
+    }
+    function unWatchAnomaliesHandler(){
+        setAnomaliesData('');
+    }
+
+    // Predict After
+    function watchPredictAfterHandler(){
+        setPredictAfterData('ON')
+    }
+    function unWatchPredictAfterHandler(){
+        setPredictAfterData('');
+    }
+
 
     const handleFilters = (filters1, category) => {
-        var unwatch = [1,1,1,1,1,1]
-        //console.log(unwatch)
+        var unwatch = [1,1,1,1,1,1,1]
         if (category === 'mlResearch'){
-            // console.log(filters1)
             for (var index in filters1){
                 switch (filters1[index]){
                     case 1: watchResearchOverviewHandler(); unwatch[1] = 0; break;
                     case 2: watchAnalysisDataHandler(); unwatch[2] = 0; break;
-                    case 3: break;
-                    case 4: break;
-                    case 5: break;
+                    case 3: watchPrepareDataHandler(); unwatch[3] = 0; break;
+                    case 4: watchPredictBeforeHandler(); unwatch[4]=0; break;
+                    case 5: watchAnomaliesHandler(); unwatch[5]=0; break;
+                    case 6: watchPredictAfterHandler(); unwatch[6]=0; break;
                 }
             }
 
@@ -275,6 +511,10 @@ function AnomaliesResearch(props) {
                     switch (i){
                         case 1: unWatchResearchOverviewHandler(); break;
                         case 2: unWatchAnalysisDataHandler(); break;
+                        case 3: unWatchPrepareDataHandler(); break;
+                        case 4: unWatchPredictBeforeHandler(); break;
+                        case 5: unWatchAnomaliesHandler(); break;
+                        case 6: unWatchPredictAfterHandler(); break;
                     }
                 }
             }
@@ -504,7 +744,7 @@ function AnomaliesResearch(props) {
                                             <u>Q: Does <b>weather</b> affect rental bikes usage? <b>Yes</b></u><br/>
                                             As we can see below, types of weather have a large impact on rental bikes. There are significantly less rides during snow and thunderstorms than during periods of nicer weather. 
                                             We can also see that this trend holds up across all seasons.<br/>
-                                            <img src="images/ml/7.PNG" width="900" height="400"></img><br/><br/>
+                                            <img src="images/ml/7.PNG" width="850" height="400"></img><br/><br/>
 
                                             <br></br><br></br>
                                         </>
@@ -513,6 +753,143 @@ function AnomaliesResearch(props) {
                                 }
                             </div>
 
+                            <div>
+                                {
+                                    prepareData !== '' ?
+                                        <>
+                                            <h2>Data Preparation</h2>
+                                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>
+                                            Information about the data- checking missing values and the datatypes of the features:<br/><br/>
+                                            RangeIndex: 731 entries, 0 to 730<br/>
+                                            Data columns (total 16 columns):<br/>
+                                            </h3>
+                                          
+                                            <Table striped bordered hover size="sm" style={{fontWeight:"normal", fontSize:"13px" ,width:"500px"}}>
+                                                <thead>
+                                                    <tr>{columns3.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
+                                                </thead>
+                                                <tbody>
+                                                    {data3.map(item => 
+                                                        <tr key={`${item.item}-row`}>
+                                                            {columns3.map(col => <td key={`${item.item}-${col.property}`}>{item[col.property]}</td>)}
+                                                        </tr>
+                                                    )}
+                                                </tbody>
+                                            </Table>
+                                            dtypes: float64(4), int64(11), object(1)<br/>
+                                            memory usage: 91.5+ KB<br/><br/>
+                                            
+                                            Some data types need to be changed from numerical to categorical or bool otherwise the prediction model can interpret wrongly:<br/>
+                                            <Table striped bordered hover size="sm" style={{fontWeight:"normal", fontSize:"13px" ,width:"300px"}}>
+                                                <thead>
+                                                    <tr>{columns4.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
+                                                </thead>
+                                                <tbody>
+                                                    {data4.map(item => 
+                                                        <tr key={`${item.item}-row`}>
+                                                            {columns4.map(col => <td key={`${item.item}-${col.property}`}>{item[col.property]}</td>)}
+                                                        </tr>
+                                                    )}
+                                                </tbody>
+                                            </Table><br/>
+
+                                            <h3>Dataset- Heatmap</h3>
+                                            check the correlation between the features:<br/>
+                                            <img src="images/ml/8.PNG" width="550" height="400"></img><br/><br/>
+                                            <u>Correlation Conclusions</u><br/>
+                                            <ul>
+                                                <li><b>Very strong</b> correlation between <b>temp</b> and <b>atemp</b>, we remove atemp from the attributes, in order to reduce the dimensionality.</li>
+                                                <li><b>Strong</b> correlation between <b>temp</b> and <b>cnt</b>.</li>
+                                                <li><b>Low</b> correlation between <b>holiday</b>, <b>workingday</b> to <b>cnt</b>.</li>
+                                                <li>Cnt is the sum of register and casual, so they are also removed.</li>
+                                            </ul><br/>
+                                            Now our dataset is ready and we can execute our models!
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+                            
+
+                            <div>
+                                {
+                                    predictBeforeData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h2>Classifiers &amp; Regressors - With Anomalies (Full Dataset)</h2>
+                                            <br/>
+                                            <img src="images/ml/9.PNG" width="600" height="450"></img><br/>
+                                            <b>Linear Regression loss:</b> 0.034457361213136625<br/><br/><br/>
+                                            <img src="images/ml/10.PNG" width="600" height="450"></img><br/>
+                                            <b>SVR loss:</b> 0.0876347746659868<br/><br/><br/>
+                                            <img src="images/ml/11.PNG" width="600" height="450"></img><br/>
+                                            <b>Random Forest loss:</b> 0.020199390796750122<br/><br/><br/>
+
+                                            <b>Loss function MSE:</b> Mean Square Error- the sum of squared distances between our target variable and predicted values.
+                                            We chose MSE as our loss function because it is outlier sensitive.<br/>
+                                            <img src="images/ml/12.PNG"></img>
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    predictAfterData !== '' ?
+                                        <>
+                                            <br/>
+                                            <h2>Classifiers &amp; Regressors - Without Anomalies</h2>
+                                            <br/>
+                                            <img src="images/ml/13.PNG" width="600" height="450"></img><br/>
+                                            <b>Linear Regression loss:</b> 0.030762413820932928<br/>
+                                            <b>10.72% Improvement</b>
+                                            {/* 0.034457361213136625 */}
+                                            {/* (0.034457361213136625-0.030762413820932928)/0.034457361213136625 = 0.10723245373 */}
+                                            <br/><br/>
+                                            
+                                            <img src="images/ml/14.PNG" width="600" height="450"></img><br/>
+                                            <b>SVR loss:</b> 0.07434209488497755<br/>
+                                            <b>15.17% Improvement</b>
+                                            {/* 0.0876347746659868 */}
+                                            {/* (0.0876347746659868-0.07434209488497755)/0.0876347746659868 = 0.15168270622 */}
+                                            <br/><br/>
+
+                                            <img src="images/ml/15.PNG" width="600" height="450"></img><br/>
+                                            <b>Random Forest loss:</b> 0.019869942033651056<br/>
+                                            <b>1.63% Improvement</b>
+                                            {/* 0.020199390796750122 */}
+                                            {/* (0.020199390796750122-0.019869942033651056)/0.020199390796750122 = 0.01630983658 */}
+                                            <br/><br/>
+
+                                            <h3>Conclusion</h3> Improvement of the percentages of the correct predictions <b>without</b> anomalies in the dataset- more accurate<br/>
+                                            <br/>
+                                            <h3>Implications</h3>
+                                            What we know now or able to do now that was not possible before:<br/>
+                                            <ul>
+                                                <li>We can see clear <b>correlation</b> between the <b>weather</b> to the <b>rental behavior.</b></li>
+                                                <li>We can see clear <b>correlation</b> between <b>events</b> in the city to the <b>rental behavior.</b></li>
+                                                <li>We can learn how to accurately predict the amount of bikes that is going to be rented.</li>
+                                            </ul>
+                                            <br/>
+                                            <h3>Discussion and Future Work</h3>
+                                            <ul>
+                                                <li>Think of different ways to extend or enlarge the dataset.</li>
+                                                <li>Globalize our research on other datasets of another cities around the world.</li>
+                                                <li>Analyze and categorize each and every event- for example, how influential a demonstration in the city is, or a festival etc. Understand the consequences per event.</li>
+                                            </ul>
+                                            Our results clearly show that when the anomalies are removed, the classification is more accurate and that means we detected the correct anomalies, high TP rate.
+                                            Now, after anomalies are removed and analyzed not only we can predict the attribute cnt better, but also can prepare in advance to different scenarios to do with weather conditions and different events that occur in the city.
+
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

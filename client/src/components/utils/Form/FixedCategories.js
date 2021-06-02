@@ -135,15 +135,19 @@ const mlResearch = [
     },
     {
         "_id": 3,
-        "name": "Predctions Before Anomaly Detection"
+        "name": "Data Preparation"
     },
     {
         "_id": 4,
-        "name": "Anomaly Detector"
+        "name": "Predictions Before Anomaly Detection"
     },
     {
         "_id": 5,
-        "name": "Predctions After Anomaly Detection"
+        "name": "Anomaly Detector"
+    },
+    {
+        "_id": 6,
+        "name": "Predictions After Anomaly Detection"
     }
 ]
 
