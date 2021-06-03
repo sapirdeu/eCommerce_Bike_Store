@@ -363,86 +363,134 @@ function AnomaliesResearch(props) {
         }
     ]
 
-// 4th table
-   let columns4 = [
-    {
-        heading: 'Column',
-        property: 'Column'
-    },
-    {
-        heading: 'Type',
-        property: 'Type'
-    }
-]
-  
-//Data4 is the array of objects to be placed into the table
-let data4 = [
-    {
-        Column: 'instant',
-        Type: 'int64',
-    },
-    {
-        Column: 'dteday',
-        Type: 'datetime64[ns]',
-    },
-    {
-        Column: 'season',
-        Type: 'category',
-    },
-    {
-        Column: 'yr',
-        Type: 'category',
-    },
-    {
-        Column: 'mnth',
-        Type: 'category',
-    },
-    {
-        Column: 'holiday',
-        Type: 'bool',
-    },
-    {
-        Column: 'weekday',
-        Type: 'category',
-    },
-    {
-        Column: 'workingday',
-        Type: 'bool',
-    },
-    {
-        Column: 'weathersit',
-        Type: 'category',
-    },
-    {
-        Column: 'temp',
-        Type: 'float64',
-    },
-    {
-        Column: 'atemp',
-        Type: 'float64',
-    },
-    {
-        Column: 'hum',
-        Type: 'float64',
-    },
-    {
-        Column: 'windspeed',
-        Type: 'float64',
-    },
-    {
-        Column: 'casual',
-        Type: 'int64',
-    },
-    {
-        Column: 'registered',
-        Type: 'int64',
-    },
-    {
-        Column: 'cnt',
-        Type: 'int64',
-    }
-]
+    // 4th table
+    let columns4 = [
+        {
+            heading: 'Column',
+            property: 'Column'
+        },
+        {
+            heading: 'Type',
+            property: 'Type'
+        }
+    ]
+    
+    //Data4 is the array of objects to be placed into the table
+    let data4 = [
+        {
+            Column: 'instant',
+            Type: 'int64',
+        },
+        {
+            Column: 'dteday',
+            Type: 'datetime64[ns]',
+        },
+        {
+            Column: 'season',
+            Type: 'category',
+        },
+        {
+            Column: 'yr',
+            Type: 'category',
+        },
+        {
+            Column: 'mnth',
+            Type: 'category',
+        },
+        {
+            Column: 'holiday',
+            Type: 'bool',
+        },
+        {
+            Column: 'weekday',
+            Type: 'category',
+        },
+        {
+            Column: 'workingday',
+            Type: 'bool',
+        },
+        {
+            Column: 'weathersit',
+            Type: 'category',
+        },
+        {
+            Column: 'temp',
+            Type: 'float64',
+        },
+        {
+            Column: 'atemp',
+            Type: 'float64',
+        },
+        {
+            Column: 'hum',
+            Type: 'float64',
+        },
+        {
+            Column: 'windspeed',
+            Type: 'float64',
+        },
+        {
+            Column: 'casual',
+            Type: 'int64',
+        },
+        {
+            Column: 'registered',
+            Type: 'int64',
+        },
+        {
+            Column: 'cnt',
+            Type: 'int64',
+        }
+    ]
 
+
+    // 5th table
+    let columns5 = [
+        {
+            heading: 'Date',
+            property: 'Date'
+        },
+        {
+            heading: 'Temp',
+            property: 'Temp'
+        },
+        {
+            heading: 'Hum',
+            property: 'Hum'
+        },
+        {
+            heading: 'Cnt',
+            property: 'Cnt'
+        },
+        {
+            heading: 'Result',
+            property: 'Result'
+        },
+        {
+            heading: 'Reason',
+            property: 'Reason'
+        }
+    ]
+    
+    //Data4 is the array of objects to be placed into the table
+    let data5 = [
+        {
+            Date: '8/1/2011',
+            Temp: '0.165',
+            Hum: '0.535833',
+            Cnt: '959',
+            Result: 'FP',
+            Reason: '',
+        },
+        {
+            Date: '',
+            Temp: '',
+            Hum: '',
+            Cnt: '',
+            Result: '',
+            Reason: '',
+        },
+    ]
     // Research Overview
     function watchResearchOverviewHandler(){
         setResearchOverviewData('ON')
@@ -829,6 +877,121 @@ let data4 = [
                                             <b>Loss function MSE:</b> Mean Square Error- the sum of squared distances between our target variable and predicted values.
                                             We chose MSE as our loss function because it is outlier sensitive.<br/>
                                             <img src="images/ml/12.PNG"></img>
+                                            <br></br><br></br>
+                                        </>
+                                    :
+                                        null
+                                }
+                            </div>
+
+
+                            
+                            <div>
+                                {
+                                    anomaliesData !== '' ?
+                                        <>
+                                            <h2>Anomaly Detector</h2>
+                                            <h3>Grubb’s Test</h3>
+                                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>
+                                            This is a test based on the assumption of normality. That is, one should first verify that the data can be reasonably approximated by a normal distribution before applying the Grubbs test, thus we normalized the data before applying the test. Grubb's test detects one outlier at a time. This outlier is expunged from the dataset and the test is iterated until no outliers are detected:
+                                            </h3>
+
+                                            <br/>
+                                            <img src="images/ml/16.PNG"></img><br/><br/>
+                                            Calculated G and the threshold:<br/>
+                                            <img src="images/ml/17.PNG"></img><br/><br/>
+                                            Each iteration we remove the outlier with the greatest Z-score:<br/>
+                                            <ul>
+                                                <li>After the 1st iteration:<br/><img src="images/ml/18.PNG"></img></li><br/>
+                                                <li>After the 2nd iteration:<br/><img src="images/ml/19.PNG"></img></li><br/>
+                                                <li>After the 3rd iteration:<br/><img src="images/ml/20.PNG"></img></li><br/>
+                                                <li>After the 4th iteration:<br/><img src="images/ml/21.PNG"></img></li><br/>
+                                                <li>After the 5th iteration:<br/><img src="images/ml/22.PNG"></img></li><br/>
+                                                <li>After the 6th iteration:<br/><img src="images/ml/23.PNG"></img></li><br/>
+                                            </ul>
+                                            In total, 6 anomalies were detected- 0.82% (less than 1%) of the data.<br/>
+                                            The remaining instances are smaller than the threshold.<br/><br/>
+
+                                            <h3>PCA</h3>
+                                            PCA is defined as an orthogonal linear transformation that transforms the data to a new coordinate system such that the greatest variance by some scalar projection of the data comes to lie on the first coordinate (called the first principal component), the second greatest variance on the second coordinate, and so on.<br/>
+                                            The purpose of PCA is to reduce the data’s entropy.<br/>
+                                            <ol>
+                                                <li>First, normalize the data to Normal Distribution:<br/><img src="images/ml/24.PNG" width="900" height="120"></img></li><br/>
+                                                <li>Second, calculate the number of components needed to explain the variance of 95%. Before PCA we had 11 attributes, and after PCA we are left with 2 new attributes that loyally represent the 11 original ones:<br/><img src="images/ml/25.PNG" width="200" height="120"></img></li><br/>
+                                            </ol><br/>
+
+                                            <h3>K-Means</h3>
+                                            K-Means clustering is a method of vector quantization, originally from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid).<br/><br/>
+                                            In order to choose the suitable number of clusters, we calculated K-Means with different number of centroids ranging from 1 to 9.
+                                            <br/>As we can see from the elbow function below, the number of clusters that is suitable for the data is 3, hence K=3:<br/>
+                                            <img src="images/ml/26.PNG"></img><br/>
+                                            <ul>
+                                                <li>X-Axis: number of clusters</li>
+                                                <li>Y-Axis: K-Means score- the coherency between the clusters</li>
+                                                <li>The plot looks like an arm with a clear elbow at k=3</li>
+                                            </ul><br/>
+
+                                            <b>How many instances belong to each cluster:</b><br/>
+                                            <img src="images/ml/27.PNG" width="500" height="350"></img><br/><br/>
+                                            
+                                            <b>K-Means result:</b><br/>
+                                            <img src="images/ml/28.PNG" width="600" height="420"></img><br/><br/>
+
+                                            <b>K-Means anomalies detection:</b><br/>
+                                            After trying different mathematical thresholds, the one that corresponded the best to the dataset is 3.035, thus an anomaly is an instance which its distance from the centroid it belongs to is greater than 3.035.
+                                            <br/>In total, 36 anomalies were detected- 4.9% of the data.<br/>
+                                            <img src="images/ml/29.PNG" width="600" height="420"></img><br/><br/>
+
+                                            <h3>Isolation Forest</h3>
+                                            An unsupervised learning algorithm for anomaly detection that works on the principle of isolating anomalies, instead of the most common techniques of profiling normal points.<br/>
+                                            <ul>
+                                                <li>Anomalies are less frequent than regular instances</li>
+                                                <li>That is why by using isolation forest they should be identified faster, because they are closer to the root</li>
+                                                <li>In total, 37 anomalies were detected- 5% of the data</li>
+                                            </ul>
+                                            <img src="images/ml/30.PNG" width="600" height="420"></img><br/><br/>
+                                            
+                                            <h3>Final Results</h3>
+                                           <ul>
+                                               <li><b>Grubb’s Test:</b> 6 anomalies, 0.8%</li>
+                                               <li><b>K-Means:</b> 36 anomalies, 4.9%</li>
+                                               <li><b>Isolation Forest:</b> 37 anomalies, 5%</li>
+                                               <li>To avoid <b>FP</b>, we assumed that if 2 different techniques detected the same instances as anomalies, it is very
+                                                    likely <b>TP</b>, thus we checked the intersection between them:
+                                                    <ul>
+                                                        <li>K-Means &cap; Isolation Forest</li>
+                                                        <li>K-Means &cap; Grubb's Test</li>
+                                                        <li>Isolation Forest &cap; Grubb's Test</li>
+                                                    </ul>
+                                                </li>
+                                           </ul><br/>
+                                           <img src="images/ml/31.PNG"width="300" height="350"></img><br/><br/>
+                                           <b>27 anomalies detected, which comes up to 3.6% of the dataset.</b><br/><br/>
+                                           After finding the anomalies, we analyzed what happened on those days in Washington D.C.
+                                            <br/>Days we couldn’t find an explanation for are marked as FP:<br/>
+                                            <br/>
+                                            <Table striped bordered hover size="sm" style={{fontWeight:"normal", fontSize:"13px", width:"180px"}}>
+                                                <thead>
+                                                    <tr>{columns5.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
+                                                </thead>
+                                                <tbody>
+                                                    {data5.map(item => 
+                                                        <tr key={`${item.item}-row`}>
+                                                            {columns5.map(col => <td key={`${item.item}-${col.property}`}>{item[col.property]}</td>)}
+                                                        </tr>
+                                                    )}
+                                                </tbody>
+                                            </Table><br/>
+                                            <br/>
+                                            
+                                            
+                                            <br/><h3>Conclusion</h3>
+                                            In total, 22 anomalies out of the 27 are TP, which comes up to 81.4% accuracy rate (Calculated by: TP / (TP+FP))<br/>
+                                            <br/>Now we remove all the TP anomalies from the dataset, and we will execute the models &amp; regressors again.
+                                            <br/>If improvement occurred – our anomaly detector succeeded on its mission!
+
+
+
                                             <br></br><br></br>
                                         </>
                                     :

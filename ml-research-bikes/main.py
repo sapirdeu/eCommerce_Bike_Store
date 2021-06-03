@@ -422,9 +422,9 @@ if __name__ == '__main__':
     # predictCount(CSV_PATH)
 
     # # detect anomalies.
-    # detectAnomalies(CSV_PATH)
+    detectAnomalies(CSV_PATH)
 
     # # predict count after anomalies are removed from the dataset -> loss is lower -> better accuracy.
-    predictCount(CSV_NO_ANOMALIES_PATH)
+    # predictCount(CSV_NO_ANOMALIES_PATH)
 
     print("\n\nTHE END\n\n")
