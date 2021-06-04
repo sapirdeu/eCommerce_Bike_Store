@@ -475,7 +475,7 @@ function AnomaliesResearch(props) {
     //Data4 is the array of objects to be placed into the table
     let data5 = [
         {
-            Date: '8/1/2011',
+            Date: '08/01/2011',
             Temp: '0.165',
             Hum: '0.535833',
             Cnt: '959',
@@ -483,13 +483,213 @@ function AnomaliesResearch(props) {
             Reason: '',
         },
         {
-            Date: '',
-            Temp: '',
-            Hum: '',
-            Cnt: '',
-            Result: '',
+            Date: '09/01/2011',
+            Temp: '0.138333',
+            Hum: '0.434167',
+            Cnt: '822',
+            Result: 'FP',
             Reason: '',
         },
+        {
+            Date: '17/01/2011',
+            Temp: '0.175833',
+            Hum: '0.5375',
+            Cnt: '1000',
+            Result: 'TP',
+            Reason: 'Martin Luther King Day- National holiday in USA.',
+        },
+        {
+            Date: '18/01/2011',
+            Temp: '0.216667',
+            Hum: '0.861667',
+            Cnt: '683',
+            Result: 'TP',
+            Reason: 'U.S. Conference of Mayors Winter Meeting President Obama.',
+        },
+        {
+            Date: '22/01/2011',
+            Temp: '0.0591304',
+            Hum: '0.4',
+            Cnt: '981',
+            Result: 'TP',
+            Reason: 'Very low temperature.',
+        },
+        {
+            Date: '23/01/2011',
+            Temp: '0.0965217',
+            Hum: '0.436522',
+            Cnt: '986',
+            Result: 'TP',
+            Reason: 'Very low temperature.',
+        },
+        {
+            Date: '26/01/2011',
+            Temp: '0.2175',
+            Hum: '0.8625',
+            Cnt: '506',
+            Result: 'TP',
+            Reason: 'The mean of that month is 1231 bikes per day.',
+        },
+        {
+            Date: '05/02/2011',
+            Temp: '0.233333',
+            Hum: '0.929167',
+            Cnt: '1005',
+            Result: 'TP',
+            Reason: 'The lowest day on February 2011, which is a low month in itself and much lower than the mean for that month.',
+        },
+        {
+            Date: '07/09/2011',
+            Temp: '0.599167',
+            Hum: '0.917083',
+            Cnt: '1996',
+            Result: 'TP',
+            Reason: 'Heatwave- very hot & humid.',
+        },
+        {
+            Date: '08/09/2011',
+            Temp: '0.633913',
+            Hum: '0.939565',
+            Cnt: '1842',
+            Result: 'TP',
+            Reason: 'Heatwave- very hot & humid.',
+        },
+        {
+            Date: '23/09/2011',
+            Temp: '0.609167',
+            Hum: '0.9725',
+            Cnt: '2395',
+            Result: 'TP',
+            Reason: 'Heatwave- very hot & humid.',
+        },
+        {
+            Date: '27/09/2011',
+            Temp: '0.636667',
+            Hum: '0.885417',
+            Cnt: '4120',
+            Result: 'TP',
+            Reason: 'Heatwave- very hot & humid.',
+        },
+        {
+            Date: '12/10/2011',
+            Temp: '0.543333',
+            Hum: '0.90625',
+            Cnt: '2416',
+            Result: 'TP',
+            Reason: 'A plot tied to the Iranian government to bomb the Israeli and the Saudi embassies in Washington on 11/10/2011.',
+        },
+        {
+            Date: '19/10/2011',
+            Temp: '0.541739',
+            Hum: '0.895217',
+            Cnt: '2424',
+            Result: 'TP',
+            Reason: 'One of the lowest days on October 2011, which is a low month in itself and much lower than the mean for that month.',
+        },
+        {
+            Date: '29/10/2011',
+            Temp: '0.254167',
+            Hum: '0.8825',
+            Cnt: '627',
+            Result: 'TP',
+            Reason: 'Record-breaking snowstorm in the northeastern United States leaves nearly 2 million residents without power for more than 36 hours.',
+        },
+        {
+            Date: '16/11/2011',
+            Temp: '0.456667',
+            Hum: '0.93',
+            Cnt: '1817',
+            Result: 'TP',
+            Reason: 'One of the lowest days on November 2011 also much lower than the mean.',
+        },
+        {
+            Date: '21/11/2011',
+            Temp: '0.4475',
+            Hum: '0.91',
+            Cnt: '2765',
+            Result: 'FP',
+            Reason: '',
+        },
+        {
+            Date: '22/11/2011',
+            Temp: '0.416667',
+            Hum: '0.9625',
+            Cnt: '1607',
+            Result: 'TP',
+            Reason: 'One of the lowest days on November 2011 also much lower than the mean.',
+        },
+        {
+            Date: '06/12/2011',
+            Temp: '0.4625',
+            Hum: '0.949583',
+            Cnt: '2594',
+            Result: 'FP',
+            Reason: '',
+        },
+        {
+            Date: '07/12/2011',
+            Temp: '0.41',
+            Hum: '0.970417',
+            Cnt: '705',
+            Result: 'TP',
+            Reason: 'Demonstration- Dozens of Occupy protesters arrested in Washington https://www.bbc.com/news/world-us-canada-16079356',
+        },
+        {
+            Date: '12/02/2012',
+            Temp: '0.1275',
+            Hum: '0.464583',
+            Cnt: '1529',
+            Result: 'TP',
+            Reason: 'The lowest day on February 2012, which is a low month in itself and much lower than the mean for that month.',
+        },
+        {
+            Date: '07/04/2012',
+            Temp: '0.4375',
+            Hum: '0.254167',
+            Cnt: '6857',
+            Result: 'TP',
+            Reason: 'Easter evening.',
+        },
+        {
+            Date: '09/04/2012',
+            Temp: '0.489167',
+            Hum: '0.3175',
+            Cnt: '5585',
+            Result: 'TP',
+            Reason: 'Easter break.',
+        },
+        {
+            Date: '02/10/2012',
+            Temp: '0.590833',
+            Hum: '0.871667',
+            Cnt: '4639',
+            Result: 'TP',
+            Reason: 'One of the lowest days on October 2012 and much lower than the mean.',
+        },
+        {
+            Date: '03/10/2012',
+            Temp: '0.6575',
+            Hum: '0.79375',
+            Cnt: '7572',
+            Result: 'FP',
+            Reason: '',
+        },
+        {
+            Date: '29/10/2012',
+            Temp: '0.44',
+            Hum: '0.88',
+            Cnt: '22',
+            Result: 'TP',
+            Reason: 'Hurricane Sandy makes landfall in New Jersey resulting in 110 deaths and $50 billion in damage and forces the New York stock exchange to close',
+        },
+        {
+            Date: '26/12/2012',
+            Temp: '0.243333',
+            Hum: '0.823333',
+            Cnt: '441',
+            Result: 'TP',
+            Reason: 'Christmas',
+        }
     ]
     // Research Overview
     function watchResearchOverviewHandler(){
@@ -970,7 +1170,7 @@ function AnomaliesResearch(props) {
                                            After finding the anomalies, we analyzed what happened on those days in Washington D.C.
                                             <br/>Days we couldn’t find an explanation for are marked as FP:<br/>
                                             <br/>
-                                            <Table striped bordered hover size="sm" style={{fontWeight:"normal", fontSize:"13px", width:"180px"}}>
+                                            <Table striped bordered hover size="sm" style={{fontWeight:"normal", fontSize:"13px"}}>
                                                 <thead>
                                                     <tr>{columns5.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
                                                 </thead>
@@ -981,9 +1181,7 @@ function AnomaliesResearch(props) {
                                                         </tr>
                                                     )}
                                                 </tbody>
-                                            </Table><br/>
-                                            <br/>
-                                            
+                                            </Table>                                          
                                             
                                             <br/><h3>Conclusion</h3>
                                             In total, 22 anomalies out of the 27 are TP, which comes up to 81.4% accuracy rate (Calculated by: TP / (TP+FP))<br/>
