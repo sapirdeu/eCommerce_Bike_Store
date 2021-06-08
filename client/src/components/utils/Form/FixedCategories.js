@@ -72,15 +72,15 @@ const price = [
 const chatbotStatistics = [
     {
         "_id": 1,
-        "name": "Survey Overview"
+        "name": "Survey overview"
     },
     {
         "_id": 2,
-        "name": "Clipping Outliers"
+        "name": "Clipping outliers"
     },
     {
         "_id": 3,
-        "name": "Historgram of the duration of test taking (after clipping)"
+        "name": "Historgram of the duration of test taking"
     },
     {
         "_id": 4,
@@ -88,31 +88,31 @@ const chatbotStatistics = [
     },
     {
         "_id": 5,
-        "name": "Personality Score - Mini-IPIP test questions"
+        "name": "Personality score - mini-IPIP"
     },
     {
         "_id": 6,
-        "name": "Personality Score Calculation"
+        "name": "Personality score calculation"
     },
     {
         "_id": 7,
-        "name": "Random Groups - Group Assignment"
+        "name": "Random groups - group assignment"
     },
     {
         "_id": 8,
-        "name": "Analyzing the survey response to the different aspects of the experiment"
+        "name": "Analyzing the survey response"
     },
     {
         "_id": 9,
-        "name": "Testing Reliability with Alpha"
+        "name": "Testing reliability with alpha"
     },
     {
         "_id": 10,
-        "name": "Cronbach-Alpha Summary"
+        "name": "Cronbach alpha summary"
     },
     {
         "_id": 11,
-        "name": "Visual Differences between the groups for the questions"
+        "name": "Visual differences between the groups"
     },
     {
         "_id": 12,

@@ -50,12 +50,12 @@ function Header(props) {
             public: false
         },
         {
-            name: 'Log in',
+            name: 'Log In',
             linkTo: '/register_login',
             public: true
         },
         {
-            name: 'Log out',
+            name: 'Log Out',
             linkTo: '/user/logout',
             public: false
         }
@@ -87,7 +87,7 @@ function Header(props) {
 
     const defaultLink = (item,i) => {
         return (
-        item.name === 'Log out' ?
+        item.name === 'Log Out' ?
             <div className="log_out_link"
                 key={i}
                 onClick={()=>logOutHandler()}
@@ -112,7 +112,7 @@ function Header(props) {
                         list.push(item);
                     }
                 } else{
-                    if(item.name !== 'Log in'){
+                    if(item.name !== 'Log In'){
                         list.push(item);
                     }
                 }

@@ -1,20 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 import {useDispatch,connect} from 'react-redux'
-//import { getProductsToShop,getBrands, getMaterials} from '../../redux/actions/products_actions'
 import PageTop from '../utils/PageTop';
 import CollapseCheckbox from '../utils/CollapseCheckbox';
-//import CollapseRadio from '../utils/CollapseRadio';
 import {chatbotStatistics} from '../utils/Form/FixedCategories';
-//import LoadMoreCards from './LoadMoreCards';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import faBars from '@fortawesome/fontawesome-free-solid/faBars'
-import faTh from '@fortawesome/fontawesome-free-solid/faTh'
-
 import renderHTML from 'react-render-html'
 import { Table } from 'reactstrap';
-import UserLayout from '../../hoc/UserLayout'
 import {
     getSurveyOverview, 
     getClipingOutliers, 
@@ -34,7 +25,6 @@ import DragAndDropCSV from './DragAndDropCSV'
 
 function ChatbotResearch(props) {
     // buttons and data displayed
-    //const [surveyOverviewButton, setSurveyOverviewButton] = useState(true)
     const [surveyOverviewData, setSurveyOverviewData] = useState('')
     const [clipingOutliersData, setClipingOutliersData] = useState('')
     const [historgramData, setHistorgramData] = useState('')
@@ -171,13 +161,6 @@ function ChatbotResearch(props) {
     ]
 
     
-
-
-
-    // const products = props.products;
-    // const [grid,setGrid] = useState('');
-    // const [limit] = useState(6);
-    // const [skip, setSkip] = useState(0);
     const [filters, setFilters] = useState({
         chatbotStatistics:[],
     })
@@ -190,9 +173,9 @@ function ChatbotResearch(props) {
             setSurveyOverviewData(response.payload)
         })
     }
-    function unwatchSurveyOverviewHandler(){
-        setSurveyOverviewData('');
-    }
+    // function unwatchSurveyOverviewHandler(){
+    //     setSurveyOverviewData('');
+    // }
 
     // Clipping Outliers
     function watchClipingOutliersHandler(){
@@ -200,9 +183,9 @@ function ChatbotResearch(props) {
             setClipingOutliersData(response.payload)
         })
     }
-    function unwatchClipingOutliersHandler(){
-        setClipingOutliersData('');
-    }
+    // function unwatchClipingOutliersHandler(){
+    //     setClipingOutliersData('');
+    // }
 
     // Historgram of the duration of test taking (after clipping)
     function watchHistorgramHandler(){
@@ -210,9 +193,9 @@ function ChatbotResearch(props) {
             setHistorgramData(response.payload)
         })
     }
-    function unwatchHistorgramHandler(){
-        setHistorgramData('');
-    }
+    // function unwatchHistorgramHandler(){
+    //     setHistorgramData('');
+    // }
 
     // Map of responders
     function watchRespondersMapHandler(){
@@ -220,9 +203,9 @@ function ChatbotResearch(props) {
             setRespondersMapData(response.payload)
         })
     }
-    function unwatchRespondersMapHandler(){
-        setRespondersMapData('');
-    }
+    // function unwatchRespondersMapHandler(){
+    //     setRespondersMapData('');
+    // }
 
     // Personality Score Mini-IPIP test questions
     function watchPersonalityScoreMiniHandler(){
@@ -230,9 +213,9 @@ function ChatbotResearch(props) {
             setPersonalityScoreMiniData(response.payload)
         })
     }
-    function unwatchPersonalityScoreMiniHandler(){
-        setPersonalityScoreMiniData('');
-    }
+    // function unwatchPersonalityScoreMiniHandler(){
+    //     setPersonalityScoreMiniData('');
+    // }
 
     // Personality Score calculation
     function watchPersonalityScoreCalcHandler(){
@@ -240,9 +223,9 @@ function ChatbotResearch(props) {
             setPersonalityScoreCalcData(response.payload)
         })
     }
-    function unwatchPersonalityScoreCalcHandler(){
-        setPersonalityScoreCalcData('');
-    }
+    // function unwatchPersonalityScoreCalcHandler(){
+    //     setPersonalityScoreCalcData('');
+    // }
 
     // Random Groups - Group Assignment
     function watchGroupAssignmentHandler(){
@@ -250,9 +233,9 @@ function ChatbotResearch(props) {
             setGroupAssignmentData(response.payload)
         })
     }
-    function unwatchGroupAssignmentHandler(){
-        setGroupAssignmentData('');
-    }
+    // function unwatchGroupAssignmentHandler(){
+    //     setGroupAssignmentData('');
+    // }
 
     // Analyzing the survey response to the different aspects of the experiment
     function watchAnalyzingResponseHandler(){
@@ -260,18 +243,18 @@ function ChatbotResearch(props) {
             setAnalyzingResponseData(response.payload)
         })
     }
-    function unwatchAnalyzingResponseHandler(){
-        setAnalyzingResponseData('');
-    }
+    // function unwatchAnalyzingResponseHandler(){
+    //     setAnalyzingResponseData('');
+    // }
 
     function watchTestingReliabilityHandler(){
         dispatch(getTestingReliability()).then(response=>{
             setTestingReliabilityData(response.payload)
         })
     }
-    function unwatchTestingReliabilityHandler(){
-        setTestingReliabilityData('');
-    }
+    // function unwatchTestingReliabilityHandler(){
+    //     setTestingReliabilityData('');
+    // }
 
 
 
@@ -280,18 +263,18 @@ function ChatbotResearch(props) {
             setCronbachAlphaData(response.payload)
         })
     }
-    function unwatchCronbachAlphaHandler(){
-        setCronbachAlphaData('');
-    }
+    // function unwatchCronbachAlphaHandler(){
+    //     setCronbachAlphaData('');
+    // }
 
     function watchVisualDifferencesHandler(){
         dispatch(getVisualDifferences()).then(response=>{
             setVisualDifferencesData(response.payload)
         })
     }
-    function unwatchVisualDifferencesHandler(){
-        setVisualDifferencesData('');
-    }
+    // function unwatchVisualDifferencesHandler(){
+    //     setVisualDifferencesData('');
+    // }
 
 
     function watchScatterHandler(){
@@ -299,9 +282,9 @@ function ChatbotResearch(props) {
             setScatterData(response.payload)
         })
     }
-    function unwatchScatterHandler(){
-        setScatterData('');
-    }
+    // function unwatchScatterHandler(){
+    //     setScatterData('');
+    // }
 
 
     function watchAnalysisQuestionHandler(){
@@ -309,9 +292,9 @@ function ChatbotResearch(props) {
             setAnalysisQuestionData(response.payload)
         })
     }
-    function unwatchAnalysisQuestionHandler(){
-        setAnalysisQuestionData('');
-    }
+    // function unwatchAnalysisQuestionHandler(){
+    //     setAnalysisQuestionData('');
+    // }
 
 
 
@@ -335,6 +318,7 @@ function ChatbotResearch(props) {
                     case 11: watchVisualDifferencesHandler(); /*unwatch[11] = 0;*/ break;
                     case 12: watchScatterHandler(); /*unwatch[12] = 0;*/ break;
                     case 13: watchAnalysisQuestionHandler(); /*unwatch[13] = 0;*/ break;
+                    default: break;
                 }
             }
         }
@@ -371,7 +355,6 @@ function ChatbotResearch(props) {
 
     return (
         <div>
-            <PageTop title="Browse Products"/>
             <div className="container">
                 <div className="shop_wrapper">
                     <div className="left">
@@ -385,7 +368,7 @@ function ChatbotResearch(props) {
 
                     <div className="right" style={{paddingLeft:"25px"}}>
                         <div>
-                            <h1>Survey Analysis</h1>
+                            <h1 className="padding20">Survey Analysis</h1>
                             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We often want to survey people on their views or reactions to possible events (design or promotion, for example). There are many survey tools that are good in designing the survey, presenting it on various forms, such as web or mobile, distributing it and collecting the responses. However, when it comes to analyzing the responses, you are left with fewer options, and most of them are out-dated (SPSS, for example).</h3>
                             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>In this notebook, we will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
                             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will start with loading the CSV files that we exported from the survey system (Qualtrics, in this example).</h3>

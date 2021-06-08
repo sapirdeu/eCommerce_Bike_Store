@@ -8,7 +8,7 @@ function UserDashboard({user}) {
         <UserLayout>
             <div>
                 <div className="user_nfo_panel">
-                    <h1>User Inforamtion</h1>
+                    <h2 className="user_information_right">User Inforamtion</h2>
                     <div>
                         <span>{user.userData.name}</span>
                         <span>{user.userData.lastname}</span>
@@ -24,7 +24,7 @@ function UserDashboard({user}) {
                 {
                     user.userData.history ?
                         <div className="user_nfo_panel">
-                            <h1>History Purchases</h1>
+                            <h2 className="user_information_right">History Purchases</h2>
                             <div className="user_product_block_wrapper">
                                     <UserHistoryBlock
                                         products={user.userData.history}

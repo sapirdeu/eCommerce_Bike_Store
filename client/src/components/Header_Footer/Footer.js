@@ -14,7 +14,7 @@ function Footer({data}) {
 
                     <div className="wrapper">
                         <div className="left">
-                            <h2>Contant Information</h2>
+                            <h3>Contant Information</h3>
                             <div className="business_nfo">
                                 <div className="tag">
                                     <FontAwesomeIcon
@@ -58,15 +58,6 @@ function Footer({data}) {
                                         <div>Email</div>
                                         <div>{data.siteData[0].email}</div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="right">
-                            <h2>Be the first to know</h2>
-                            <div>
-                                <div>
-                                    Get all the latest information on events, sales and offers. You can miss out.
                                 </div>
                             </div>
                         </div>

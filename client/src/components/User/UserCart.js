@@ -85,7 +85,7 @@ function UserCart(props) {
     return (
         <UserLayout>
             <div>
-                <h1>My cart</h1>
+                <h1 className="padding20">My cart</h1>
                 <div className="user_cart">
                     <UserProductBlock
                         products={props.user}

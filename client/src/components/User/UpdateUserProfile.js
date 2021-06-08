@@ -5,7 +5,7 @@ import UpdatePersonalInfo from './UpdatePersonalInfo'
 function UpdateUserProfile() {
     return (
         <UserLayout>
-            <h1>Profile</h1>
+            <h1 className="user_profile_right">Profile</h1>
             <UpdatePersonalInfo/>
         </UserLayout>
     )

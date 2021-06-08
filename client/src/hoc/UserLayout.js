@@ -34,13 +34,13 @@ function UserLayout(props) {
         }
     ]
 
-    const researcher = [
-        {
-            name: 'Chatbot Statistics',
-            linkTo: '/researcher/chatbot_stat'
-        }
+    // const researcher = [
+    //     {
+    //         name: 'Chatbot Statistics',
+    //         linkTo: '/researcher/chatbot_stat'
+    //     }
         
-    ]
+    // ]
 
     const generateLinks = (links) => (
         links.map((item,i)=>(
@@ -54,24 +54,24 @@ function UserLayout(props) {
         <div className="container">
             <div className="user_container">
                 <div className="user_left_nav">
-                    <h2>My account</h2>
+                    <h2 className="user_information_nav">My account</h2>
                     <div className="links">{generateLinks(links)}</div>
                     {
                         props.user.userData.isAdmin ?
                             <div>
-                                <h2>Admin</h2>
+                                <h2 className="user_information_nav">Admin</h2>
                                 <div className="links">{generateLinks(admin)}</div>
                             </div>
                         : null
                     }
-                    {
+                    {/* {
                         props.user.userData.isResearcher ?
                             <div>
-                                <h2>Researcher</h2>
+                                <h2 className="user_information_nav">Researcher</h2>
                                 <div className="links">{generateLinks(researcher)}</div>
                             </div>
                         : null
-                    }
+                    } */}
                 </div>
 
                 <div className="user_right">

@@ -1,21 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 import {useDispatch,connect} from 'react-redux'
-import PageTop from '../utils/PageTop';
 import CollapseCheckbox from '../utils/CollapseCheckbox';
 import {mlResearch} from '../utils/Form/FixedCategories';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import faBars from '@fortawesome/fontawesome-free-solid/faBars'
-import faTh from '@fortawesome/fontawesome-free-solid/faTh'
-
-import renderHTML from 'react-render-html'
 import { Table } from 'reactstrap';
-import UserLayout from '../../hoc/UserLayout'
-// import {
-//     getSurveyOverview, 
-// } from '../../redux/actions/chatbot_actions'
-import DragAndDropCSV from './DragAndDropCSV'
 
 function AnomaliesResearch(props) {
     const [researchOverviewData, setResearchOverviewData] = useState('')
@@ -751,11 +739,12 @@ function AnomaliesResearch(props) {
                     case 4: watchPredictBeforeHandler(); unwatch[4]=0; break;
                     case 5: watchAnomaliesHandler(); unwatch[5]=0; break;
                     case 6: watchPredictAfterHandler(); unwatch[6]=0; break;
+                    default: break;
                 }
             }
 
              for (var i=1 ; i<unwatch.length; i++){
-                if (unwatch[i] == 1){
+                if (unwatch[i] === 1){
                     switch (i){
                         case 1: unWatchResearchOverviewHandler(); break;
                         case 2: unWatchAnalysisDataHandler(); break;
@@ -763,6 +752,7 @@ function AnomaliesResearch(props) {
                         case 4: unWatchPredictBeforeHandler(); break;
                         case 5: unWatchAnomaliesHandler(); break;
                         case 6: unWatchPredictAfterHandler(); break;
+                        default: break;
                     }
                 }
             }
@@ -774,7 +764,6 @@ function AnomaliesResearch(props) {
 
     return (
         <div>
-            <PageTop title="Browse Products"/>
             <div className="container">
                 <div className="shop_wrapper">
                     <div className="left">
@@ -788,7 +777,7 @@ function AnomaliesResearch(props) {
 
                     <div className="right" style={{paddingLeft:"25px"}}>
                         <div>
-                            <h1>Bike Sharing Machine Learning Research</h1>
+                            <h1 className="padding20">Bike Sharing Machine Learning Research</h1>
                             <br/>
                             <div>
                                 {
@@ -898,8 +887,8 @@ function AnomaliesResearch(props) {
                                             <ul>
                                                 <li><b>Time series</b> of daily bike-sharing information over a period of 2 years, hence <b>731 instances</b>, one per day.</li>
                                                 <li>Unsupervised.</li>
-                                                <li>The data was aggregated on a daily basis with the corresponding weather and seasonal information that were extracted from <a href="http://www.freemeteo.com" target="_blank"><u>http://www.freemeteo.com</u></a> and <a href="http://dchr.dc.gov/page/holiday-schedule" target="_blank"><u>http://dchr.dc.gov/page/holiday-schedule</u></a></li>
-                                                <li>The data set is related to the two-year historical log corresponding to years <b>2011 and 2012</b> from Capital Bikeshare system, <b>Washington D.C.</b>, USA which is publicly available in <a href="http://capitalbikeshare.com/system-data" target="_blank"><u>http://capitalbikeshare.com/system-data</u></a>.</li>
+                                                <li>The data was aggregated on a daily basis with the corresponding weather and seasonal information that were extracted from <a href="http://www.freemeteo.com" target="_blank" rel="noreferrer"><u>http://www.freemeteo.com</u></a> and <a href="http://dchr.dc.gov/page/holiday-schedule" target="_blank" rel="noreferrer"><u>http://dchr.dc.gov/page/holiday-schedule</u></a></li>
+                                                <li>The data set is related to the two-year historical log corresponding to years <b>2011 and 2012</b> from Capital Bikeshare system, <b>Washington D.C.</b>, USA which is publicly available in <a href="http://capitalbikeshare.com/system-data" target="_blank" rel="noreferrer"><u>http://capitalbikeshare.com/system-data</u></a>.</li>
                                             </ul>
                                             </h3>
                                             <br/>
@@ -954,10 +943,10 @@ function AnomaliesResearch(props) {
                                                 </tbody>
                                             </Table><br/>
                                             The graph below shows how many bikes were rented per day:<br/>
-                                            <img src="images/ml/1.PNG" width="800" height="320"></img><br/><br/>
+                                            <img src="images/ml/1.PNG" width="800" height="320" alt=""></img><br/><br/>
 
                                             The graph below shows how many bikes were rented on average per month:<br/>
-                                            <img src="images/ml/2.PNG" width="800" height="280"></img><br/><br/>
+                                            <img src="images/ml/2.PNG" width="800" height="280" alt=""></img><br/><br/>
 
                                             <u>Q: Does <b>season</b> affect rental bikes usage? <b>Yes</b></u><br/>
                                             Ttest:<br/>
@@ -984,15 +973,15 @@ function AnomaliesResearch(props) {
                                             Summer vs. Fall:<br/>
                                             Ttest_indResult(statistic=5.541003097872063, pvalue=5.7789091515026665e-08)<br/><br/>
 
-                                            <img src="images/ml/3.PNG" width="520" height="370"></img><br/><br/>
-                                            <img src="images/ml/4.PNG" width="410" height="450"></img><br/><br/>
-                                            <img src="images/ml/5.PNG" width="550" height="350"></img><br/><br/>
-                                            <img src="images/ml/6.PNG" width="900" height="350"></img><br/><br/>
+                                            <img src="images/ml/3.PNG" width="520" height="370" alt=""></img><br/><br/>
+                                            <img src="images/ml/4.PNG" width="410" height="450" alt=""></img><br/><br/>
+                                            <img src="images/ml/5.PNG" width="550" height="350" alt=""></img><br/><br/>
+                                            <img src="images/ml/6.PNG" width="900" height="350" alt=""></img><br/><br/>
 
                                             <u>Q: Does <b>weather</b> affect rental bikes usage? <b>Yes</b></u><br/>
                                             As we can see below, types of weather have a large impact on rental bikes. There are significantly less rides during snow and thunderstorms than during periods of nicer weather. 
                                             We can also see that this trend holds up across all seasons.<br/>
-                                            <img src="images/ml/7.PNG" width="850" height="400"></img><br/><br/>
+                                            <img src="images/ml/7.PNG" width="850" height="400" alt=""></img><br/><br/>
 
                                             <br></br><br></br>
                                         </>
@@ -1043,7 +1032,7 @@ function AnomaliesResearch(props) {
 
                                             <h3>Dataset- Heatmap</h3>
                                             check the correlation between the features:<br/>
-                                            <img src="images/ml/8.PNG" width="550" height="400"></img><br/><br/>
+                                            <img src="images/ml/8.PNG" width="550" height="400" alt=""></img><br/><br/>
                                             <u>Correlation Conclusions</u><br/>
                                             <ul>
                                                 <li><b>Very strong</b> correlation between <b>temp</b> and <b>atemp</b>, we remove atemp from the attributes, in order to reduce the dimensionality.</li>
@@ -1067,16 +1056,16 @@ function AnomaliesResearch(props) {
                                             <br/>
                                             <h2>Classifiers &amp; Regressors - With Anomalies (Full Dataset)</h2>
                                             <br/>
-                                            <img src="images/ml/9.PNG" width="600" height="450"></img><br/>
+                                            <img src="images/ml/9.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>Linear Regression loss:</b> 0.034457361213136625<br/><br/><br/>
-                                            <img src="images/ml/10.PNG" width="600" height="450"></img><br/>
+                                            <img src="images/ml/10.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>SVR loss:</b> 0.0876347746659868<br/><br/><br/>
-                                            <img src="images/ml/11.PNG" width="600" height="450"></img><br/>
+                                            <img src="images/ml/11.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>Random Forest loss:</b> 0.020199390796750122<br/><br/><br/>
 
                                             <b>Loss function MSE:</b> Mean Square Error- the sum of squared distances between our target variable and predicted values.
                                             We chose MSE as our loss function because it is outlier sensitive.<br/>
-                                            <img src="images/ml/12.PNG"></img>
+                                            <img src="images/ml/12.PNG" alt=""></img>
                                             <br></br><br></br>
                                         </>
                                     :
@@ -1097,17 +1086,17 @@ function AnomaliesResearch(props) {
                                             </h3>
 
                                             <br/>
-                                            <img src="images/ml/16.PNG"></img><br/><br/>
+                                            <img src="images/ml/16.PNG" alt=""></img><br/><br/>
                                             Calculated G and the threshold:<br/>
-                                            <img src="images/ml/17.PNG"></img><br/><br/>
+                                            <img src="images/ml/17.PNG" alt=""></img><br/><br/>
                                             Each iteration we remove the outlier with the greatest Z-score:<br/>
                                             <ul>
-                                                <li>After the 1st iteration:<br/><img src="images/ml/18.PNG"></img></li><br/>
-                                                <li>After the 2nd iteration:<br/><img src="images/ml/19.PNG"></img></li><br/>
-                                                <li>After the 3rd iteration:<br/><img src="images/ml/20.PNG"></img></li><br/>
-                                                <li>After the 4th iteration:<br/><img src="images/ml/21.PNG"></img></li><br/>
-                                                <li>After the 5th iteration:<br/><img src="images/ml/22.PNG"></img></li><br/>
-                                                <li>After the 6th iteration:<br/><img src="images/ml/23.PNG"></img></li><br/>
+                                                <li>After the 1st iteration:<br/><img src="images/ml/18.PNG" alt=""></img></li><br/>
+                                                <li>After the 2nd iteration:<br/><img src="images/ml/19.PNG" alt=""></img></li><br/>
+                                                <li>After the 3rd iteration:<br/><img src="images/ml/20.PNG" alt=""></img></li><br/>
+                                                <li>After the 4th iteration:<br/><img src="images/ml/21.PNG" alt=""></img></li><br/>
+                                                <li>After the 5th iteration:<br/><img src="images/ml/22.PNG" alt=""></img></li><br/>
+                                                <li>After the 6th iteration:<br/><img src="images/ml/23.PNG" alt=""></img></li><br/>
                                             </ul>
                                             In total, 6 anomalies were detected- 0.82% (less than 1%) of the data.<br/>
                                             The remaining instances are smaller than the threshold.<br/><br/>
@@ -1116,15 +1105,15 @@ function AnomaliesResearch(props) {
                                             PCA is defined as an orthogonal linear transformation that transforms the data to a new coordinate system such that the greatest variance by some scalar projection of the data comes to lie on the first coordinate (called the first principal component), the second greatest variance on the second coordinate, and so on.<br/>
                                             The purpose of PCA is to reduce the data’s entropy.<br/>
                                             <ol>
-                                                <li>First, normalize the data to Normal Distribution:<br/><img src="images/ml/24.PNG" width="900" height="120"></img></li><br/>
-                                                <li>Second, calculate the number of components needed to explain the variance of 95%. Before PCA we had 11 attributes, and after PCA we are left with 2 new attributes that loyally represent the 11 original ones:<br/><img src="images/ml/25.PNG" width="200" height="120"></img></li><br/>
+                                                <li>First, normalize the data to Normal Distribution:<br/><img src="images/ml/24.PNG" width="900" height="120" alt=""></img></li><br/>
+                                                <li>Second, calculate the number of components needed to explain the variance of 95%. Before PCA we had 11 attributes, and after PCA we are left with 2 new attributes that loyally represent the 11 original ones:<br/><img src="images/ml/25.PNG" width="200" height="120" alt=""></img></li><br/>
                                             </ol><br/>
 
                                             <h3>K-Means</h3>
                                             K-Means clustering is a method of vector quantization, originally from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid).<br/><br/>
                                             In order to choose the suitable number of clusters, we calculated K-Means with different number of centroids ranging from 1 to 9.
                                             <br/>As we can see from the elbow function below, the number of clusters that is suitable for the data is 3, hence K=3:<br/>
-                                            <img src="images/ml/26.PNG"></img><br/>
+                                            <img src="images/ml/26.PNG" alt=""></img><br/>
                                             <ul>
                                                 <li>X-Axis: number of clusters</li>
                                                 <li>Y-Axis: K-Means score- the coherency between the clusters</li>
@@ -1132,15 +1121,15 @@ function AnomaliesResearch(props) {
                                             </ul><br/>
 
                                             <b>How many instances belong to each cluster:</b><br/>
-                                            <img src="images/ml/27.PNG" width="500" height="350"></img><br/><br/>
+                                            <img src="images/ml/27.PNG" width="500" height="350" alt=""></img><br/><br/>
                                             
                                             <b>K-Means result:</b><br/>
-                                            <img src="images/ml/28.PNG" width="600" height="420"></img><br/><br/>
+                                            <img src="images/ml/28.PNG" width="600" height="420" alt=""></img><br/><br/>
 
                                             <b>K-Means anomalies detection:</b><br/>
                                             After trying different mathematical thresholds, the one that corresponded the best to the dataset is 3.035, thus an anomaly is an instance which its distance from the centroid it belongs to is greater than 3.035.
                                             <br/>In total, 36 anomalies were detected- 4.9% of the data.<br/>
-                                            <img src="images/ml/29.PNG" width="600" height="420"></img><br/><br/>
+                                            <img src="images/ml/29.PNG" width="600" height="420" alt=""></img><br/><br/>
 
                                             <h3>Isolation Forest</h3>
                                             An unsupervised learning algorithm for anomaly detection that works on the principle of isolating anomalies, instead of the most common techniques of profiling normal points.<br/>
@@ -1149,7 +1138,7 @@ function AnomaliesResearch(props) {
                                                 <li>That is why by using isolation forest they should be identified faster, because they are closer to the root</li>
                                                 <li>In total, 37 anomalies were detected- 5% of the data</li>
                                             </ul>
-                                            <img src="images/ml/30.PNG" width="600" height="420"></img><br/><br/>
+                                            <img src="images/ml/30.PNG" width="600" height="420" alt=""></img><br/><br/>
                                             
                                             <h3>Final Results</h3>
                                            <ul>
@@ -1165,7 +1154,7 @@ function AnomaliesResearch(props) {
                                                     </ul>
                                                 </li>
                                            </ul><br/>
-                                           <img src="images/ml/31.PNG"width="300" height="350"></img><br/><br/>
+                                           <img src="images/ml/31.PNG"width="300" height="350" alt=""></img><br/><br/>
                                            <b>27 anomalies detected, which comes up to 3.6% of the dataset.</b><br/><br/>
                                            After finding the anomalies, we analyzed what happened on those days in Washington D.C.
                                             <br/>Days we couldn’t find an explanation for are marked as FP:<br/>
@@ -1204,21 +1193,21 @@ function AnomaliesResearch(props) {
                                             <br/>
                                             <h2>Classifiers &amp; Regressors - Without Anomalies</h2>
                                             <br/>
-                                            <img src="images/ml/13.PNG" width="600" height="450"></img><br/>
+                                            <img src="images/ml/13.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>Linear Regression loss:</b> 0.030762413820932928<br/>
                                             <b>10.72% Improvement</b>
                                             {/* 0.034457361213136625 */}
                                             {/* (0.034457361213136625-0.030762413820932928)/0.034457361213136625 = 0.10723245373 */}
                                             <br/><br/>
                                             
-                                            <img src="images/ml/14.PNG" width="600" height="450"></img><br/>
+                                            <img src="images/ml/14.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>SVR loss:</b> 0.07434209488497755<br/>
                                             <b>15.17% Improvement</b>
                                             {/* 0.0876347746659868 */}
                                             {/* (0.0876347746659868-0.07434209488497755)/0.0876347746659868 = 0.15168270622 */}
                                             <br/><br/>
 
-                                            <img src="images/ml/15.PNG" width="600" height="450"></img><br/>
+                                            <img src="images/ml/15.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>Random Forest loss:</b> 0.019869942033651056<br/>
                                             <b>1.63% Improvement</b>
                                             {/* 0.020199390796750122 */}
