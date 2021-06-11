@@ -75,7 +75,7 @@ function FileUpload(props) {
                     style={{
                         float: 'left',
                         width: '25%',
-                        height: '160px',
+                        height: '135px',
                         padding: '10px',
                         boxSizing: 'border-box'
                     }}
@@ -88,9 +88,9 @@ function FileUpload(props) {
                                     backgroundColor: '#eaeaea',
                                     height: '100%',
                                     textAlign: 'center',
-                                    padding: '31px',
+                                    // padding: '31px',
                                     boxSizing: 'border-box',
-                                    fontSize: '49px',
+                                    fontSize: '40px',
                                     backgroundSize:' contain !important',
                                     backgroundPosition: 'center center !important',
                                     border: '1px solid #eaeaea',

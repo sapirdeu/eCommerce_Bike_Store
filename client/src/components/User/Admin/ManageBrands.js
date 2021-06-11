@@ -88,7 +88,7 @@ function ManageBrands(props) {
 
     return (
         <div className="admin_category_wrapper">
-            <h1>Brands</h1>
+            <h1 className="padding20">Brands</h1>
             <div className="admin_two_column">
                 <div className="left">
                     <div className="brands_container">

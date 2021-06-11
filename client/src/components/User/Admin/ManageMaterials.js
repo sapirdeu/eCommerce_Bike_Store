@@ -88,7 +88,7 @@ function ManageMaterials(props) {
 
     return (
         <div className="admin_category_wrapper">
-            <h1>Materials</h1>
+            <h1 style={{paddingTop: '9px'}}>Materials</h1>
             <div className="admin_two_column">
                 <div className="left">
                     <div className="brands_container">

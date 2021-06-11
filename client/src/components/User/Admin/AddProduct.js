@@ -217,6 +217,7 @@ function AddProduct(props) {
     function submitForm(event) {
         event.preventDefault();
 
+        debugger;
         let dataToSubmit = generateData(formData, 'products');
         let formIsValid = isFormValid(formData, 'products');
 
@@ -260,7 +261,7 @@ function AddProduct(props) {
     return (
         <UserLayout>
             <div>
-                <h1>Add product</h1>
+                <h1 className="padding20">Add product</h1>
                 <form onSubmit={(event)=>submitForm(event)}>
                     <FileUpload
                         imagesHandler={(images)=> imagesHandler(images)}

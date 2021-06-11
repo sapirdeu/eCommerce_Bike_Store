@@ -59,8 +59,8 @@ function UserCart(props) {
 
     const showNoItemsMessage = () => (
         <div className="cart_no_items">
-            <FontAwesomeIcon icon={faFrown}/>
-            <div>You have no items</div>
+            <FontAwesomeIcon icon={faFrown} style={{width: '30px'}}/>
+            <h5>You have no items</h5>
         </div>
     )
     
