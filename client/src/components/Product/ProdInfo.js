@@ -66,16 +66,16 @@ function ProdInfo(props) {
 
     const showProdSpecifications = (detail) => (
         <div className="product_specifications">
-            <h2>Specifications:</h2>
+            <h2 style={{paddingTop: '5px'}}>Specifications:</h2>
             <div>
                 <div className="item">
-                    <strong>Front Fork Travel:</strong> {detail.frontForkTravel} mm
+                    <strong style={{fontSize: '14px'}}>Front Fork Travel:</strong> {detail.frontForkTravel} mm
                 </div>
                 <div className="item">
-                    <strong>Material:</strong> {detail.material.name}
+                    <strong style={{fontSize: '14px'}}>Material:</strong> {detail.material.name}
                 </div>
                 <div className="item">
-                    <strong>Weight:</strong> {detail.weight} kg
+                    <strong style={{fontSize: '14px'}}>Weight:</strong> {detail.weight} kg
                 </div>
             </div>
         </div>
@@ -83,8 +83,9 @@ function ProdInfo(props) {
 
     return (
         <div>
-            <h1>{detail.brand.name} {detail.name}</h1>
+            <h1 className="padding20">{detail.brand.name} {detail.name}</h1>
             <p>{detail.description}</p>
+            <br/>
             {showProdTags(detail)}
             {showProdActions(detail)}
             {showProdSpecifications(detail)}
