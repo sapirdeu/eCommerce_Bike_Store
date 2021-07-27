@@ -135,7 +135,7 @@ function Shop(props) {
                     </div>
 
                     <div className="right">
-                        <div className="shop_options">
+                        {/* <div className="shop_options">
                             <div className="shop_grids clear">
                                 <div
                                     className={`grid_btn ${grid ? '' : 'active'}`}
@@ -150,7 +150,8 @@ function Shop(props) {
                                     <FontAwesomeIcon icon={faBars}/>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        <br/><br/>
                         <div>
                             <LoadMoreCards
                                 grid={grid}

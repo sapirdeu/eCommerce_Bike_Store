@@ -21,16 +21,19 @@ from statsmodels.formula.api import ols
 
 # # Set environment variables
 # os.environ['OUTDATED_IGNORE'] = 1
+# survey_df = None
+# try:
+#     survey_df = pd.read_csv('./server/Bot_Research.csv')
+# except:
+#     print("Please upload a suitable111 CSV file")
 
-
-survey_df = pd.read_csv('./server/Bot_Research.csv')
 #survey_df = pd.read_csv('D:\\ReactProjects\\eCommerce_Bike_Store\\server\\Bot Research 8 - real bot _April 25, 2021_00.35 - Sheet1.csv')
 
-def surveyOverview():
+def surveyOverview(survey_df):
     return survey_df.info()
 
 
-def clipingOutliersFirst():
+def clipingOutliersFirst(survey_df):
     return (
         survey_df
         .loc[2:,['Duration (in seconds)']]
@@ -39,7 +42,7 @@ def clipingOutliersFirst():
     )
 
 
-def clipingOutliersSecond():
+def clipingOutliersSecond(survey_df):
     pd.set_option("display.max_rows", None, "display.max_columns", None)
     valid_survey_df = (
         survey_df
@@ -85,7 +88,7 @@ def respondersMap(valid_survey_df):
         .plot(
             color='white', 
             edgecolor='black',
-            figsize=(15,10)
+            figsize=(9,7)
             )
     )
     gdf.plot(ax=ax, color='red')
@@ -97,7 +100,7 @@ def respondersMap(valid_survey_df):
     return html
 
 
-def personalityScoreMini():
+def personalityScoreMini(survey_df):
     print(
         survey_df
         .loc[0,'E1':'I20R']
@@ -193,7 +196,7 @@ def groupAssignment(survey_ipip_df):
     )
 
 
-def analyzingResponse():
+def analyzingResponse(survey_df):
     return (
     survey_df
     .loc[0,'Appropriate 1':'Online experience 1']
@@ -283,7 +286,7 @@ def cronbachAlphaSummarySecond(summary_numeric_survey_df,survey_attributes):
 
     (
         summary_numeric_survey_df[survey_attributes +['group']]
-        .boxplot(by='group', figsize=(13,8))
+        .boxplot(by='group', figsize=(8,10))
     )
 
     tmpfile = BytesIO()
@@ -315,7 +318,7 @@ def visualDiffrencesGraph(summary_numeric_survey_df,survey_questions):
 
 # Scatter with the personality attributes button
 def scatterPersonalityAttrFirst(summary_numeric_survey_df, survey_attributes):
-    fig, ax = plt.subplots(6, 2, figsize=(10,12))
+    fig, ax = plt.subplots(6, 2, figsize=(9,12))
 
     for idx, attribute in enumerate(survey_attributes):
         for i,group in enumerate(sorted(summary_numeric_survey_df.group.unique())):
@@ -376,7 +379,7 @@ def scatterPersonalityAttrSecond(survey_attributes, personality_attributes, summ
 def plotBuild(survey_questions,summary_numeric_survey_df):
 ### PLOT BUILD
     for index, q in survey_questions.items():
-        fig, ax = plt.subplots(1, 4, figsize=(12,5))
+        fig, ax = plt.subplots(1, 4, figsize=(9,5))
         for i,group in enumerate(sorted(summary_numeric_survey_df.group.unique())):
 
             sub_df = summary_numeric_survey_df.query('group == @group')
@@ -419,7 +422,13 @@ def createLastTable(survey_questions, personality_attributes,summary_numeric_sur
 
 
 def main(argv):
-    valid_survey_df = clipingOutliersSecond()
+    try:
+        survey_df = pd.read_csv('./server/Bot_Research.csv')
+    except:
+        print("Please upload a suitable CSV file")
+        return
+
+    valid_survey_df = clipingOutliersSecond(survey_df)
     survey_ipip_df = ipip_df(valid_survey_df)
     survey_ipip_df_with_group = groupAssignment(survey_ipip_df)
     #numeric_survey_ipip_df = numeric_ipip_df(survey_ipip_df_with_group)
@@ -428,14 +437,14 @@ def main(argv):
 
     survey_attributes = ['Appropriate','Trust_Benevolence','Trust_Competence','Trust_Info','Purchase','Trust']
     personality_attributes = ['pE','pA','pC','pN','pI']
-    survey_questions = analyzingResponse()
+    survey_questions = analyzingResponse(survey_df)
     
     
     
     if (argv[0] == '1'):
-        surveyOverview()
+        surveyOverview(survey_df)
     elif (argv[0] == '2'):
-        print(clipingOutliersFirst())
+        print(clipingOutliersFirst(survey_df))
         print('\n')
         print(valid_survey_df)
     elif (argv[0] == '3'):
@@ -443,7 +452,7 @@ def main(argv):
     elif (argv[0] == '4'):
         print(respondersMap(valid_survey_df))
     elif (argv[0] == '5'):
-        personalityScoreMini()
+        personalityScoreMini(survey_df)
     elif (argv[0] == '6'):
         print (personalityScoreCalcFirst(survey_ipip_df))
         print (personalityScoreCalcSecond(survey_ipip_df))
@@ -451,7 +460,7 @@ def main(argv):
         # print(groupAssignment(survey_ipip_df))
         print(survey_ipip_df_with_group)
     elif (argv[0] == '8'):
-        print(analyzingResponse())
+        print(analyzingResponse(survey_df))
     elif (argv[0] == '9'):
         print('Appropriate:         ', cronbachAlpha(numeric_survey_ipip_df,'Appropriate'))
         print('Trust:               ', cronbachAlpha(numeric_survey_ipip_df,'Trust'))

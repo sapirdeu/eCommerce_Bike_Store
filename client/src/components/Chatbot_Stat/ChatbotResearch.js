@@ -41,124 +41,124 @@ function ChatbotResearch(props) {
     const [analysisQuestionData, setAnalysisQuestionData] = useState('')
 
 
-    let columns = [
-        {
-          heading: 'Item',
-          property: 'item'
-        },
-        {
-          heading: 'Factor',
-          property: 'factor'
-        },
-        {
-          heading: 'Text',
-          property: 'text'
-        }
-    ]
+    // let columns = [
+    //     {
+    //       heading: 'Item',
+    //       property: 'item'
+    //     },
+    //     {
+    //       heading: 'Factor',
+    //       property: 'factor'
+    //     },
+    //     {
+    //       heading: 'Text',
+    //       property: 'text'
+    //     }
+    // ]
 
     //Data is the array of objects to be placed into the table
-    let data = [
-        {
-            item: '1',
-            factor: 'E',
-            text: 'Am the life of the party.',
-        },
-        {
-            item: '2',
-            factor: 'A',
-            text: 'Sympathize with others’ feelings',
-        },
-        {
-            item: '3',
-            factor: 'C',
-            text: 'Get chores done right away.',
-        },
-        {
-            item: '4',
-            factor: 'N',
-            text: 'Have frequent mood swings.',
-        },
-        {
-            item: '5',
-            factor: 'I',
-            text: 'Have a vivid imagination.',
-        },
-        {
-            item: '6',
-            factor: 'E',
-            text: 'Don’t talk a lot. (R)',
-        },
-        {
-            item: '7',
-            factor: 'A',
-            text: 'Am not interested in other people’s problems. (R)',
-        },
-        {
-            item: '8',
-            factor: 'C',
-            text: 'Often forget to put things back in their proper place. (R)',
-        },
-        {
-            item: '9',
-            factor: 'N',
-            text: 'Am relaxed most of the time. (R)',
-        },
-        {
-            item: '10',
-            factor: 'I',
-            text: 'Am not interested in abstract ideas. (R)',
-        },
-        {
-            item: '11',
-            factor: 'E',
-            text: 'Talk to a lot of different people at parties.',
-        },
-        {
-            item: '12',
-            factor: 'A',
-            text: 'Sympathize with others’ feelings',
-        },
-        {
-            item: '13',
-            factor: 'C',
-            text: 'Like order.',
-        },
-        {
-            item: '14',
-            factor: 'N',
-            text: 'Get upset easily.',
-        },
-        {
-            item: '15',
-            factor: 'I',
-            text: 'Have difficulty understanding abstract ideas. (R)',
-        },
-        {
-            item: '16',
-            factor: 'E',
-            text: 'Keep in the background. (R)',
-        },
-        {
-            item: '17',
-            factor: 'A',
-            text: 'Am not really interested in others. (R)',
-        },
-        {
-            item: '18',
-            factor: 'C',
-            text: 'Make a mess of things. (R)',
-        },
-        {
-            item: '19',
-            factor: 'N',
-            text: 'Seldom feel blue. (R)',
-        },
-        {
-            item: '20',
-            factor: 'I',
-            text: 'Do not have a good imagination. (R)',
-        }
-    ]
+    // let data = [
+    //     {
+    //         item: '1',
+    //         factor: 'E',
+    //         text: 'Am the life of the party.',
+    //     },
+    //     {
+    //         item: '2',
+    //         factor: 'A',
+    //         text: 'Sympathize with others’ feelings',
+    //     },
+    //     {
+    //         item: '3',
+    //         factor: 'C',
+    //         text: 'Get chores done right away.',
+    //     },
+    //     {
+    //         item: '4',
+    //         factor: 'N',
+    //         text: 'Have frequent mood swings.',
+    //     },
+    //     {
+    //         item: '5',
+    //         factor: 'I',
+    //         text: 'Have a vivid imagination.',
+    //     },
+    //     {
+    //         item: '6',
+    //         factor: 'E',
+    //         text: 'Don’t talk a lot. (R)',
+    //     },
+    //     {
+    //         item: '7',
+    //         factor: 'A',
+    //         text: 'Am not interested in other people’s problems. (R)',
+    //     },
+    //     {
+    //         item: '8',
+    //         factor: 'C',
+    //         text: 'Often forget to put things back in their proper place. (R)',
+    //     },
+    //     {
+    //         item: '9',
+    //         factor: 'N',
+    //         text: 'Am relaxed most of the time. (R)',
+    //     },
+    //     {
+    //         item: '10',
+    //         factor: 'I',
+    //         text: 'Am not interested in abstract ideas. (R)',
+    //     },
+    //     {
+    //         item: '11',
+    //         factor: 'E',
+    //         text: 'Talk to a lot of different people at parties.',
+    //     },
+    //     {
+    //         item: '12',
+    //         factor: 'A',
+    //         text: 'Sympathize with others’ feelings',
+    //     },
+    //     {
+    //         item: '13',
+    //         factor: 'C',
+    //         text: 'Like order.',
+    //     },
+    //     {
+    //         item: '14',
+    //         factor: 'N',
+    //         text: 'Get upset easily.',
+    //     },
+    //     {
+    //         item: '15',
+    //         factor: 'I',
+    //         text: 'Have difficulty understanding abstract ideas. (R)',
+    //     },
+    //     {
+    //         item: '16',
+    //         factor: 'E',
+    //         text: 'Keep in the background. (R)',
+    //     },
+    //     {
+    //         item: '17',
+    //         factor: 'A',
+    //         text: 'Am not really interested in others. (R)',
+    //     },
+    //     {
+    //         item: '18',
+    //         factor: 'C',
+    //         text: 'Make a mess of things. (R)',
+    //     },
+    //     {
+    //         item: '19',
+    //         factor: 'N',
+    //         text: 'Seldom feel blue. (R)',
+    //     },
+    //     {
+    //         item: '20',
+    //         factor: 'I',
+    //         text: 'Do not have a good imagination. (R)',
+    //     }
+    // ]
 
     
     const [filters, setFilters] = useState({
@@ -173,9 +173,9 @@ function ChatbotResearch(props) {
             setSurveyOverviewData(response.payload)
         })
     }
-    // function unwatchSurveyOverviewHandler(){
-    //     setSurveyOverviewData('');
-    // }
+    function unwatchSurveyOverviewHandler(){
+        setSurveyOverviewData('');
+    }
 
     // Clipping Outliers
     function watchClipingOutliersHandler(){
@@ -183,9 +183,9 @@ function ChatbotResearch(props) {
             setClipingOutliersData(response.payload)
         })
     }
-    // function unwatchClipingOutliersHandler(){
-    //     setClipingOutliersData('');
-    // }
+    function unwatchClipingOutliersHandler(){
+        setClipingOutliersData('');
+    }
 
     // Historgram of the duration of test taking (after clipping)
     function watchHistorgramHandler(){
@@ -193,9 +193,9 @@ function ChatbotResearch(props) {
             setHistorgramData(response.payload)
         })
     }
-    // function unwatchHistorgramHandler(){
-    //     setHistorgramData('');
-    // }
+    function unwatchHistorgramHandler(){
+        setHistorgramData('');
+    }
 
     // Map of responders
     function watchRespondersMapHandler(){
@@ -203,9 +203,9 @@ function ChatbotResearch(props) {
             setRespondersMapData(response.payload)
         })
     }
-    // function unwatchRespondersMapHandler(){
-    //     setRespondersMapData('');
-    // }
+    function unwatchRespondersMapHandler(){
+        setRespondersMapData('');
+    }
 
     // Personality Score Mini-IPIP test questions
     function watchPersonalityScoreMiniHandler(){
@@ -213,9 +213,9 @@ function ChatbotResearch(props) {
             setPersonalityScoreMiniData(response.payload)
         })
     }
-    // function unwatchPersonalityScoreMiniHandler(){
-    //     setPersonalityScoreMiniData('');
-    // }
+    function unwatchPersonalityScoreMiniHandler(){
+        setPersonalityScoreMiniData('');
+    }
 
     // Personality Score calculation
     function watchPersonalityScoreCalcHandler(){
@@ -223,9 +223,9 @@ function ChatbotResearch(props) {
             setPersonalityScoreCalcData(response.payload)
         })
     }
-    // function unwatchPersonalityScoreCalcHandler(){
-    //     setPersonalityScoreCalcData('');
-    // }
+    function unwatchPersonalityScoreCalcHandler(){
+        setPersonalityScoreCalcData('');
+    }
 
     // Random Groups - Group Assignment
     function watchGroupAssignmentHandler(){
@@ -233,9 +233,9 @@ function ChatbotResearch(props) {
             setGroupAssignmentData(response.payload)
         })
     }
-    // function unwatchGroupAssignmentHandler(){
-    //     setGroupAssignmentData('');
-    // }
+    function unwatchGroupAssignmentHandler(){
+        setGroupAssignmentData('');
+    }
 
     // Analyzing the survey response to the different aspects of the experiment
     function watchAnalyzingResponseHandler(){
@@ -243,19 +243,18 @@ function ChatbotResearch(props) {
             setAnalyzingResponseData(response.payload)
         })
     }
-    // function unwatchAnalyzingResponseHandler(){
-    //     setAnalyzingResponseData('');
-    // }
+    function unwatchAnalyzingResponseHandler(){
+        setAnalyzingResponseData('');
+    }
 
     function watchTestingReliabilityHandler(){
         dispatch(getTestingReliability()).then(response=>{
             setTestingReliabilityData(response.payload)
         })
     }
-    // function unwatchTestingReliabilityHandler(){
-    //     setTestingReliabilityData('');
-    // }
-
+    function unwatchTestingReliabilityHandler(){
+        setTestingReliabilityData('');
+    }
 
 
     function watchCronbachAlphaHandler(){
@@ -263,18 +262,18 @@ function ChatbotResearch(props) {
             setCronbachAlphaData(response.payload)
         })
     }
-    // function unwatchCronbachAlphaHandler(){
-    //     setCronbachAlphaData('');
-    // }
+    function unwatchCronbachAlphaHandler(){
+        setCronbachAlphaData('');
+    }
 
     function watchVisualDifferencesHandler(){
         dispatch(getVisualDifferences()).then(response=>{
             setVisualDifferencesData(response.payload)
         })
     }
-    // function unwatchVisualDifferencesHandler(){
-    //     setVisualDifferencesData('');
-    // }
+    function unwatchVisualDifferencesHandler(){
+        setVisualDifferencesData('');
+    }
 
 
     function watchScatterHandler(){
@@ -282,9 +281,9 @@ function ChatbotResearch(props) {
             setScatterData(response.payload)
         })
     }
-    // function unwatchScatterHandler(){
-    //     setScatterData('');
-    // }
+    function unwatchScatterHandler(){
+        setScatterData('');
+    }
 
 
     function watchAnalysisQuestionHandler(){
@@ -292,57 +291,58 @@ function ChatbotResearch(props) {
             setAnalysisQuestionData(response.payload)
         })
     }
-    // function unwatchAnalysisQuestionHandler(){
-    //     setAnalysisQuestionData('');
-    // }
+    function unwatchAnalysisQuestionHandler(){
+        setAnalysisQuestionData('');
+    }
 
 
 
     const handleFilters = (filters1, category) => {
-        //var unwatch = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        //console.log(unwatch)
+        var unwatch = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        console.log(unwatch)
         if (category === 'chatbotStatistics'){
             console.log(filters1)
             for (var index in filters1){
                 switch (filters1[index]){
-                    case 1: watchSurveyOverviewHandler(); /*unwatch[1] = 0;*/ break;
-                    case 2: watchClipingOutliersHandler(); /*unwatch[2] = 0;*/ break;
-                    case 3: watchHistorgramHandler(); /*unwatch[3] = 0;*/ break;
-                    case 4: watchRespondersMapHandler(); /*unwatch[4] = 0;*/ break;
-                    case 5: watchPersonalityScoreMiniHandler(); /*unwatch[5] = 0;*/ break;
-                    case 6: watchPersonalityScoreCalcHandler(); /*unwatch[6] = 0;*/ break;
-                    case 7: watchGroupAssignmentHandler(); /*unwatch[7] = 0;*/ break;
-                    case 8: watchAnalyzingResponseHandler(); /*unwatch[8] = 0;*/ break;
-                    case 9: watchTestingReliabilityHandler(); /*unwatch[9] = 0;*/ break;
-                    case 10: watchCronbachAlphaHandler(); /*unwatch[10] = 0;*/ break;
-                    case 11: watchVisualDifferencesHandler(); /*unwatch[11] = 0;*/ break;
-                    case 12: watchScatterHandler(); /*unwatch[12] = 0;*/ break;
-                    case 13: watchAnalysisQuestionHandler(); /*unwatch[13] = 0;*/ break;
+                    case 1: watchSurveyOverviewHandler(); unwatch[1] = 0; break;
+                    case 2: watchClipingOutliersHandler(); unwatch[2] = 0; break;
+                    case 3: watchHistorgramHandler(); unwatch[3] = 0; break;
+                    case 4: watchRespondersMapHandler(); unwatch[4] = 0; break;
+                    case 5: watchPersonalityScoreMiniHandler(); unwatch[5] = 0; break;
+                    case 6: watchPersonalityScoreCalcHandler(); unwatch[6] = 0; break;
+                    case 7: watchGroupAssignmentHandler(); unwatch[7] = 0; break;
+                    case 8: watchAnalyzingResponseHandler(); unwatch[8] = 0; break;
+                    case 9: watchTestingReliabilityHandler(); unwatch[9] = 0; break;
+                    case 10: watchCronbachAlphaHandler(); unwatch[10] = 0; break;
+                    case 11: watchVisualDifferencesHandler(); unwatch[11] = 0; break;
+                    case 12: watchScatterHandler(); unwatch[12] = 0; break;
+                    case 13: watchAnalysisQuestionHandler(); unwatch[13] = 0; break;
                     default: break;
                 }
             }
         }
 
-        // console.log(unwatch)
-        // for (var i=1 ; i<unwatch.length; i++){
-        //     if (unwatch[i] == 1){
-        //         switch (i){
-        //             case 1: unwatchSurveyOverviewHandler(); break;
-        //             case 2: unwatchClipingOutliersHandler(); break;
-        //             case 3: unwatchHistorgramHandler(); break;
-        //             case 4: unwatchRespondersMapHandler(); break;
-        //             case 5: unwatchPersonalityScoreMiniHandler(); break;
-        //             case 6: unwatchPersonalityScoreCalcHandler(); break;
-        //             case 7: unwatchGroupAssignmentHandler(); break;
-        //             case 8: unwatchAnalyzingResponseHandler(); break;
-        //             case 9: unwatchTestingReliabilityHandler(); break;
-        //             case 10: unwatchCronbachAlphaHandler(); break;
-        //             case 11: unwatchVisualDifferencesHandler(); break;
-        //             case 12: unwatchScatterHandler(); break;
-        //             case 13: unwatchAnalysisQuestionHandler(); break;
-        //         }
-        //     }
-        // }
+        console.log(unwatch)
+        for (var i=1 ; i<unwatch.length; i++){
+            if (unwatch[i] == 1){
+                switch (i){
+                    case 1: unwatchSurveyOverviewHandler(); break;
+                    case 2: unwatchClipingOutliersHandler(); break;
+                    case 3: unwatchHistorgramHandler(); break;
+                    case 4: unwatchRespondersMapHandler(); break;
+                    case 5: unwatchPersonalityScoreMiniHandler(); break;
+                    case 6: unwatchPersonalityScoreCalcHandler(); break;
+                    case 7: unwatchGroupAssignmentHandler(); break;
+                    case 8: unwatchAnalyzingResponseHandler(); break;
+                    case 9: unwatchTestingReliabilityHandler(); break;
+                    case 10: unwatchCronbachAlphaHandler(); break;
+                    case 11: unwatchVisualDifferencesHandler(); break;
+                    case 12: unwatchScatterHandler(); break;
+                    case 13: unwatchAnalysisQuestionHandler(); break;
+                    default: break;
+                }
+            }
+        }
 
         setFilters(filters1);
         //const newFilters = filters;
@@ -370,7 +370,7 @@ function ChatbotResearch(props) {
                         <div>
                             <h1 className="padding20">Survey Analysis</h1>
                             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We often want to survey people on their views or reactions to possible events (design or promotion, for example). There are many survey tools that are good in designing the survey, presenting it on various forms, such as web or mobile, distributing it and collecting the responses. However, when it comes to analyzing the responses, you are left with fewer options, and most of them are out-dated (SPSS, for example).</h3>
-                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>In this notebook, we will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
+                            <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will explore how to analyze survey's responses, including statistical tests for reliability and research hypothesis.</h3>
                             <h3 style={{fontWeight:"normal", fontSize:"15px"}}>We will start with loading the CSV files that we exported from the survey system (Qualtrics, in this example).</h3>
                             <br/>
                             <DragAndDropCSV/>
@@ -430,7 +430,8 @@ function ChatbotResearch(props) {
                                             <br/>
                                             <h3>Map of responders</h3>
                                             <p>A general map of the location of the people taking the test</p>
-                                            {renderHTML(respondersMapData)}
+                                            <pre className="big_container">{renderHTML(respondersMapData)}</pre>
+                                          
                                         </>
                                     :
                                         null
@@ -451,7 +452,7 @@ function ChatbotResearch(props) {
                                             <br/>
 
                                             <div className="clipping_container">
-                                                <Table striped bordered hover size="sm">
+                                                {/* <Table striped bordered hover size="sm">
                                                     <thead>
                                                         <tr>{columns.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
                                                     </thead>
@@ -463,7 +464,7 @@ function ChatbotResearch(props) {
                                                         )}
                                                     </tbody>
                                                 </Table>
-                                                <br/>
+                                                <br/> */}
                                                 <pre>{personalityScoreMiniData}</pre>
                                             </div>
                                             <br></br><br></br>
@@ -494,7 +495,7 @@ function ChatbotResearch(props) {
                                         <>
                                             <br/>
                                             <h3>Random Groups - Group Assignment</h3>
-                                            <p>The survey system is randomaly assigning each participat to one of the group by showing either the Introvert or the Extrovert dialog.</p>
+                                            <p>The survey system is randomly assigning each participant to one of the group by showing either the Introvert or the Extrovert dialog.</p>
                                             <p>The following cell is calculating the group assignment, based on which answer each participant gave.</p>
                                             <p>We expect see almost equal sizes for the groups:</p>
                                             <pre>{renderHTML(groupAssignmentData)}</pre>

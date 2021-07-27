@@ -88,7 +88,7 @@ function Footer({data}) {
                         <LexChat 
                             style={{position: 'absolute'}}
                             backgroundColor="#FFFFFF"
-                            headerText="Speak with an expert..." />
+                            headerText="Speak with our expert..." />
                         {/* <iframe title="bot" src="https://de8yvjyv30ptl.cloudfront.net/"></iframe> */}
                         {/* <div className="right">
                          <script src="https://de8yvjyv30ptl.cloudfront.net/lex-web-ui-loader.min.js"></script>
