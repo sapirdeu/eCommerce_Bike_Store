@@ -127,7 +127,7 @@ const chatbotStatistics = [
 const mlResearch = [
     {
         "_id": 1,
-        "name": "Research Overview"
+        "name": "Rental Bikes PoC Overview"
     },
     {
         "_id": 2,

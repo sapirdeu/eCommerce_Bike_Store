@@ -769,7 +769,7 @@ function AnomaliesResearch(props) {
                     <div className="left">
                         <CollapseCheckbox
                             initState={true}
-                            title="Machine Learning Bikes Research"
+                            title="Rental Bikes Business PoC"
                             list={mlResearch}
                             handleFilters={(filters)=>handleFilters(filters, 'mlResearch')}
                         />
@@ -777,7 +777,7 @@ function AnomaliesResearch(props) {
 
                     <div className="right" style={{paddingLeft:"25px"}}>
                         <div>
-                            <h1 className="padding20">Bike Sharing Machine Learning Research</h1>
+                            <h1 className="padding20">Rental Bikes Business - Proof of Concept</h1>
                             <br/>
                             <div>
                                 {

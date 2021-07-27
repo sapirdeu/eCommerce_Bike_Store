@@ -27,12 +27,12 @@ function Header(props) {
             public: true
         },
         {
-            name: 'Chatbot Research',
+            name: 'Chatbot Statistics',
             linkTo: '/chatbotResearch',
             public: true
         },
         {
-            name: 'Anomalies Research',
+            name: 'Rental Bikes Business PoC',
             linkTo: '/anomaliesResearch',
             public: true
         }
