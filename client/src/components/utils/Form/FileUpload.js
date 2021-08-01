@@ -88,7 +88,6 @@ function FileUpload(props) {
                                     backgroundColor: '#eaeaea',
                                     height: '100%',
                                     textAlign: 'center',
-                                    // padding: '31px',
                                     boxSizing: 'border-box',
                                     fontSize: '40px',
                                     backgroundSize:' contain !important',

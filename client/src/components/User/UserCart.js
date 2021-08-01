@@ -12,7 +12,6 @@ import UserProductBlock from '../utils/User/UserProductBlock'
 import Paypal from '../utils/Paypal'
 
 function UserCart(props) {
-    //const [isLoading, setIsLoadind] = useState(true);
     const [total, setTotal] = useState(0);
     const [showTotal, setShowTotal] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);

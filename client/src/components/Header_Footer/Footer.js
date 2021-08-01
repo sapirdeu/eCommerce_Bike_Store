@@ -17,13 +17,6 @@ function Footer({data}) {
         </script>
     `)
 
-    // useEffect(() => {
-    //     effect
-    //     return () => {
-    //         cleanup
-    //     }
-    // }, [input])
-
     return (
         
         data.siteData ? 
@@ -82,31 +75,12 @@ function Footer({data}) {
                                 </div>
                             </div>
                         </div>
-                        {/* <iframe title="bot" src={botScript}></iframe> */}
                         <link href="../chatbot_ui/lex-web-ui-loader.min.css"></link>
                         <script src="../chatbot_ui/lex-web-ui-loader.min.js"></script>
                         <LexChat 
                             style={{position: 'absolute'}}
                             backgroundColor="#FFFFFF"
                             headerText="Speak with our expert..." />
-                        {/* <iframe title="bot" src="https://de8yvjyv30ptl.cloudfront.net/"></iframe> */}
-                        {/* <div className="right">
-                         <script src="https://de8yvjyv30ptl.cloudfront.net/lex-web-ui-loader.min.js"></script>
-                           
-                           
-                            <script>
-                                
-                                var loaderOpts = {
-                                    baseUrl: 'https://de8yvjyv30ptl.cloudfront.net/',
-                                    shouldLoadMinDeps: true
-                                };
-                                var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
-                                loader.load()
-                                    .catch(function (error) { console.error(error); });
-                            </script>
-                       
-                        
-                        </div> */}
                     </div>
                 </div>
             </footer>

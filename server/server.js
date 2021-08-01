@@ -17,8 +17,6 @@ require('dotenv').config();
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
 
-// app.use(bodyParser.urlencoded({extended:true}));
-// app.use(bodyParser.json());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
@@ -41,7 +39,6 @@ const { Site } = require('./models/site');
 const {auth} = require('./middleware/auth')
 const {admin} = require('./middleware/admin');
 const {researcher} = require('./middleware/researcher');
-// const user = require('./models/user');
 
 const {spawn} = require('child_process');
 const path = require('path');
@@ -461,7 +458,6 @@ app.get('/api/chatbot/statistics', auth, researcher, (req, res)=>{
 
 function runSpawn(actionNum) {
     // CHANGE THE PATH TO ANACONDA
-    // return spawn('C:\\ProgramData\\Anaconda3\\envs\\geo_env\\python', [path.join(__dirname, './chatbot_server.py'), actionNum.toString()]);
     return spawn(`C:\\ProgramData\\Anaconda3\\Scripts\\conda run -n geo_env python ${path.join(__dirname, './chatbot_server.py')} ${actionNum.toString()}`, { shell: true });
 }
 
@@ -473,8 +469,6 @@ function runSpawn(actionNum) {
 const { writeToPath } = require('fast-csv');
 
 app.post('/api/dropzone/uploadCSV', (req, res)=>{  
-    // const path = 'C:/Users/Almog/Desktop/final-project/eCommerce_Bike_Store/server/Bot_Research.csv';
-    //const path = 'D:/ReactProjects/eCommerce_Bike_Store/server/Bot_Research.csv';
     const path = './server/Bot_Research.csv';
     const data = []
     for (var i=0; i<req.body.length; i++){

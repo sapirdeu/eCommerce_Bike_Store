@@ -12,16 +12,11 @@ function DragAndDropCSV() {
     }
 
     function handleOnRemoveFile (event){
-        console.log('---------------------------')
         console.log(event)
-        console.log('---------------------------')
     }
 
     function onDropEvent (event, file) {
-        console.log(event)
-        console.log('---------------------------')
         if(event.type === "text/CSV" || event.type === "application/vnd.ms-excel"){
-            console.log("CSV file")
             dispatch(postUploadCSV(file))
         }
         else{ 

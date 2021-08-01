@@ -6,9 +6,8 @@ import {DROPZONE_SERVER} from '../../components/utils/Misc'
 
 function postUploadCSV(csvFile){    
     const request = 
-        axios.post(`${DROPZONE_SERVER}/uploadCSV`, csvFile)//{csv: csvFile})
+        axios.post(`${DROPZONE_SERVER}/uploadCSV`, csvFile)
         .then(response => {
-            // console.log(csvFile)
             return response.data});
     
     return {
@@ -17,13 +16,6 @@ function postUploadCSV(csvFile){
     }
 }
 
-
-// function clearProductDetail(){
-//     return {
-//         type: CLEAR_PRODUCT_DETAIL, 
-//         payload: ''
-//     }
-// }
 
 
 export {

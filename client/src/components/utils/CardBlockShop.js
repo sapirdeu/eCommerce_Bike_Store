@@ -8,7 +8,6 @@ function CardBlockShop(props) {
                 <Card
                     key={card._id}
                     {...card}
-                    grid={props.grid}
                 />
             ))
         :

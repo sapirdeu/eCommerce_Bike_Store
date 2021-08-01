@@ -17,12 +17,11 @@ function Card(props) {
     }
 
     return (
-        <div className={`card_item_wrapper ${props.grid}`}>
+        <div className={`card_item_wrapper`}>
             <div
                 className="image"
                 style={{
                     background: `url(${renderCardImage(props.images)}) no-repeat`,
-                    // height: '160px'
                 }}
             > 
             </div>
@@ -34,14 +33,6 @@ function Card(props) {
                     <div className="name">{props.weight} kg</div>
                 </div>
             
-                {
-                    props.grid ?
-                        <div className="description">
-                            <p>{props.description}</p>
-                        </div>
-                    :
-                        null
-                }
 
                 <div className="actions">
                     <div className="button_wrapp">

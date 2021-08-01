@@ -6,7 +6,6 @@ function LoadMoreCards(props) {
         <div>
             <div>
                 <CardBlockShop
-                    grid={props.grid}
                     list={props.products}
                 />
             </div>

@@ -20,9 +20,6 @@ function getSurveyOverview(){
     const request = 
         axios.get(`${CHATBOT_SERVER}/statistics?statistic=surveyOverview`)
         .then(response => response.data);  
-    // const request = 
-    //     axios.get(`${CHATBOT_SERVER}/surveyOverview`)
-    //     .then(response => response.data);
     
     return {
         type: GET_CHATBOT_SURVEY_OVERVIEW, 
@@ -161,13 +158,6 @@ function getAnalysisQuestion(){
         payload: request
     }
 }
-
-// function clearProductDetail(){
-//     return {
-//         type: CLEAR_PRODUCT_DETAIL, 
-//         payload: ''
-//     }
-// }
 
 
 export {

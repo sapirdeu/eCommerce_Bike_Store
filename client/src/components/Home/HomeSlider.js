@@ -7,14 +7,14 @@ function HomeSlider(props) {
         [
             {
                 img: 'images/featured/featured_home_1.jpg',
-                lineOne: 'Devinci',
+                lineOne: 'Canyon',
                 lineTwo: 'Custom shop',
                 linkTitle: 'Shop now',
                 linkTo: '/shop',
             },
             {
                 img: 'images/featured/featured_home_2.jpg',
-                lineOne: 'Fuji',
+                lineOne: 'city bikes',
                 lineTwo: 'Awesome discounts',
                 linkTitle: 'View offers',
                 linkTo: '/shop',

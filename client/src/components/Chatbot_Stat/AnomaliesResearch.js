@@ -1196,22 +1196,16 @@ function AnomaliesResearch(props) {
                                             <img src="images/ml/13.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>Linear Regression loss:</b> 0.030762413820932928<br/>
                                             <b>10.72% Improvement</b>
-                                            {/* 0.034457361213136625 */}
-                                            {/* (0.034457361213136625-0.030762413820932928)/0.034457361213136625 = 0.10723245373 */}
                                             <br/><br/>
                                             
                                             <img src="images/ml/14.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>SVR loss:</b> 0.07434209488497755<br/>
                                             <b>15.17% Improvement</b>
-                                            {/* 0.0876347746659868 */}
-                                            {/* (0.0876347746659868-0.07434209488497755)/0.0876347746659868 = 0.15168270622 */}
                                             <br/><br/>
 
                                             <img src="images/ml/15.PNG" width="600" height="450" alt=""></img><br/>
                                             <b>Random Forest loss:</b> 0.019869942033651056<br/>
                                             <b>1.63% Improvement</b>
-                                            {/* 0.020199390796750122 */}
-                                            {/* (0.020199390796750122-0.019869942033651056)/0.020199390796750122 = 0.01630983658 */}
                                             <br/><br/>
 
                                             <h3>Conclusion</h3> Improvement of the percentages of the correct predictions <b>without</b> anomalies in the dataset- more accurate<br/>

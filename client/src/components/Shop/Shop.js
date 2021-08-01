@@ -14,7 +14,6 @@ import faTh from '@fortawesome/fontawesome-free-solid/faTh'
 
 function Shop(props) {
     const products = props.products;
-    const [grid,setGrid] = useState('');
     const [limit] = useState(6);
     const [skip, setSkip] = useState(0);
     const [filters, setFilters] = useState({
@@ -92,10 +91,6 @@ function Shop(props) {
         })
     }
 
-    const handleGrid = () => {
-        setGrid(!grid ? 'grid_bars' : '')
-    }
-
     return (
         <div>
             <PageTop title="Browse Products"/>
@@ -135,26 +130,9 @@ function Shop(props) {
                     </div>
 
                     <div className="right">
-                        {/* <div className="shop_options">
-                            <div className="shop_grids clear">
-                                <div
-                                    className={`grid_btn ${grid ? '' : 'active'}`}
-                                    onClick={()=>handleGrid()}
-                                >
-                                    <FontAwesomeIcon icon={faTh}/>
-                                </div>
-                                <div
-                                    className={`grid_btn ${!grid ? '' : 'active'}`}
-                                    onClick={()=>handleGrid()}
-                                >
-                                    <FontAwesomeIcon icon={faBars}/>
-                                </div>
-                            </div>
-                        </div> */}
                         <br/><br/>
                         <div>
                             <LoadMoreCards
-                                grid={grid}
                                 limit={limit}
                                 size={products.toShopSize}
                                 products={products.toShop}

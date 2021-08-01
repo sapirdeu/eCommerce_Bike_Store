@@ -40,126 +40,6 @@ function ChatbotResearch(props) {
     const [scatterData, setScatterData] = useState('')
     const [analysisQuestionData, setAnalysisQuestionData] = useState('')
 
-
-    // let columns = [
-    //     {
-    //       heading: 'Item',
-    //       property: 'item'
-    //     },
-    //     {
-    //       heading: 'Factor',
-    //       property: 'factor'
-    //     },
-    //     {
-    //       heading: 'Text',
-    //       property: 'text'
-    //     }
-    // ]
-
-    //Data is the array of objects to be placed into the table
-    // let data = [
-    //     {
-    //         item: '1',
-    //         factor: 'E',
-    //         text: 'Am the life of the party.',
-    //     },
-    //     {
-    //         item: '2',
-    //         factor: 'A',
-    //         text: 'Sympathize with others’ feelings',
-    //     },
-    //     {
-    //         item: '3',
-    //         factor: 'C',
-    //         text: 'Get chores done right away.',
-    //     },
-    //     {
-    //         item: '4',
-    //         factor: 'N',
-    //         text: 'Have frequent mood swings.',
-    //     },
-    //     {
-    //         item: '5',
-    //         factor: 'I',
-    //         text: 'Have a vivid imagination.',
-    //     },
-    //     {
-    //         item: '6',
-    //         factor: 'E',
-    //         text: 'Don’t talk a lot. (R)',
-    //     },
-    //     {
-    //         item: '7',
-    //         factor: 'A',
-    //         text: 'Am not interested in other people’s problems. (R)',
-    //     },
-    //     {
-    //         item: '8',
-    //         factor: 'C',
-    //         text: 'Often forget to put things back in their proper place. (R)',
-    //     },
-    //     {
-    //         item: '9',
-    //         factor: 'N',
-    //         text: 'Am relaxed most of the time. (R)',
-    //     },
-    //     {
-    //         item: '10',
-    //         factor: 'I',
-    //         text: 'Am not interested in abstract ideas. (R)',
-    //     },
-    //     {
-    //         item: '11',
-    //         factor: 'E',
-    //         text: 'Talk to a lot of different people at parties.',
-    //     },
-    //     {
-    //         item: '12',
-    //         factor: 'A',
-    //         text: 'Sympathize with others’ feelings',
-    //     },
-    //     {
-    //         item: '13',
-    //         factor: 'C',
-    //         text: 'Like order.',
-    //     },
-    //     {
-    //         item: '14',
-    //         factor: 'N',
-    //         text: 'Get upset easily.',
-    //     },
-    //     {
-    //         item: '15',
-    //         factor: 'I',
-    //         text: 'Have difficulty understanding abstract ideas. (R)',
-    //     },
-    //     {
-    //         item: '16',
-    //         factor: 'E',
-    //         text: 'Keep in the background. (R)',
-    //     },
-    //     {
-    //         item: '17',
-    //         factor: 'A',
-    //         text: 'Am not really interested in others. (R)',
-    //     },
-    //     {
-    //         item: '18',
-    //         factor: 'C',
-    //         text: 'Make a mess of things. (R)',
-    //     },
-    //     {
-    //         item: '19',
-    //         factor: 'N',
-    //         text: 'Seldom feel blue. (R)',
-    //     },
-    //     {
-    //         item: '20',
-    //         factor: 'I',
-    //         text: 'Do not have a good imagination. (R)',
-    //     }
-    // ]
-
     
     const [filters, setFilters] = useState({
         chatbotStatistics:[],
@@ -299,9 +179,7 @@ function ChatbotResearch(props) {
 
     const handleFilters = (filters1, category) => {
         var unwatch = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        console.log(unwatch)
         if (category === 'chatbotStatistics'){
-            console.log(filters1)
             for (var index in filters1){
                 switch (filters1[index]){
                     case 1: watchSurveyOverviewHandler(); unwatch[1] = 0; break;
@@ -322,7 +200,6 @@ function ChatbotResearch(props) {
             }
         }
 
-        console.log(unwatch)
         for (var i=1 ; i<unwatch.length; i++){
             if (unwatch[i] == 1){
                 switch (i){
@@ -345,10 +222,6 @@ function ChatbotResearch(props) {
         }
 
         setFilters(filters1);
-        //const newFilters = filters;
-        //newFilters[category] = filters1;
-        //showFilteredResults(newFilters);
-        //setFilters(newFilters);
     }
 
     
@@ -452,19 +325,6 @@ function ChatbotResearch(props) {
                                             <br/>
 
                                             <div className="clipping_container">
-                                                {/* <Table striped bordered hover size="sm">
-                                                    <thead>
-                                                        <tr>{columns.map(col => <th key={`header-${col.heading}`}>{col.heading}</th>)}</tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {data.map(item => 
-                                                            <tr key={`${item.item}-row`}>
-                                                                {columns.map(col => <td key={`${item.item}-${col.property}`}>{item[col.property]}</td>)}
-                                                            </tr>
-                                                        )}
-                                                    </tbody>
-                                                </Table>
-                                                <br/> */}
                                                 <pre>{personalityScoreMiniData}</pre>
                                             </div>
                                             <br></br><br></br>
